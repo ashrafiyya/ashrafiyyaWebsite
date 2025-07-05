@@ -1353,6 +1353,7 @@ body {
   flex-direction: column;
   justify-content: center;
   z-index: 2;
+  text-align: center;
 }
 .support-left h2 {
   font-size: 2.3rem;
@@ -1430,6 +1431,7 @@ body {
 }
 .donate-btn {
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 0.5rem;
   background: #fff;
@@ -1438,12 +1440,13 @@ body {
   font-size: 1.1rem;
   font-weight: 600;
   color: #21422E;
-  padding: 0.6rem 1.3rem 0.6rem 1.1rem;
+  padding: 0.6rem 1.3rem 0.6rem 0.7rem;
   text-decoration: none;
   box-shadow: 0 1px 4px rgba(33,66,46,0.06);
   transition: box-shadow 0.2s, border 0.2s, background 0.2s;
   min-width: 110px;
   justify-content: center;
+  text-align: center;
 }
 .donate-btn img {
   height: 1.5rem;
@@ -1530,10 +1533,12 @@ body {
     align-items: stretch;
   }
   .donate-btn {
-    width: 100%;
-    justify-content: flex-start;
-    font-size: 1rem;
-    padding: 0.6rem 1rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    font-size: 1.1rem;
+    padding: 0.6rem 1.3rem 0.6rem 0.7rem;
   }
 }
 
@@ -1545,7 +1550,6 @@ body {
   display: inline-block;
   vertical-align: middle;
   object-fit: contain;
-  margin-right: 0.3rem;
   background: transparent;
 }
 
@@ -1555,11 +1559,87 @@ body {
   opacity: 0.7;
 }
 
+.zelle-label-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  justify-content: center;
+  width: 100%;
+}
+.zelle-label {
+  font-weight: 600;
+  font-size: 1.1em;
+  color: #6a3fc7;
+}
 .donate-btn.zelle .zelle-email {
-  display: block;
+  display: inline;
   font-size: 0.98em;
   color: #6a3fc7;
   font-weight: 600;
-  margin-top: 2px;
+  margin-left: 0.5em;
+  margin-top: 0;
   word-break: break-all;
+  vertical-align: middle;
+}
+
+@media (max-width: 300px) {
+  .donate-btn {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2em;
+  }
+  .donate-btn.zelle .zelle-email {
+    display: block;
+    margin-left: 0;
+    margin-top: 2px;
+    font-size: 0.85em;
+  }
+  .donate-btn.zelle .zelle-label {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .donate-btn.zelle .zelle-email {
+    font-size: 0.92em;
+  }
+  .donate-btn.zelle {
+    font-size: 1em;
+    padding: 0.5rem 1rem;
+  }
+}
+@media (max-width: 600px) {
+  .donate-btn.zelle .zelle-email {
+    font-size: 0.85em;
+  }
+  .donate-btn.zelle {
+    font-size: 0.95em;
+    padding: 0.45rem 0.7rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .donate-btn.zelle .zelle-email {
+    font-size: 0.72em;
+  }
+  .donate-btn.zelle {
+    font-size: 0.85em;
+    padding: 0.35rem 0.4rem;
+  }
+}
+
+@media (max-width: 297px) {
+  .donate-btn.zelle .zelle-email {
+    display: block;
+    margin-top: 2px;
+    margin-left: 0;
+    font-size: 0.8em;
+  }
+}
+
+.zelle-logo-long { display: none; }
+@media (max-width: 300px) {
+  .zelle-logo-short { display: none !important; }
+  .zelle-logo-long { display: inline-block !important; }
 }
