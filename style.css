@@ -1401,11 +1401,11 @@ body {
   width: 100%;
 }
 .donate-now-btn {
-  background: #5B7C6A;
-  color: #fff;
+  background: #fff !important;
+  color: #2E5C41 !important;
+  border: none !important;
   font-size: 2rem;
   font-weight: bold;
-  border: none;
   border-radius: 0.7rem;
   padding: 0.85rem 3.5rem;
   margin-bottom: 1.5rem;
@@ -1447,6 +1447,7 @@ body {
   min-width: 110px;
   justify-content: center;
   text-align: center;
+  min-height: 48px;
 }
 .donate-btn img {
   height: 1.5rem;
@@ -1464,7 +1465,11 @@ body {
 }
 .donate-btn.zelle {
   border-color: #a682d9;
-  background: #f6f3fa;
+  background: #fff !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  padding-top: 0.7rem !important;
+  padding-bottom: 0.7rem !important;
 }
 .donate-btn.zelle:hover {
   box-shadow: 0 2px 8px rgba(166,130,217,0.13);
@@ -1642,4 +1647,12 @@ body {
 @media (max-width: 300px) {
   .zelle-logo-short { display: none !important; }
   .zelle-logo-long { display: inline-block !important; }
+}
+
+.donate-now-header {
+  font-size: 2rem;
+  color: #2E5C41;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
