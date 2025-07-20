@@ -1647,6 +1647,12 @@ body {
     font-size: 1.1rem;
     padding: 0.6rem 1.3rem 0.6rem 0.7rem;
   }
+  
+  /* Responsive adjustments for Zeffy embed */
+  .zeffy-embed-container {
+    height: 500px;
+    margin-bottom: 0.8rem;
+  }
 }
 
 .donate-logo {
@@ -1757,4 +1763,27 @@ body {
   font-weight: bold;
   margin-bottom: 1.5rem;
   text-align: center;
+}
+
+/* Zeffy embed container styling */
+.zeffy-embed-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 1.1rem;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.zeffy-embed-container iframe {
+  position: absolute;
+  border: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
 }
