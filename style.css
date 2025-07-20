@@ -64,7 +64,8 @@ html, body {
 /* Universal layout fixes for all devices */
 @media screen and (min-width: 320px) {
   .program-card-v2,
-  .program-card-v4 {
+  .program-card-v4,
+  .previous-programs-card {
     height: auto !important;
     min-height: auto !important;
   }
@@ -289,7 +290,8 @@ h2 {
     width: 100%;
   }
 
-  #previous-programs .program-card-v4 {
+  #previous-programs .program-card-v4,
+  #previous-programs .previous-programs-card {
     width: 100%;
   }
   
@@ -304,7 +306,8 @@ h2 {
 }
 
 .program-card-v2,
-.program-card-v4 {
+.program-card-v4,
+.previous-programs-card {
   padding: 1.5625rem;
   border-radius: 0.75rem;
   -webkit-border-radius: 0.75rem;
@@ -334,13 +337,15 @@ h2 {
 
 /* Card headings */
 .program-card-v2 h3,
-.program-card-v4 h3 {
+.program-card-v4 h3,
+.previous-programs-card h3 {
   margin-bottom: 1.875rem;
   font-size: 1.5rem;
 }
 
 .program-card-v2 h3 small,
-.program-card-v4 h3 small {
+.program-card-v4 h3 small,
+.previous-programs-card h3 small {
   font-size: 0.875rem;
   color: rgba(33, 66, 46, 0.8);
   display: block;
@@ -423,7 +428,8 @@ h2 {
 
 /* Event details */
 .program-card-v2 .event-details,
-.program-card-v4 .event-details {
+.program-card-v4 .event-details,
+.previous-programs-card .event-details {
   background: transparent;
   border: 2px solid #A69873;
   border-radius: 0.5rem;
@@ -439,7 +445,8 @@ h2 {
 }
 
 .program-card-v2 .detail-row,
-.program-card-v4 .detail-row {
+.program-card-v4 .detail-row,
+.previous-programs-card .detail-row {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -452,7 +459,8 @@ h2 {
 }
 
 .program-card-v2 .detail-row strong,
-.program-card-v4 .detail-row strong {
+.program-card-v4 .detail-row strong,
+.previous-programs-card .detail-row strong {
   color: #21422E;
   font-weight: 600;
   min-width: 4.375rem;
@@ -472,7 +480,8 @@ h2 {
 
 .registration-button,
 .program-card-v2 .insta-link,
-.program-card-v4 .insta-link {
+.program-card-v4 .insta-link,
+.previous-programs-card .insta-link {
   display: inline-block;
   text-decoration: none;
   font-size: 0.9em;
@@ -493,7 +502,8 @@ h2 {
 
 .registration-button:hover,
 .program-card-v2 .insta-link:hover,
-.program-card-v4 .insta-link:hover {
+.program-card-v4 .insta-link:hover,
+.previous-programs-card .insta-link:hover {
   background: #376E4E;
   -webkit-transform: translateY(-1px);
   -ms-transform: translateY(-1px);
@@ -669,7 +679,8 @@ h2 {
   }
 
   .program-card-v2 h3,
-  .program-card-v4 h3 {
+  .program-card-v4 h3,
+  .previous-programs-card h3 {
     margin-bottom: 25px;
   }
 
@@ -700,7 +711,8 @@ h2 {
   
   /* Force proper layout on mobile */
   .program-card-v2,
-  .program-card-v4 {
+  .program-card-v4,
+  .previous-programs-card {
     height: auto !important;
     min-height: auto !important;
   }
@@ -873,8 +885,29 @@ h2 {
 }
 
 /* Previous Programs specific styling */
-#previous-programs .program-card-v4 {
+#previous-programs .program-card-v4,
+#previous-programs .previous-programs-card {
   border: 2px solid #A69873;
+}
+
+/* Force previous programs cards to always stack vertically */
+#previous-programs .previous-programs-card {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+/* Override grid layout for previous programs section */
+#previous-programs .program-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 30px !important;
+}
+
+/* Ensure all previous programs cards take full width */
+#previous-programs .previous-programs-card {
+  grid-column: 1 / -1 !important;
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
 @media screen and (max-width: 729px) {
@@ -1085,6 +1118,74 @@ img, svg {
 .event-details-multi {
   margin: 1.25rem 0 1.5rem 0;
   text-align: left;
+}
+
+/* Scrollable event containers for previous events */
+.event-details-multi .event-card {
+  margin-bottom: 0.75rem;
+}
+
+.event-details-multi .event-card:last-child {
+  margin-bottom: 0;
+}
+
+/* Create scrollable container for previous events */
+.program-item .event-details-multi {
+  max-height: 245px;
+  overflow-y: auto;
+  padding-right: 8px;
+  border: 1px solid rgba(166, 152, 115, 0.2);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Custom scrollbar styling */
+.program-item .event-details-multi::-webkit-scrollbar {
+  width: 6px;
+}
+
+.program-item .event-details-multi::-webkit-scrollbar-track {
+  background: rgba(166, 152, 115, 0.1);
+  border-radius: 3px;
+}
+
+.program-item .event-details-multi::-webkit-scrollbar-thumb {
+  background: rgba(166, 152, 115, 0.4);
+  border-radius: 3px;
+}
+
+.program-item .event-details-multi::-webkit-scrollbar-thumb:hover {
+  background: rgba(166, 152, 115, 0.6);
+}
+
+/* Firefox scrollbar styling */
+.program-item .event-details-multi {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(166, 152, 115, 0.4) rgba(166, 152, 115, 0.1);
+}
+
+/* Responsive adjustments for scrollable containers */
+@media screen and (max-width: 768px) {
+  .program-item .event-details-multi {
+    max-height: 225px;
+    padding: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .program-item .event-details-multi {
+    max-height: 205px;
+    padding: 0.4rem;
+  }
+  
+  .program-item .event-details-multi .event-card {
+    margin-bottom: 0.5rem;
+  }
+  
+  .program-item .event-details-multi .event-card .detail-row {
+    font-size: 0.8em;
+  }
 }
 
 .event-intro {
@@ -1299,7 +1400,8 @@ body {
   }
 
   .program-card-v2 .event-details,
-  .program-card-v4 .event-details {
+  .program-card-v4 .event-details,
+  .previous-programs-card .event-details {
     grid-template-columns: 1fr;
     text-align: center;
     gap: 5px;
