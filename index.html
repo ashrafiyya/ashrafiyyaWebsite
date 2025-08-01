@@ -124,6 +124,24 @@
     .insta-link-deactivated:hover {
       background-color: #0066CC !important;
     }
+
+    /* YouTube playlist container styles */
+    .youtube-playlist-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      margin-bottom: 1rem;
+    }
+
+    .youtube-playlist-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
   </style>
   <script defer src="script.js"></script>
 </head>
@@ -296,7 +314,20 @@
         <h3>Recorded Resources<br><small>Past Programs Archive</small></h3>
         <div class="programs-list">
           <div class="program-item">
-            <p>Coming soon: Access to recordings and materials from our past programs.</p>
+            <div class="youtube-playlist-container">
+              <iframe 
+                width="100%" 
+                height="315" 
+                src="https://www.youtube.com/embed/videoseries?list=PLHFhouBxNsoUp01fQi2KC4c49BpIIGHJk&rel=0" 
+                title="Ashrafiyya Recorded Programs"
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+              </iframe>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.9em; color: #666;">
+              Browse our collection of recorded programs and lectures from past events.
+            </p>
           </div>
         </div>
       </div>
