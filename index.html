@@ -144,18 +144,75 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
+    /* Mobile thumbnail styles */
+    .youtube-thumbnail {
+      display: none;
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 0 1rem 0;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .youtube-thumbnail:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .youtube-thumbnail img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .youtube-thumbnail .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+
+    .youtube-thumbnail:hover .play-button {
+      background: rgba(255, 0, 0, 0.9);
+    }
+
+    .youtube-thumbnail .play-button::after {
+      content: "";
+      width: 0;
+      height: 0;
+      border-left: 20px solid white;
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid transparent;
+      margin-left: 4px;
+    }
+
     /* Responsive YouTube container */
     @media screen and (max-width: 768px) {
       .youtube-playlist-container {
+        display: none;
+      }
+      
+      .youtube-thumbnail {
+        display: block;
         max-width: 400px;
-        padding-bottom: 22.5%; /* Slightly smaller on mobile */
       }
     }
 
     @media screen and (max-width: 480px) {
-      .youtube-playlist-container {
+      .youtube-thumbnail {
         max-width: 350px;
-        padding-bottom: 19.6875%; /* Even smaller on small mobile */
       }
     }
   </style>
@@ -346,6 +403,10 @@
                 allowfullscreen>
               </iframe>
             </div>
+            <a href="https://www.youtube.com/watch?v=STFDsLmllok" target="_blank" rel="noopener noreferrer" class="youtube-thumbnail">
+              <img src="https://img.youtube.com/vi/STFDsLmllok/maxresdefault.jpg" alt="Introduction to Tasawwuf w/ Mufti Husain">
+              <div class="play-button"></div>
+            </a>
           </div>
           <div class="program-item">
             <h4>Heart of Care: What It Means to Be a Muslim in Healthcare</h4>
@@ -360,6 +421,10 @@
                 allowfullscreen>
               </iframe>
             </div>
+            <a href="https://www.youtube.com/watch?v=3aQm_H8ElJo" target="_blank" rel="noopener noreferrer" class="youtube-thumbnail">
+              <img src="https://img.youtube.com/vi/3aQm_H8ElJo/maxresdefault.jpg" alt="Heart of Care: What It Means to Be a Muslim in Healthcare">
+              <div class="play-button"></div>
+            </a>
           </div>
         </div>
       </div>
