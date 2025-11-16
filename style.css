@@ -1823,3 +1823,201 @@ body {
   height: 100%;
   background: transparent;
 }
+
+/* Recorded Resources Grid - Two Column Playlist Layout */
+.recorded-resources-grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 20px 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.video-playlist-column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  width: 100%;
+  border: 2px solid #A69873;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 2px 6px rgba(166, 152, 115, 0.1);
+  -webkit-box-shadow: 0 2px 6px rgba(166, 152, 115, 0.1);
+  -moz-box-shadow: 0 2px 6px rgba(166, 152, 115, 0.1);
+}
+
+.column-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #A69873;
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(166, 152, 115, 0.3);
+  text-align: center;
+}
+
+.video-scroll-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 400px;
+  min-height: 200px;
+  padding-right: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(166, 152, 115, 0.4) rgba(166, 152, 115, 0.1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.video-scroll-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.video-scroll-container::-webkit-scrollbar-track {
+  background: rgba(166, 152, 115, 0.1);
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+
+.video-scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(166, 152, 115, 0.4);
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+
+.video-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(166, 152, 115, 0.6);
+}
+
+.video-item {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(166, 152, 115, 0.2);
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.video-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.video-item h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #21422E;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.4;
+}
+
+/* Responsive behavior for recorded resources */
+@media screen and (max-width: 900px) {
+  .recorded-resources-grid {
+    -ms-grid-columns: 1fr;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .video-scroll-container {
+    max-height: 350px;
+    min-height: 175px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .video-playlist-column {
+    padding: 0.875rem;
+  }
+  
+  .column-title {
+    font-size: 1rem;
+    margin-bottom: 0.875rem;
+    padding-bottom: 0.625rem;
+  }
+  
+  .video-scroll-container {
+    max-height: 325px;
+    min-height: 150px;
+  }
+  
+  .video-item {
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+  
+  .video-item h4 {
+    font-size: 0.95rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .recorded-resources-grid {
+    gap: 15px;
+  }
+  
+  .video-playlist-column {
+    padding: 0.75rem;
+  }
+  
+  .column-title {
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .video-scroll-container {
+    max-height: 300px;
+    min-height: 125px;
+    padding-right: 0.25rem;
+  }
+  
+  .video-item {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  .video-item h4 {
+    font-size: 0.9rem;
+    margin-bottom: 0.625rem;
+  }
+}
+
+/* Fallback for browsers without grid support */
+@supports not (display: grid) {
+  .recorded-resources-grid {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .video-playlist-column {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 calc(50% - 10px);
+    flex: 1 1 calc(50% - 10px);
+    min-width: 280px;
+  }
+}
