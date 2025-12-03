@@ -215,6 +215,78 @@
         max-width: 350px;
       }
     }
+
+    /* Expandable Description Styles */
+    .expandable-description {
+      margin-bottom: 0.9375rem;
+    }
+
+    .expandable-description .description-content {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .expandable-description .description-content.collapsed {
+      max-height: 10.8em; /* Clean cutoff at 7 lines without showing partial line */
+    }
+
+    .expandable-description .description-content p {
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      margin-bottom: 0.9375rem;
+      color: #21422E;
+    }
+
+    .expandable-description .description-content.collapsed .description-extra {
+      display: none;
+    }
+
+    .expandable-description .read-more-btn {
+      background: none;
+      border: none;
+      color: #2E5C41;
+      cursor: pointer;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      padding: 0.5rem 0;
+      text-decoration: underline;
+      -webkit-transition: color 0.2s ease;
+      -moz-transition: color 0.2s ease;
+      -o-transition: color 0.2s ease;
+      transition: color 0.2s ease;
+      text-align: left;
+      display: block;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .expandable-description .read-more-btn:hover {
+      color: #A69873;
+    }
+
+    .expandable-description .read-more-btn:focus {
+      outline: 2px solid #2E5C41;
+      outline-offset: 2px;
+    }
+
+    /* Responsive adjustments for expandable descriptions */
+    @media screen and (max-width: 768px) {
+      .expandable-description .description-content p {
+        font-size: 14px;
+      }
+      
+      .expandable-description .read-more-btn {
+        font-size: 14px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .expandable-description .description-content.collapsed {
+        max-height: 10.8em; /* Clean cutoff at 7 lines without showing partial line */
+      }
+    }
   </style>
   <script defer src="script.js"></script>
 </head>
@@ -297,6 +369,26 @@
       <div class="program-card-v4">
         <h3>Ashrafiyya Circles<br><small>Traditional Islamic Learning</small></h3>
         <div class="programs-list">
+          <div class="program-item">
+            <h4>A Study of Tartīb al-ʿUlūm with Mawlana Numaan Cheema</h4>
+            <div class="expandable-description">
+              <div class="description-content">
+                <p>This workshop turns to the Muqaddimah of Muḥammad al-Marʿashī's Tartīb al-ʿUlūm, a work that represents one of the more deliberate post-classical reflections on the nature of the shar'i sciences, the relations between them, and the dispositions required for their proper study. This muqaddimah is not a routine preface: it advances a unified intellectual vision, mapping the sciences, clarifying their aims, and setting out the ethical and psychological cautions that must accompany their pursuit.</p>
+                <p class="description-extra">Our sessions will examine al-Marʿashī's survey of the "sciences that yield real benefit," which he categorizes across linguistic foundations, rational disciplines, and the revealed sciences. We will explore his distinctions between ʿilm sharʿī and other forms of knowledge, his definitions of what counts as "revealed knowledge," and his principle that the legal status of knowledge follows the legal status of the maʿlūm; the object of knowledge.</p>
+                <p class="description-extra">A central part of the discussion will be his critique of faulty pedagogical habits what he terms tadbīrāt raddiyya or beginning advanced works before grasping the essentials, entering commentaries and glosses prematurely, and overwhelming the mind with multiplicity before establishing clarity. His reliance on earlier authorities such as al-Ghazālī, Ibn Ḥajar, and Ibn Nujaym situates these concerns within a longer scholarly conversation on the aims, order, and ethics of learning.</p>
+              </div>
+              <button class="read-more-btn">Read More</button>
+            </div>
+            <div class="event-details">
+              <div class="detail-row"><strong>Date</strong><span> January 11, 2026</span></div>
+              <div class="detail-row"><strong>Time</strong><span> 10:00 AM – 5:30 PM</span></div>
+              <div class="detail-row"><strong>Venue</strong><span> Islamic Center of Mercer County (ICMC)</span></div>
+            </div>
+            <div class="button-container">
+              <a class="insta-link insta-link-light" href="#" target="_blank" rel="noopener noreferrer">Details & Registration Coming Soon</a>
+            </div>
+            <span class="divider">◆</span>
+          </div>
           <div class="program-item">
             <h4>A Study of Kayfiyyat Ṣalāt al-Nabī ﷺ</h4>
             <p>A focused reading of this treatise on the Prophet's ﷺ prayer as upheld by the Ḥanafī school. Rooted in Qur'an, ḥadīth, early authorities, and sound legal reasoning, the work offers a rigorous defense of the school's method and reaffirms its deep connection to the Sunnah.</p>

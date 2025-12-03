@@ -178,3 +178,37 @@ if ('fonts' in document) {
     fixLayoutIssues();
   });
 }
+
+// Expandable description functionality
+function initExpandableDescriptions() {
+  const expandableDescriptions = document.querySelectorAll('.expandable-description');
+  
+  expandableDescriptions.forEach(function(container) {
+    const content = container.querySelector('.description-content');
+    const btn = container.querySelector('.read-more-btn');
+    
+    if (!content || !btn) return;
+    
+    // Initialize as collapsed
+    content.classList.add('collapsed');
+    
+    btn.addEventListener('click', function() {
+      if (content.classList.contains('collapsed')) {
+        // Expand
+        content.classList.remove('collapsed');
+        btn.textContent = 'Collapse';
+      } else {
+        // Collapse
+        content.classList.add('collapsed');
+        btn.textContent = 'Read More';
+      }
+    });
+  });
+}
+
+// Initialize expandable descriptions when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initExpandableDescriptions);
+} else {
+  initExpandableDescriptions();
+}
