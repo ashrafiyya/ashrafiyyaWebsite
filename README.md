@@ -48,7 +48,7 @@ This rewrites the two marked sections in `index.html` based on `events.json`.
 
 ## Notes and conventions
 - Keep date strings in `YYYY-MM-DD`.
-- Use `status: "placeholder"` on active items to show “More Coming Soon” with a disabled button.
+- Use `status: "placeholder"` on active items to show “Coming Soon” with the button text “Details and Registration Coming Soon”; the button stays styled/active but the URL is omitted.
 - Use `status: "ongoing"` to show a Status row without date sensitivity.
 - Descriptions:
   - `summary`: single paragraph.

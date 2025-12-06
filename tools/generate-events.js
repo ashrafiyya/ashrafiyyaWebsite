@@ -83,18 +83,17 @@ ${extras}
   if (event.time) details.push(detailRow('Time', event.time));
   if (event.venue) details.push(detailRow('Venue', event.venue));
   if (event.status === 'ongoing') details.push(detailRow('Status', 'Ongoing'));
-  if (event.status === 'placeholder') details.push(detailRow('Status', 'More Coming Soon'));
+  if (event.status === 'placeholder') details.push(detailRow('Status', 'Coming Soon'));
   if (event.notes) details.push(detailRow('Notes', event.notes));
 
   const hasDetails = details.length > 0;
   const hasUrl = Boolean(event.ctaUrl && event.ctaUrl.trim());
-  const isDisabled = event.status === 'placeholder' || (!hasUrl && !event.ctaText);
   const btnText = event.status === 'placeholder'
-    ? 'More Coming Soon'
-    : (event.ctaText || 'More Coming Soon');
-  const href = hasUrl && !isDisabled ? event.ctaUrl : '#';
-  const targetAttrs = hasUrl && !isDisabled ? ' target="_blank" rel="noopener noreferrer"' : '';
-  const btnClasses = `insta-link insta-link-light${isDisabled ? ' insta-link-deactivated' : ''}`;
+    ? 'Details and Registration Coming Soon'
+    : (event.ctaText || 'Details and Registration Coming Soon');
+  const href = hasUrl ? event.ctaUrl : 'javascript:void(0)';
+  const targetAttrs = hasUrl ? ' target="_blank" rel="noopener noreferrer"' : '';
+  const btnClasses = 'insta-link insta-link-light';
 
   return `
           <div class="program-item">
