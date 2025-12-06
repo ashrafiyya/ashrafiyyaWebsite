@@ -1,0 +1,116 @@
+{
+  "timezone": "America/New_York",
+  "branches": [
+    {
+      "id": "health",
+      "name": "Ashrafiyya Health",
+      "subtitle": "Islamic Medical Ethics & Healthcare Training",
+      "previousLabel": "Health",
+      "events": {
+        "active": [
+          {
+            "title": "The Heart of Care",
+            "summary": "Shifting Paradigms: An Islamic Knowledge Framework for Medicine",
+            "date": "2026-01-08",
+            "time": "7:00 PM \u2013 9:00 PM",
+            "venue": "Remote",
+            "ctaText": "Details & Registration via Email",
+            "ctaUrl": ""
+          },
+          {
+            "title": "Rise to Respond: Heartsaver Course for Sisters",
+            "summary": "A sister-led initiative providing American Heart Association-certified CPR training with a focus on essential first aid and emergency response\u2014equipping Muslim women with the skills and confidence to act when it matters most.",
+            "status": "placeholder",
+            "ctaText": "Details & Registration Coming Soon"
+          }
+        ],
+        "previous": [
+          {
+            "title": "Rise to Respond: Heartsaver Course for Sisters",
+            "date": "2025-07-06",
+            "venue": "Tawheed Dawah Center (TDC)"
+          },
+          {
+            "title": "Rise to Respond: Heartsaver Course for Sisters",
+            "date": "2025-07-20",
+            "venue": "Muslim Center of Mercer County (MCMC)"
+          },
+          {
+            "title": "Rise to Respond: Heartsaver Course for Sisters",
+            "date": "2025-10-18",
+            "venue": "Islamic Center of East Brunswick (ICEB)"
+          },
+          {
+            "title": "The Heart of Care",
+            "date": "2025-09-30",
+            "venue": "RWJ Medical School - Piscataway Campus"
+          }
+        ]
+      }
+    },
+    {
+      "id": "circles",
+      "name": "Ashrafiyya Circles",
+      "subtitle": "Traditional Islamic Learning",
+      "previousLabel": "Circles",
+      "events": {
+        "active": [
+          {
+            "title": "A Study of Tart\u012bb al-\u02bfUl\u016bm with Mawlana Numaan Cheema",
+            "description": [
+              "This workshop turns to the Muqaddimah of Mu\u1e25ammad al-Mar\u02bfash\u012b's Tart\u012bb al-\u02bfUl\u016bm, a work that represents one of the more deliberate post-classical reflections on the nature of the shar'i sciences, the relations between them, and the dispositions required for their proper study. This muqaddimah is not a routine preface: it advances a unified intellectual vision, mapping the sciences, clarifying their aims, and setting out the ethical and psychological cautions that must accompany their pursuit."
+            ],
+            "descriptionExtra": [
+              "Our sessions will examine al-Mar\u02bfash\u012b's survey of the \"sciences that yield real benefit,\" which he categorizes across linguistic foundations, rational disciplines, and the revealed sciences. We will explore his distinctions between \u02bfilm shar\u02bf\u012b and other forms of knowledge, his definitions of what counts as \"revealed knowledge,\" and his principle that the legal status of knowledge follows the legal status of the ma\u02bfl\u016bm; the object of knowledge.",
+              "A central part of the discussion will be his critique of faulty pedagogical habits what he terms tadb\u012br\u0101t raddiyya or beginning advanced works before grasping the essentials, entering commentaries and glosses prematurely, and overwhelming the mind with multiplicity before establishing clarity. His reliance on earlier authorities such as al-Ghaz\u0101l\u012b, Ibn \u1e24ajar, and Ibn Nujaym situates these concerns within a longer scholarly conversation on the aims, order, and ethics of learning."
+            ],
+            "expandable": true,
+            "date": "2026-01-11",
+            "time": "10:00 AM \u2013 5:30 PM",
+            "venue": "Islamic Center of Mercer County (ICMC)",
+            "ctaText": "Details & Registration Coming Soon"
+          },
+          {
+            "title": "A Study of Kayfiyyat \u1e62al\u0101t al-Nab\u012b \uFDFA",
+            "summary": "A focused reading of this treatise on the Prophet's \uFDFA prayer as upheld by the \u1e24anaf\u012b school. Rooted in Qur'an, \u1e25ad\u012bth, early authorities, and sound legal reasoning, the work offers a rigorous defense of the school's method and reaffirms its deep connection to the Sunnah.",
+            "status": "placeholder",
+            "ctaText": "Details & Registration Coming Soon"
+          }
+        ],
+        "previous": [
+          {
+            "title": "Urdu Islahi Majlis",
+            "date": "2025-07-13",
+            "speaker": "Mufti Husain Ahmad (DU Canada)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "itqan",
+      "name": "Ashrafiyya Itq\u0101n",
+      "subtitle": "Advanced Islamic Studies",
+      "previousLabel": "Itq\u0101n",
+      "events": {
+        "active": [
+          {
+            "title": "Al-Durr Study Program",
+            "summary": "A rare opportunity for graduates and advanced students to engage the influential \u1e24anaf\u012b text Al-Durr al-Mukht\u0101r through structured group readings\u2014paired with Ibn \u02bf\u0100bid\u012bn's Radd al-Mu\u1e25t\u0101r for deeper fiqh understanding.",
+            "status": "ongoing",
+            "notes": "By invite only",
+            "ctaText": "Inquire",
+            "ctaUrl": "mailto:admin@ashrafiyya.com"
+          }
+        ],
+        "previous": [
+          {
+            "title": "Ulama Majlis",
+            "date": "2025-07-13",
+            "notes": "By invite only"
+          }
+        ]
+      }
+    }
+  ]
+}
+
