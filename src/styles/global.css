@@ -100,6 +100,12 @@ html, body {
   max-width: 1200px;
 }
 
+.about-text {
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
 .hero > *, .about > *, .programs > *, .social-media > *, .program-grid > * {
   min-width: 0;
   max-width: 100%;
@@ -2048,5 +2054,275 @@ body {
     -ms-flex: 1 1 calc(50% - 10px);
     flex: 1 1 calc(50% - 10px);
     min-width: 280px;
+  }
+}
+
+/* Inline styles migrated from legacy index.html */
+.insta-link {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #21422E;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-transition: background-color 0.3s ease;
+  -moz-transition: background-color 0.3s ease;
+  -o-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+}
+
+.insta-link-light {
+  background-color: #0066CC;
+}
+
+.insta-link:hover {
+  background-color: #1A3528;
+}
+
+.insta-link-light:hover {
+  background-color: #21422E;
+}
+
+/* Event card overlay styles */
+.event-card-overlay {
+  position: relative;
+}
+
+.event-card-overlay > * {
+  opacity: 0.15;
+}
+
+.event-card-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(128, 128, 128, 0.1);
+  z-index: 1;
+  border-radius: 4px;
+}
+
+.event-card-overlay::after {
+  content: "Full";
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  color: #d4c8b3;
+  opacity: 0.7;
+  font-weight: bold;
+  font-size: 1.2em;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  z-index: 2;
+}
+
+/* Custom overlay for second event */
+.event-card-overlay-custom {
+  position: relative;
+}
+
+.event-card-overlay-custom > * {
+  opacity: 0.15;
+}
+
+.event-card-overlay-custom::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(128, 128, 128, 0.1);
+  z-index: 1;
+  border-radius: 4px;
+}
+
+.event-card-overlay-custom::after {
+  content: "Full";
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  color: #d4c8b3;
+  opacity: 0.7;
+  font-weight: bold;
+  font-size: 1.2em;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  z-index: 2;
+}
+
+/* Deactivated button styles */
+.insta-link-deactivated {
+  opacity: 0.4 !important;
+  pointer-events: none !important;
+  cursor: not-allowed !important;
+}
+
+.insta-link-deactivated:hover {
+  background-color: #0066CC !important;
+}
+
+/* YouTube playlist container styles */
+.youtube-playlist-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto 1rem auto;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+}
+
+.youtube-playlist-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile thumbnail styles */
+.youtube-thumbnail {
+  display: none;
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 1rem auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.youtube-thumbnail:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.youtube-thumbnail img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.youtube-thumbnail .play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.youtube-thumbnail:hover .play-button {
+  background: rgba(255, 0, 0, 0.9);
+}
+
+.youtube-thumbnail .play-button::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 20px solid white;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  margin-left: 4px;
+}
+
+/* Responsive YouTube container */
+@media screen and (max-width: 768px) {
+  .youtube-playlist-container {
+    display: none;
+  }
+
+  .youtube-thumbnail {
+    display: block;
+    max-width: 400px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .youtube-thumbnail {
+    max-width: 350px;
+  }
+}
+
+/* Expandable Description Styles */
+.expandable-description {
+  margin-bottom: 0.9375rem;
+}
+
+.expandable-description .description-content {
+  overflow: hidden;
+  position: relative;
+}
+
+.expandable-description .description-content.collapsed {
+  max-height: 10.8em; /* Clean cutoff at 7 lines without showing partial line */
+}
+
+.expandable-description .description-content p {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin-bottom: 0.9375rem;
+  color: #21422E;
+}
+
+.expandable-description .description-content.collapsed .description-extra {
+  display: none;
+}
+
+.expandable-description .read-more-btn {
+  background: none;
+  border: none;
+  color: #2E5C41;
+  cursor: pointer;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 0.5rem 0;
+  text-decoration: underline;
+  -webkit-transition: color 0.2s ease;
+  -moz-transition: color 0.2s ease;
+  -o-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+  text-align: left;
+  display: block;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.expandable-description .read-more-btn:hover {
+  color: #A69873;
+}
+
+.expandable-description .read-more-btn:focus {
+  outline: 2px solid #2E5C41;
+  outline-offset: 2px;
+}
+
+/* Responsive adjustments for expandable descriptions */
+@media screen and (max-width: 768px) {
+  .expandable-description .description-content p {
+    font-size: 14px;
+  }
+
+  .expandable-description .read-more-btn {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .expandable-description .description-content.collapsed {
+    max-height: 10.8em; /* Clean cutoff at 7 lines without showing partial line */
   }
 }
