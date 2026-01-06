@@ -399,19 +399,22 @@ Every `[` needs a matching `]`
 
 **Wrong:**
 ```typescript
-{
-  id: "last-program",
-  title: "Last Program",
-},  // Extra comma - this is the last one
+[
+    {
+
+    id: "last-program",
+    title: "Last Program",
+    },  // Extra comma - this is the last one
 ]
 ```
 
 **Right:**
 ```typescript
-{
-  id: "last-program",
-  title: "Last Program",
-}  // No comma after the last item
+[
+    {
+    id: "last-program",
+    title: "Last Program",
+    }  // No comma after the last item
 ]
 ```
 
