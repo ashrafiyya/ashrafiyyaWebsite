@@ -10,7 +10,7 @@ import { SiteFooter } from "./sections/SiteFooter";
 import { SocialMediaSection } from "./sections/SocialMediaSection";
 import { SupportSection } from "./sections/SupportSection";
 
-const App = () => {
+export const App = () => {
   useSmoothScroll();
   useLayoutFix();
   useTouchDevice();
@@ -30,5 +30,3 @@ const App = () => {
     </>
   );
 };
-
-export default App;

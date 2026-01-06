@@ -1,4 +1,6 @@
-const baseUrl = import.meta.env.BASE_URL;
+import { DonateButton } from "../components/donation/DonateButton";
+import { DonationEmbed } from "../components/donation/DonationEmbed";
+import { donationMethods } from "../data/donationMethods";
 
 export const SupportSection = () => {
   return (
@@ -15,27 +17,18 @@ export const SupportSection = () => {
         <div className="support-right">
           <div className="support-donate-content">
             <h3 className="donate-now-header">General Donations</h3>
-            <div className="zeffy-embed-container">
-              <iframe
-                title="Donation form powered by Zeffy"
-                src="https://www.zeffy.com/embed/donation-form/support-ashrafiyya"
-                allow="payment"
-              />
-            </div>
+            <DonationEmbed />
             <div className="donate-buttons-row">
-              <a className="donate-btn zelle" href="mailto:AshrafiyyaNJ@gmail.com">
-                <img src={`${baseUrl}images/zelle_long_logo.png`} alt="Zelle" className="donate-logo" />
-                <span className="zelle-email">AshrafiyyaNJ@gmail.com</span>
-              </a>
-              <a
-                className="donate-btn paypal"
-                href="https://www.paypal.com/donate/?hosted_button_id=JQGU9HTFPJWZ4"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img src={`${baseUrl}images/paypal_logo.png`} alt="PayPal" className="donate-logo" />
-                PayPal and Card
-              </a>
+              {donationMethods.map((method) => (
+                <DonateButton
+                  key={method.method}
+                  href={method.href}
+                  logo={method.logo}
+                  logoAlt={method.logoAlt}
+                  label={method.label}
+                  className={method.className}
+                />
+              ))}
             </div>
           </div>
         </div>
