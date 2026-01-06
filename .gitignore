@@ -147,4 +147,7 @@ out/
 
 # Cache directories
 .cache/
-.temp/ 
+.temp/
+
+# .MD files
+REFACTORING_SUMMARY.md

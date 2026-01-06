@@ -1,0 +1,47 @@
+name: Check and Move Expired Programs
+
+on:
+  schedule:
+    # Runs at 2:00 AM EST (7:00 AM UTC during standard time, 6:00 AM UTC during daylight saving)
+    - cron: '0 7 * * *' # Winter (EST = UTC-5)
+    # Note: GitHub Actions uses UTC. Adjust based on EST/EDT
+  workflow_dispatch: # Allows manual triggering for testing
+
+permissions:
+  contents: write # Required to commit changes
+
+jobs:
+  check-expired-programs:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run expiry check script
+        run: node scripts/check-expired-programs.js
+      
+      - name: Check for changes
+        id: git-check
+        run: |
+          git diff --exit-code src/data/programs.ts src/data/previousPrograms.ts || echo "changes=true" >> $GITHUB_OUTPUT
+      
+      - name: Commit and push changes
+        if: steps.git-check.outputs.changes == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add src/data/programs.ts src/data/previousPrograms.ts
+          git commit -m "chore: move expired programs to previous programs [automated]"
+          git push
+
