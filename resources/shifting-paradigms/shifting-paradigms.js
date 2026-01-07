@@ -1,9 +1,9 @@
 // infographics/shifting-paradigms/entry.jsx
-import React6, { useEffect, useState as useState6 } from "react";
+import React6, { useEffect as useEffect2, useState as useState6 } from "react";
 import { createRoot } from "react-dom/client";
 
 // infographics/shifting-paradigms/1-western-experience.js
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Scale,
   BookOpen,
@@ -86,28 +86,48 @@ var FunnelGraphic = ({ title, icon: Icon, steps, type }) => {
     ));
   }))), /* @__PURE__ */ React.createElement("p", { className: "text-center text-base text-stone-500 mt-6 italic max-w-xs font-medium bg-white px-4 py-2 rounded-full shadow-sm" }, type === "ontology" ? 'We went from: "God is Essential" \u2192 "God is Excluded"' : 'We went from: "Many ways of knowing" \u2192 "Only Measurement counts"'));
 };
-var ParadoxVisual = () => /* @__PURE__ */ React.createElement("div", { className: "mt-20 p-8 bg-gradient-to-br from-white to-stone-50 rounded-3xl shadow-lg border border-stone-100" }, /* @__PURE__ */ React.createElement("div", { className: "flex flex-col md:flex-row items-center gap-12" }, /* @__PURE__ */ React.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React.createElement("div", { className: "inline-flex items-center gap-2 px-3 py-1 bg-red-50 text-red-600 rounded-full text-xs font-bold uppercase tracking-wider mb-4" }, /* @__PURE__ */ React.createElement(Activity, { className: "w-4 h-4" }), " The Trade-Off"), /* @__PURE__ */ React.createElement("h4", { className: "font-serif font-bold text-3xl text-stone-800 mb-4" }, "The Modern Paradox"), /* @__PURE__ */ React.createElement("p", { className: "text-stone-600 text-lg leading-relaxed mb-6" }, "As medicine got better at fixing the ", /* @__PURE__ */ React.createElement("strong", null, "machine"), " (the body), it got worse at seeing the ", /* @__PURE__ */ React.createElement("strong", null, "person"), " (the soul)."), /* @__PURE__ */ React.createElement("div", { className: "bg-white p-6 rounded-xl border-l-4 border-teal-500 shadow-sm text-base text-stone-600 italic font-medium" }, `"We gained technical power, but lost the 'whole picture' of what a human being actually is."`)), /* @__PURE__ */ React.createElement("div", { className: "w-full md:w-1/2 h-56 relative bg-white rounded-2xl border border-stone-100 shadow-inner p-6" }, /* @__PURE__ */ React.createElement("div", { className: "absolute bottom-4 left-6 right-6 flex justify-between text-xs text-stone-400 font-bold uppercase" }, /* @__PURE__ */ React.createElement("span", null, "Ancient Times"), /* @__PURE__ */ React.createElement("span", null, "Today")), /* @__PURE__ */ React.createElement("svg", { className: "absolute inset-0 w-full h-full p-6 overflow-visible" }, /* @__PURE__ */ React.createElement(
-  "path",
-  {
-    d: "M0,150 C80,140 180,20 280,20",
-    fill: "none",
-    stroke: "#14b8a6",
-    strokeWidth: "4",
-    className: "drop-shadow-md",
-    style: { vectorEffect: "non-scaling-stroke" }
-  }
-), /* @__PURE__ */ React.createElement("text", { x: "290", y: "25", fill: "#0d9488", className: "text-sm font-bold" }, "Tech Power (High)"), /* @__PURE__ */ React.createElement(
-  "path",
-  {
-    d: "M0,40 C80,50 180,140 280,150",
-    fill: "none",
-    stroke: "#f59e0b",
-    strokeWidth: "4",
-    strokeDasharray: "8,8",
-    className: "drop-shadow-md",
-    style: { vectorEffect: "non-scaling-stroke" }
-  }
-), /* @__PURE__ */ React.createElement("text", { x: "290", y: "155", fill: "#d97706", className: "text-sm font-bold" }, "Wholeness (Low)")))));
+var ParadoxVisual = () => {
+  const techLabelRef = useRef(null);
+  const wholeLabelRef = useRef(null);
+  const lineEndX = 320;
+  useEffect(() => {
+    const updateLabelPositions = () => {
+      if (techLabelRef.current) {
+        const width = techLabelRef.current.getBBox().width;
+        techLabelRef.current.setAttribute("x", String(lineEndX + width + 5));
+      }
+      if (wholeLabelRef.current) {
+        const width = wholeLabelRef.current.getBBox().width;
+        wholeLabelRef.current.setAttribute("x", String(lineEndX + width + 5));
+      }
+    };
+    updateLabelPositions();
+    window.addEventListener("resize", updateLabelPositions);
+    return () => window.removeEventListener("resize", updateLabelPositions);
+  }, []);
+  return /* @__PURE__ */ React.createElement("div", { className: "mt-20 p-8 bg-gradient-to-br from-white to-stone-50 rounded-3xl shadow-lg border border-stone-100" }, /* @__PURE__ */ React.createElement("div", { className: "flex flex-col md:flex-row items-center gap-12" }, /* @__PURE__ */ React.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React.createElement("div", { className: "inline-flex items-center gap-2 px-3 py-1 bg-red-50 text-red-600 rounded-full text-xs font-bold uppercase tracking-wider mb-4" }, /* @__PURE__ */ React.createElement(Activity, { className: "w-4 h-4" }), " The Trade-Off"), /* @__PURE__ */ React.createElement("h4", { className: "font-serif font-bold text-3xl text-stone-800 mb-4" }, "The Modern Paradox"), /* @__PURE__ */ React.createElement("p", { className: "text-stone-600 text-lg leading-relaxed mb-6" }, "As medicine got better at fixing the ", /* @__PURE__ */ React.createElement("strong", null, "machine"), " (the body), it got worse at seeing the ", /* @__PURE__ */ React.createElement("strong", null, "person"), " (the soul)."), /* @__PURE__ */ React.createElement("div", { className: "bg-white p-6 rounded-xl border-l-4 border-teal-500 shadow-sm text-base text-stone-600 italic font-medium" }, `"We gained technical power, but lost the 'whole picture' of what a human being actually is."`)), /* @__PURE__ */ React.createElement("div", { className: "w-full md:w-1/2 h-56 relative overflow-hidden bg-white rounded-2xl border border-stone-100 shadow-inner p-6" }, /* @__PURE__ */ React.createElement("div", { className: "absolute bottom-4 left-6 right-6 flex justify-between text-xs text-stone-400 font-bold uppercase" }, /* @__PURE__ */ React.createElement("span", null, "Ancient Times"), /* @__PURE__ */ React.createElement("span", null, "Today")), /* @__PURE__ */ React.createElement("svg", { className: "absolute inset-0 w-full h-full p-6", viewBox: "0 0 420 180", preserveAspectRatio: "xMidYMid meet" }, /* @__PURE__ */ React.createElement(
+    "path",
+    {
+      d: "M0,150 C95,140 205,20 320,20",
+      fill: "none",
+      stroke: "#14b8a6",
+      strokeWidth: "4",
+      className: "drop-shadow-md",
+      style: { vectorEffect: "non-scaling-stroke" }
+    }
+  ), /* @__PURE__ */ React.createElement("text", { ref: techLabelRef, x: lineEndX, y: "24", textAnchor: "end", fill: "#0d9488", fontSize: "12", fontWeight: "700" }, "Tech Power (High)"), /* @__PURE__ */ React.createElement(
+    "path",
+    {
+      d: "M0,40 C95,50 205,140 320,150",
+      fill: "none",
+      stroke: "#f59e0b",
+      strokeWidth: "4",
+      strokeDasharray: "8,8",
+      className: "drop-shadow-md",
+      style: { vectorEffect: "non-scaling-stroke" }
+    }
+  ), /* @__PURE__ */ React.createElement("text", { ref: wholeLabelRef, x: lineEndX, y: "154", textAnchor: "end", fill: "#d97706", fontSize: "12", fontWeight: "700" }, "Wholeness (Low)")))));
+};
 var App = () => {
   return /* @__PURE__ */ React.createElement("div", { className: "min-h-screen bg-stone-50 text-stone-800 font-sans selection:bg-teal-100 pb-24" }, /* @__PURE__ */ React.createElement("header", { className: "pt-24 pb-16 px-6 max-w-5xl mx-auto text-center" }, /* @__PURE__ */ React.createElement("div", { className: "inline-block px-5 py-2 bg-white text-teal-600 text-sm font-bold tracking-[0.2em] uppercase rounded-full mb-8 border border-stone-100 shadow-sm" }, "A Philosophical Journey"), /* @__PURE__ */ React.createElement("h1", { className: "text-5xl md:text-7xl font-serif font-bold text-stone-900 mb-8 leading-tight tracking-tight" }, "The Western Experience"), /* @__PURE__ */ React.createElement("p", { className: "text-2xl text-stone-500 max-w-3xl mx-auto leading-relaxed font-light" }, "How we went from a universe filled with ", /* @__PURE__ */ React.createElement("span", { className: "text-teal-600 font-semibold" }, "Divine Purpose"), " to a universe run by ", /* @__PURE__ */ React.createElement("span", { className: "text-amber-600 font-semibold" }, "Machine Laws"), "."), /* @__PURE__ */ React.createElement("div", { className: "flex justify-center mt-8" }, /* @__PURE__ */ React.createElement(ArrowDown, { className: "w-8 h-8 text-stone-300 animate-bounce" }))), /* @__PURE__ */ React.createElement("main", { className: "max-w-5xl mx-auto px-6" }, /* @__PURE__ */ React.createElement("div", { className: "bg-white p-10 rounded-3xl shadow-sm border border-stone-200 mb-20" }, /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-1 md:grid-cols-2 gap-16" }, /* @__PURE__ */ React.createElement(
     FunnelGraphic,
@@ -905,7 +925,7 @@ var sections = [
 ];
 var useActiveSection = (ids) => {
   const [activeId, setActiveId] = useState6(ids[0] || "");
-  useEffect(() => {
+  useEffect2(() => {
     if (!ids.length) return void 0;
     const handleScroll = () => {
       const midpoint = window.scrollY + window.innerHeight * 0.4;
@@ -943,7 +963,7 @@ var Page = () => {
   const activeId = useActiveSection(sectionIds);
   const [showSideNav, setShowSideNav] = useState6(false);
   const [hoveredId, setHoveredId] = useState6("");
-  useEffect(() => {
+  useEffect2(() => {
     const topMenu = document.getElementById("top-menu");
     if (!topMenu) return void 0;
     const observer = new IntersectionObserver(

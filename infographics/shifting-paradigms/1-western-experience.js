@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { 
   Scale, 
   BookOpen, 
@@ -212,8 +212,30 @@ const FunnelGraphic = ({ title, icon: Icon, steps, type }) => {
   );
 };
 
-const ParadoxVisual = () => (
-  <div className="mt-20 p-8 bg-gradient-to-br from-white to-stone-50 rounded-3xl shadow-lg border border-stone-100">
+const ParadoxVisual = () => {
+  const techLabelRef = useRef(null);
+  const wholeLabelRef = useRef(null);
+  const lineEndX = 320;
+
+  useEffect(() => {
+    const updateLabelPositions = () => {
+      if (techLabelRef.current) {
+        const width = techLabelRef.current.getBBox().width;
+        techLabelRef.current.setAttribute('x', String(lineEndX + width + 5));
+      }
+      if (wholeLabelRef.current) {
+        const width = wholeLabelRef.current.getBBox().width;
+        wholeLabelRef.current.setAttribute('x', String(lineEndX + width + 5));
+      }
+    };
+
+    updateLabelPositions();
+    window.addEventListener('resize', updateLabelPositions);
+    return () => window.removeEventListener('resize', updateLabelPositions);
+  }, []);
+
+  return (
+    <div className="mt-20 p-8 bg-gradient-to-br from-white to-stone-50 rounded-3xl shadow-lg border border-stone-100">
     <div className="flex flex-col md:flex-row items-center gap-12">
       <div className="flex-1">
         <div className="inline-flex items-center gap-2 px-3 py-1 bg-red-50 text-red-600 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
@@ -230,27 +252,27 @@ const ParadoxVisual = () => (
         </div>
       </div>
       
-      <div className="w-full md:w-1/2 h-56 relative bg-white rounded-2xl border border-stone-100 shadow-inner p-6">
+      <div className="w-full md:w-1/2 h-56 relative overflow-hidden bg-white rounded-2xl border border-stone-100 shadow-inner p-6">
         <div className="absolute bottom-4 left-6 right-6 flex justify-between text-xs text-stone-400 font-bold uppercase">
           <span>Ancient Times</span>
           <span>Today</span>
         </div>
         
-        <svg className="absolute inset-0 w-full h-full p-6 overflow-visible">
+        <svg className="absolute inset-0 w-full h-full p-6" viewBox="0 0 420 180" preserveAspectRatio="xMidYMid meet">
           {/* Technical Power Line */}
           <path 
-            d="M0,150 C80,140 180,20 280,20" 
+            d="M0,150 C95,140 205,20 320,20" 
             fill="none" 
             stroke="#14b8a6" 
             strokeWidth="4" 
             className="drop-shadow-md"
             style={{ vectorEffect: 'non-scaling-stroke' }} 
           />
-          <text x="290" y="25" fill="#0d9488" className="text-sm font-bold">Tech Power (High)</text>
+          <text ref={techLabelRef} x={lineEndX} y="24" textAnchor="end" fill="#0d9488" fontSize="12" fontWeight="700">Tech Power (High)</text>
 
           {/* Wholeness Line */}
           <path 
-            d="M0,40 C80,50 180,140 280,150" 
+            d="M0,40 C95,50 205,140 320,150" 
             fill="none" 
             stroke="#f59e0b" 
             strokeWidth="4" 
@@ -258,12 +280,13 @@ const ParadoxVisual = () => (
             className="drop-shadow-md"
             style={{ vectorEffect: 'non-scaling-stroke' }} 
           />
-          <text x="290" y="155" fill="#d97706" className="text-sm font-bold">Wholeness (Low)</text>
+          <text ref={wholeLabelRef} x={lineEndX} y="154" textAnchor="end" fill="#d97706" fontSize="12" fontWeight="700">Wholeness (Low)</text>
         </svg>
       </div>
     </div>
   </div>
-);
+  );
+};
 
 const App = () => {
   return (
