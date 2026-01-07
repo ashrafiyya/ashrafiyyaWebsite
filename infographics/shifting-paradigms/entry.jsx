@@ -91,6 +91,7 @@ const Page = () => {
   const sectionIds = sections.map((section) => section.id);
   const activeId = useActiveSection(sectionIds);
   const [showSideNav, setShowSideNav] = useState(false);
+  const [hoveredId, setHoveredId] = useState('');
 
   useEffect(() => {
     const topMenu = document.getElementById('top-menu');
@@ -98,9 +99,9 @@ const Page = () => {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setShowSideNav(!entry.isIntersecting);
+        setShowSideNav(entry.intersectionRatio < 0.2);
       },
-      { threshold: 0.15 }
+      { threshold: [0, 0.2, 1] }
     );
 
     observer.observe(topMenu);
@@ -108,7 +109,7 @@ const Page = () => {
   }, []);
 
   return (
-  <div className="bg-[#f7f5f0] text-stone-900">
+  <div className="relative bg-[#f7f5f0] text-stone-900">
     <header className="relative overflow-hidden px-6 pb-16 pt-20">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,#d6f5f0,transparent_60%)]"></div>
       <div className="mx-auto max-w-6xl text-center">
@@ -134,9 +135,11 @@ const Page = () => {
     </section>
 
     <nav
-      className={`fixed right-6 top-1/2 hidden -translate-y-1/2 flex-col gap-3 rounded-full border border-stone-200 bg-white/80 p-3 text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 shadow-sm backdrop-blur transition-opacity duration-300 md:flex ${
+      className={`fixed left-1/2 top-4 z-[9999] flex -translate-x-1/2 flex-row gap-2 rounded-full border border-stone-200 bg-white/80 p-2 text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 shadow-sm backdrop-blur transition-opacity duration-300 sm:gap-3 sm:p-3 sm:scale-90 md:scale-95 xl:left-auto xl:right-6 xl:top-1/2 xl:-translate-x-0 xl:-translate-y-1/2 xl:flex-col xl:scale-100 ${
         showSideNav ? 'opacity-100' : 'pointer-events-none opacity-0'
       }`}
+      onMouseLeave={() => setHoveredId('')}
+      onBlur={() => setHoveredId('')}
     >
       {sections.map((section, index) => {
         const isActive = activeId === section.id;
@@ -146,9 +149,12 @@ const Page = () => {
             href={`#${section.id}`}
             className="group relative flex items-center justify-end"
             aria-label={`Jump to ${section.title}`}
+            onMouseEnter={() => setHoveredId(section.id)}
+            onFocus={() => setHoveredId(section.id)}
+            onPointerEnter={() => setHoveredId(section.id)}
           >
             <span
-              className={`pointer-events-none absolute right-full top-1/2 mr-3 -translate-y-1/2 whitespace-nowrap rounded-full border border-stone-200 bg-white/95 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500 opacity-0 shadow-sm transition-all duration-200 group-hover:opacity-100 group-hover:-translate-x-1 group-focus-visible:opacity-100 group-focus-visible:-translate-x-1 ${
+              className={`pointer-events-none absolute bottom-full left-1/2 mb-3 hidden -translate-x-1/2 whitespace-nowrap rounded-full border border-stone-200 bg-white/95 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500 opacity-0 shadow-sm transition-all duration-200 group-hover:opacity-100 group-hover:-translate-y-1 group-focus-visible:opacity-100 group-focus-visible:-translate-y-1 xl:bottom-auto xl:left-auto xl:right-full xl:top-1/2 xl:mb-0 xl:mr-3 xl:block xl:-translate-x-0 xl:-translate-y-1/2 xl:group-hover:-translate-x-1 xl:group-focus-visible:-translate-x-1 ${
                 isActive ? 'border-teal-100 text-teal-700' : ''
               }`}
             >
@@ -166,6 +172,11 @@ const Page = () => {
           </a>
         );
       })}
+      <div className="pointer-events-none absolute left-1/2 top-full mt-3 -translate-x-1/2 whitespace-nowrap rounded-full border border-stone-200 bg-white/95 px-4 py-1 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500 shadow-sm xl:hidden">
+        {(sections.find((section) => section.id === hoveredId) ||
+          sections.find((section) => section.id === activeId) ||
+          sections[0])?.title}
+      </div>
     </nav>
 
     <main className="space-y-24 pb-24">
