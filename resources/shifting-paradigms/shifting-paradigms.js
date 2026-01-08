@@ -1,3 +1,5 @@
+// Generated bundle: NOT THE SOURCE OF TRUTH! Do not edit directly. Source: infographics/shifting-paradigms/*
+
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __esm = (fn, res) => function __init() {
   return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
@@ -1083,3 +1085,5 @@ var require_entry = __commonJS({
   }
 });
 export default require_entry();
+
+// Generated bundle: NOT THE SOURCE OF TRUTH! Do not edit directly. Source: infographics/shifting-paradigms/*
