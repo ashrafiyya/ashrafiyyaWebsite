@@ -139,15 +139,20 @@ const Page = () => {
             className="mx-auto w-full max-w-[1152px] rounded-3xl border border-stone-200/70 shadow-lg"
           />
         </div>
-        <div className="inline-flex items-center gap-2 rounded-full border border-teal-100 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-teal-700 shadow-sm">
-          Resources
+        <div className="mt-8 flex items-center justify-center text-stone-400">
+          <span className="h-px w-20 bg-stone-200"></span>
+          <span className="mx-4 text-xs">◆</span>
+          <span className="h-px w-20 bg-stone-200"></span>
         </div>
-        <h1 className="mt-6 text-4xl font-serif font-bold text-stone-900 md:text-6xl">
+        <h1 className="mt-6 text-5xl font-serif font-bold text-stone-900 md:text-7xl">
           Shifting Paradigms
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-lg text-stone-600">
           A curated set of five infographics exploring the philosophical journey of medicine
           and the Islamic framework for knowledge, reality, and healing.
+        </p>
+        <p className="mx-auto mt-5 max-w-2xl text-sm font-semibold uppercase tracking-[0.25em] text-teal-700">
+          Presented by Dr. Mateen A. Khan
         </p>
       </div>
     </header>
