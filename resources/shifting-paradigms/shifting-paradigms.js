@@ -798,7 +798,7 @@ var ContentCard4 = ({
     showFullText ? "Hide Source Text" : "Read Source Text"
   ))), showFullText && /* @__PURE__ */ React5.createElement("div", { className: "mt-8 animate-in fade-in slide-in-from-top-4 duration-300" }, /* @__PURE__ */ React5.createElement("div", { className: "bg-[#fdfbf7] p-8 rounded-xl border border-stone-200 shadow-inner relative" }, /* @__PURE__ */ React5.createElement("div", { className: "absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-stone-200 via-stone-300 to-stone-200 opacity-50" }), /* @__PURE__ */ React5.createElement("div", { className: "flex items-center gap-2 mb-4 border-b border-stone-200 pb-3" }, /* @__PURE__ */ React5.createElement(FileText5, { className: "w-4 h-4 text-stone-400" }), /* @__PURE__ */ React5.createElement("span", { className: "text-xs font-bold text-stone-400 uppercase tracking-widest" }, "Source Excerpt")), /* @__PURE__ */ React5.createElement("div", { className: "prose prose-stone prose-sm max-w-none font-serif text-stone-700 leading-relaxed whitespace-pre-line" }, fullText)))))));
 };
-var ClosingSlide = () => /* @__PURE__ */ React5.createElement("div", { className: "mt-32 relative group" }, /* @__PURE__ */ React5.createElement("div", { className: "absolute inset-0 border-2 border-stone-200 rounded-3xl transform translate-x-2 translate-y-2" }), /* @__PURE__ */ React5.createElement("div", { className: "relative p-16 bg-white rounded-3xl border border-stone-200 shadow-xl text-center overflow-hidden" }, /* @__PURE__ */ React5.createElement("div", { className: "absolute inset-0 bg-stone-50 opacity-30 bg-[radial-gradient(#0f766e_0.5px,transparent_0.5px)] [background-size:24px_24px]" }), /* @__PURE__ */ React5.createElement("div", { className: "absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-teal-600 via-emerald-500 to-teal-600" }), /* @__PURE__ */ React5.createElement("div", { className: "relative z-10 flex flex-col items-center" }, /* @__PURE__ */ React5.createElement("h2", { className: "font-serif text-4xl md:text-6xl text-teal-900 mb-8 font-bold leading-relaxed drop-shadow-sm", style: { fontFamily: "Amiri, serif" } }, "\u062C\u0632\u0627\u0643\u0645 \u0627\u0644\u0644\u0647 \u062E\u064A\u0631\u0627"), /* @__PURE__ */ React5.createElement("div", { className: "w-24 h-px bg-gradient-to-r from-transparent via-stone-300 to-transparent mb-8" }), /* @__PURE__ */ React5.createElement("h3", { className: "text-2xl font-serif text-stone-800 tracking-widest uppercase mb-8" }, "Ashrafiyya Health"), /* @__PURE__ */ React5.createElement(
+var ClosingSlide = () => /* @__PURE__ */ React5.createElement("div", { className: "mt-24 relative group" }, /* @__PURE__ */ React5.createElement("div", { className: "absolute inset-0 border-2 border-stone-200 rounded-3xl transform translate-x-2 translate-y-2" }), /* @__PURE__ */ React5.createElement("div", { className: "relative p-16 bg-white rounded-3xl border border-stone-200 shadow-xl text-center overflow-hidden" }, /* @__PURE__ */ React5.createElement("div", { className: "absolute inset-0 bg-stone-50 opacity-30 bg-[radial-gradient(#0f766e_0.5px,transparent_0.5px)] [background-size:24px_24px]" }), /* @__PURE__ */ React5.createElement("div", { className: "absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-teal-600 via-emerald-500 to-teal-600" }), /* @__PURE__ */ React5.createElement("div", { className: "relative z-10 flex flex-col items-center" }, /* @__PURE__ */ React5.createElement("h2", { className: "font-serif text-4xl md:text-6xl text-teal-900 mb-8 font-bold leading-relaxed drop-shadow-sm", style: { fontFamily: "Amiri, serif" } }, "\u062C\u0632\u0627\u0643\u0645 \u0627\u0644\u0644\u0647 \u062E\u064A\u0631\u0627"), /* @__PURE__ */ React5.createElement("div", { className: "w-24 h-px bg-gradient-to-r from-transparent via-stone-300 to-transparent mb-8" }), /* @__PURE__ */ React5.createElement("h3", { className: "text-2xl font-serif text-stone-800 tracking-widest uppercase mb-8" }, "Ashrafiyya Health"), /* @__PURE__ */ React5.createElement(
   "a",
   {
     href: "https://ashrafiyya.com",
@@ -886,7 +886,23 @@ Pathways for Adoption:
 2. Developing a Scholarly Synthesis: We need a contemporary \u02BFIlm al-\u1E6Cibb that rigorously engages modern biomedical knowledge through an Islamic framework.
 3. Cultivating a Niche Cultural Shift: Meaningful change can occur within smaller professional communities through personal formation and peer discussion.`
     }
-  ), /* @__PURE__ */ React5.createElement("div", { className: "mt-20 p-8 bg-white rounded-3xl border border-stone-200 text-center shadow-lg" }, /* @__PURE__ */ React5.createElement(RefreshCw, { className: "w-8 h-8 text-stone-300 mx-auto mb-4" }), /* @__PURE__ */ React5.createElement("h4", { className: "font-serif font-bold text-2xl text-stone-800 mb-3" }, "A Call to Complete Medicine"), /* @__PURE__ */ React5.createElement("p", { className: "text-lg text-stone-600 max-w-2xl mx-auto italic" }, '"We are not replacing medicine. We are completing it. We are restoring the soul to the body, and the Creator to the creation."')), /* @__PURE__ */ React5.createElement(ClosingSlide, null), /* @__PURE__ */ React5.createElement("div", { className: "mt-16 text-center text-stone-400 text-sm font-medium" }, /* @__PURE__ */ React5.createElement("p", null, "\xA9 2025 Educational Infographic Series"))));
+  ), /* @__PURE__ */ React5.createElement("div", { className: "mt-20 p-8 bg-white rounded-3xl border border-stone-200 text-center shadow-lg" }, /* @__PURE__ */ React5.createElement(RefreshCw, { className: "w-8 h-8 text-stone-300 mx-auto mb-4" }), /* @__PURE__ */ React5.createElement("h4", { className: "font-serif font-bold text-2xl text-stone-800 mb-3" }, "A Call to Complete Medicine"), /* @__PURE__ */ React5.createElement("p", { className: "text-lg text-stone-600 max-w-2xl mx-auto italic" }, '"We are not replacing medicine. We are completing it. We are restoring the soul to the body, and the Creator to the creation."')), /* @__PURE__ */ React5.createElement("div", { className: "my-24 p-8 bg-white rounded-3xl border border-stone-200 text-center shadow-lg" }, /* @__PURE__ */ React5.createElement("h4", { className: "font-serif font-bold text-2xl text-stone-800 mb-3" }, "Help Us Improve"), /* @__PURE__ */ React5.createElement("p", { className: "text-base text-stone-600 max-w-2xl mx-auto" }, "Please take a moment to complete this ", /* @__PURE__ */ React5.createElement("a", { href: "https://docs.google.com/forms/d/e/1FAIpQLSerJuTU5x2ThLIYY1H8ONNGosIrqYrpUElLGEQTaxPZvEg9zQ/viewform", target: "_blank", rel: "noopener noreferrer", className: "cursor-pointer text-teal-700 font-semibold" }, "survey"), "."), /* @__PURE__ */ React5.createElement(
+    "a",
+    {
+      href: "https://docs.google.com/forms/d/e/1FAIpQLSerJuTU5x2ThLIYY1H8ONNGosIrqYrpUElLGEQTaxPZvEg9zQ/viewform",
+      target: "_blank",
+      rel: "noopener noreferrer",
+      className: "inline-block cursor-pointer"
+    },
+    /* @__PURE__ */ React5.createElement(
+      "img",
+      {
+        src: "./assets/shifting_paradigms_survey_qr.png",
+        alt: "Shifting Paradigms survey QR code",
+        className: "mx-auto mt-6 w-28 max-w-full rounded-xl border border-stone-200 shadow-sm"
+      }
+    )
+  )), /* @__PURE__ */ React5.createElement(ClosingSlide, null), /* @__PURE__ */ React5.createElement("div", { className: "mt-16 text-center text-stone-400 text-sm font-medium" }, /* @__PURE__ */ React5.createElement("p", null, "\xA9 2025 Educational Infographic Series"))));
 };
 var the_paradigm_shift_default = App5;
 
@@ -995,7 +1011,7 @@ var Page = () => {
   return /* @__PURE__ */ React6.createElement("div", { className: "relative bg-[#f7f5f0] text-stone-900" }, /* @__PURE__ */ React6.createElement("header", { id: "page-header", className: "relative overflow-hidden px-6 pb-16 pt-20" }, /* @__PURE__ */ React6.createElement("div", { className: "absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,#d6f5f0,transparent_60%)]" }), /* @__PURE__ */ React6.createElement("div", { className: "mx-auto max-w-6xl text-center" }, /* @__PURE__ */ React6.createElement("div", { className: "mb-8" }, /* @__PURE__ */ React6.createElement(
     "img",
     {
-      src: "../../images/shifting_paradigms.png",
+      src: "./assets/shifting_paradigms_banner.png",
       alt: "Shifting Paradigms banner",
       className: "mx-auto w-full max-w-[1152px] rounded-3xl border border-stone-200/70 shadow-lg"
     }

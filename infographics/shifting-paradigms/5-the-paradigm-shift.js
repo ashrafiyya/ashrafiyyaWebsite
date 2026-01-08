@@ -142,7 +142,7 @@ const ContentCard = ({
 };
 
 const ClosingSlide = () => (
-  <div className="mt-32 relative group">
+  <div className="mt-24 relative group">
     {/* Decorative Frame */}
     <div className="absolute inset-0 border-2 border-stone-200 rounded-3xl transform translate-x-2 translate-y-2"></div>
     
@@ -297,6 +297,26 @@ Pathways for Adoption:
           <p className="text-lg text-stone-600 max-w-2xl mx-auto italic">
             "We are not replacing medicine. We are completing it. We are restoring the soul to the body, and the Creator to the creation."
           </p>
+        </div>
+
+        {/* Survey Card */}
+        <div className="my-24 p-8 bg-white rounded-3xl border border-stone-200 text-center shadow-lg">
+          <h4 className="font-serif font-bold text-2xl text-stone-800 mb-3">Help Us Improve</h4>
+          <p className="text-base text-stone-600 max-w-2xl mx-auto">
+            Please take a moment to complete this <a href="https://docs.google.com/forms/d/e/1FAIpQLSerJuTU5x2ThLIYY1H8ONNGosIrqYrpUElLGEQTaxPZvEg9zQ/viewform" target="_blank" rel="noopener noreferrer" className="cursor-pointer text-teal-700 font-semibold">survey</a>.
+          </p>
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSerJuTU5x2ThLIYY1H8ONNGosIrqYrpUElLGEQTaxPZvEg9zQ/viewform"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block cursor-pointer"
+          >
+            <img
+              src="./assets/shifting_paradigms_survey_qr.png"
+              alt="Shifting Paradigms survey QR code"
+              className="mx-auto mt-6 w-28 max-w-full rounded-xl border border-stone-200 shadow-sm"
+            />
+          </a>
         </div>
 
         {/* Closing Slide */}

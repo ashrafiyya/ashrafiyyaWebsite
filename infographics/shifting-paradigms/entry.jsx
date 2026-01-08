@@ -134,7 +134,7 @@ const Page = () => {
       <div className="mx-auto max-w-6xl text-center">
         <div className="mb-8">
           <img
-            src="../../images/shifting_paradigms.png"
+            src="./assets/shifting_paradigms_banner.png"
             alt="Shifting Paradigms banner"
             className="mx-auto w-full max-w-[1152px] rounded-3xl border border-stone-200/70 shadow-lg"
           />
