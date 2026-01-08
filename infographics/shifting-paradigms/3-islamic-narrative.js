@@ -169,14 +169,14 @@ const App = () => {
           period="7th Century"
           title="The Prophetic Foundation"
           subtitle="Unity of Truth"
-          mainText="Islam began by linking faith and reason. The Qur'an challenged people to look at nature as 'signs' (āyāt) of God. From the start, observation and revelation were partners, not enemies."
+          mainText="Islam began by linking faith and reason. The Qur'an challenged people to look at nature as 'signs' (āyāt) of Allah. From the start, observation and revelation were partners, not enemies."
           highlightBox={{
             title: "Core Principle",
-            text: "The clinician does not need to treat God as irrelevant to take evidence seriously."
+            text: "The clinician does not need to treat Allah as irrelevant to take evidence seriously."
           }}
           fullText={`The Prophet ﷺ restored tawḥīd to the Arabian Peninsula in the seventh century, not merely as a theological assertion but as a comprehensive reorientation of how reality itself was to be understood. The Qur’an did not present faith as blind affirmation; rather, it repeatedly appealed to reflection, inference, and signs (āyāt) in both the natural world and human experience. Alongside the Prophet ﷺ as a living proof, the Qur’an advanced dialectical arguments addressing causation, contingency, purpose, and moral responsibility.
 
-From its inception, Islam established a worldview in which observation, reason, and revelation were not competitors but coordinated sources of knowledge. This foundational harmony would prove decisive as Muslims encountered foreign intellectual traditions in the centuries that followed. The clinician does not need to treat God as irrelevant in order to take evidence seriously.`}
+From its inception, Islam established a worldview in which observation, reason, and revelation were not competitors but coordinated sources of knowledge. This foundational harmony would prove decisive as Muslims encountered foreign intellectual traditions in the centuries that followed. The clinician does not need to treat Allah as irrelevant in order to take evidence seriously.`}
         />
 
         {/* Section 2: Greek Encounters */}
@@ -206,7 +206,7 @@ This development generated significant theological tension. The concern was not 
           mainText="Scholars like Al-Ash'ari and Al-Maturidi built a system where logic was used to clarify and defend faith, not replace it. This 'Middle Path' ensured that Muslims didn't have to choose between thinking and believing."
           highlightBox={{
             title: "Intellectual Equilibrium",
-            text: "A Muslim clinician does not need to choose between 'faith' and 'thinking.' The tradition built an internal structure where both can operate coherently."
+            text: "A Muslim clinician does not need to choose between 'faith' and 'thinking.' The tradition built an internal structure where both operate coherently."
           }}
           fullText={`In response to these challenges and further doctrinal deviations, Sunni theology was systematically articulated and codified by the Ashʿarī and Māturīdī schools. This effort was led by Abū al-Ḥasan al-Ashʿarī (d. 936) and Abū Manṣūr al-Māturīdī (d. 944), whose works established enduring theological frameworks grounded in revelation while employing disciplined rational argumentation.
 

@@ -159,7 +159,7 @@ var init_western_experience = __esm({
           title: "Nature Makes Sense on Its Own",
           keyFigures: ["Aristotle", "Hippocrates", "Galen"],
           icon: Scale,
-          description: "Thinkers started explaining the world using nature's own rules, like weather and atoms, instead of always blaming the gods. They didn't deny God, but they realized they didn't need Him to explain simple things like rain or fever.",
+          description: "Thinkers started explaining the world using nature's own rules, instead of always blaming the gods. They didn't deny God, but they realized they didn't need Him to explain simple things cough and stomach upset.",
           fullText: `**Philosophical Trajectory:**
             In Classical Antiquity, philosophers in the Greek world began to explain the natural world through nature itself. Thinkers in the centuries BCE proposed that reality could be understood in terms of natural elements, regular patterns, and observable causes. Inquiry and observation became methods for acquiring truth, and material explanations of the universe were articulated in which events unfolded according to natural laws rather than the direct activity of the gods.
 
@@ -180,14 +180,14 @@ Galen (2nd century CE) significantly systematized this approach. His theory of t
           title: "Faith and Reason Split Up",
           keyFigures: ["Aquinas", "Ockham", "Scotus"],
           icon: BookOpen,
-          description: "When Greek science came back to Europe, it clashed with religion. Some scholars tried to keep them separate to protect their faith. But this had an accident side-effect: it made Logic the only tool for studying the real world, leaving Faith for Sundays.",
+          description: "When Greek science came back to Europe, it clashed with religion. Some scholars tried to keep them separate to protect their faith. But this had an accidental side-effect: it made Logic the only tool for studying the real world, leaving Faith for Sundays.",
           fullText: `**Philosophical Trajectory:**
             Beginning in the twelfth century, ancient Greek writings were reintroduced into Western Europe, largely through contact with the Muslim world. This sudden influx of systematic philosophy posed profound challenges to Christian theology. In response, Christian scholars pursued different strategies to preserve theism. Some thinkers advanced the notion of a \u201Ctwofold truth,\u201D in which a proposition could be true in philosophy while false in theology.
 
 Some, like Thomas Aquinas (1225\u20131274), sought incorporation. For Aquinas, nature was a coherent, law-governed system established by a rational Creator. Other thinkers, such as John Duns Scotus and William of Ockham, pursued a strategy of preservation. Theological truths, they argued, were matters of faith rather than rational demonstration. While intended to safeguard theology, this move had an unintended consequence: it effectively detached reason from theology. Rational inquiry was for the study of nature alone.
 
 By the close of the Middle Ages, philosophy and emerging scientific inquiry had become largely distinct from theology. The supernatural was relegated to the domain of faith, while nature could increasingly be investigated without immediate reference to God.`,
-          ontologyState: "Double Truth (Twofold Truth)",
+          ontologyState: "Twofold Truth (Theo/Philo)",
           epistemyState: "Faith vs. Reason",
           medicalImplication: "This started the idea that you study the body with science, and the soul with religion. They became two different worlds."
         }
@@ -254,7 +254,7 @@ By the mid-twentieth century, biomedical science had become increasingly reducti
 In response, alternative models emerged, most notably George Engel\u2019s biopsychosocial model in 1977, which argued that illness can only be adequately understood by integrating biological, psychological, and social dimensions. Each approach carries trade-offs. Reductionism can give clarity and targeted intervention. A broader view can restore context and meaning.`,
           ontologyState: "Nature is Everything",
           epistemyState: "Only Numbers Count",
-          medicalImplication: "This is why modern medicine is amazing at surgery and pills, but sometimes struggles to help people find meaning, handle suffering, or feel heard as human beings.",
+          medicalImplication: "This is why modern medicine is amazing at surgery and pills, but struggles to help people find meaning, handle suffering, or feel heard as human beings.",
           isLast: true
         }
       )), /* @__PURE__ */ React.createElement(ParadoxVisual, null), /* @__PURE__ */ React.createElement("div", { className: "mt-24 text-center text-stone-400 text-sm font-medium" }, /* @__PURE__ */ React.createElement("p", null, "\xA9 2025 Educational Infographic Series"))));
@@ -461,14 +461,14 @@ var init_islamic_narrative = __esm({
           period: "7th Century",
           title: "The Prophetic Foundation",
           subtitle: "Unity of Truth",
-          mainText: "Islam began by linking faith and reason. The Qur'an challenged people to look at nature as 'signs' (\u0101y\u0101t) of God. From the start, observation and revelation were partners, not enemies.",
+          mainText: "Islam began by linking faith and reason. The Qur'an challenged people to look at nature as 'signs' (\u0101y\u0101t) of Allah. From the start, observation and revelation were partners, not enemies.",
           highlightBox: {
             title: "Core Principle",
-            text: "The clinician does not need to treat God as irrelevant to take evidence seriously."
+            text: "The clinician does not need to treat Allah as irrelevant to take evidence seriously."
           },
           fullText: `The Prophet \uFDFA restored taw\u1E25\u012Bd to the Arabian Peninsula in the seventh century, not merely as a theological assertion but as a comprehensive reorientation of how reality itself was to be understood. The Qur\u2019an did not present faith as blind affirmation; rather, it repeatedly appealed to reflection, inference, and signs (\u0101y\u0101t) in both the natural world and human experience. Alongside the Prophet \uFDFA as a living proof, the Qur\u2019an advanced dialectical arguments addressing causation, contingency, purpose, and moral responsibility.
 
-From its inception, Islam established a worldview in which observation, reason, and revelation were not competitors but coordinated sources of knowledge. This foundational harmony would prove decisive as Muslims encountered foreign intellectual traditions in the centuries that followed. The clinician does not need to treat God as irrelevant in order to take evidence seriously.`
+From its inception, Islam established a worldview in which observation, reason, and revelation were not competitors but coordinated sources of knowledge. This foundational harmony would prove decisive as Muslims encountered foreign intellectual traditions in the centuries that followed. The clinician does not need to treat Allah as irrelevant in order to take evidence seriously.`
         }
       ), /* @__PURE__ */ React3.createElement(
         ContentCard2,
@@ -498,7 +498,7 @@ This development generated significant theological tension. The concern was not 
           mainText: "Scholars like Al-Ash'ari and Al-Maturidi built a system where logic was used to clarify and defend faith, not replace it. This 'Middle Path' ensured that Muslims didn't have to choose between thinking and believing.",
           highlightBox: {
             title: "Intellectual Equilibrium",
-            text: "A Muslim clinician does not need to choose between 'faith' and 'thinking.' The tradition built an internal structure where both can operate coherently."
+            text: "A Muslim clinician does not need to choose between 'faith' and 'thinking.' The tradition built an internal structure where both operate coherently."
           },
           fullText: `In response to these challenges and further doctrinal deviations, Sunni theology was systematically articulated and codified by the Ash\u02BFar\u012B and M\u0101tur\u012Bd\u012B schools. This effort was led by Ab\u016B al-\u1E24asan al-Ash\u02BFar\u012B (d. 936) and Ab\u016B Man\u1E63\u016Br al-M\u0101tur\u012Bd\u012B (d. 944), whose works established enduring theological frameworks grounded in revelation while employing disciplined rational argumentation.
 

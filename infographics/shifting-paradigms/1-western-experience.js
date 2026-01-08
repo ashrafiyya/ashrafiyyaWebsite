@@ -339,7 +339,7 @@ const App = () => {
             title="Nature Makes Sense on Its Own"
             keyFigures={["Aristotle", "Hippocrates", "Galen"]}
             icon={Scale}
-            description="Thinkers started explaining the world using nature's own rules, like weather and atoms, instead of always blaming the gods. They didn't deny God, but they realized they didn't need Him to explain simple things like rain or fever."
+            description="Thinkers started explaining the world using nature's own rules, instead of always blaming the gods. They didn't deny God, but they realized they didn't need Him to explain simple things cough and stomach upset."
             fullText={`**Philosophical Trajectory:**
             In Classical Antiquity, philosophers in the Greek world began to explain the natural world through nature itself. Thinkers in the centuries BCE proposed that reality could be understood in terms of natural elements, regular patterns, and observable causes. Inquiry and observation became methods for acquiring truth, and material explanations of the universe were articulated in which events unfolded according to natural laws rather than the direct activity of the gods.
 
@@ -359,14 +359,14 @@ Galen (2nd century CE) significantly systematized this approach. His theory of t
             title="Faith and Reason Split Up"
             keyFigures={["Aquinas", "Ockham", "Scotus"]}
             icon={BookOpen}
-            description="When Greek science came back to Europe, it clashed with religion. Some scholars tried to keep them separate to protect their faith. But this had an accident side-effect: it made Logic the only tool for studying the real world, leaving Faith for Sundays."
+            description="When Greek science came back to Europe, it clashed with religion. Some scholars tried to keep them separate to protect their faith. But this had an accidental side-effect: it made Logic the only tool for studying the real world, leaving Faith for Sundays."
             fullText={`**Philosophical Trajectory:**
             Beginning in the twelfth century, ancient Greek writings were reintroduced into Western Europe, largely through contact with the Muslim world. This sudden influx of systematic philosophy posed profound challenges to Christian theology. In response, Christian scholars pursued different strategies to preserve theism. Some thinkers advanced the notion of a “twofold truth,” in which a proposition could be true in philosophy while false in theology.
 
 Some, like Thomas Aquinas (1225–1274), sought incorporation. For Aquinas, nature was a coherent, law-governed system established by a rational Creator. Other thinkers, such as John Duns Scotus and William of Ockham, pursued a strategy of preservation. Theological truths, they argued, were matters of faith rather than rational demonstration. While intended to safeguard theology, this move had an unintended consequence: it effectively detached reason from theology. Rational inquiry was for the study of nature alone.
 
 By the close of the Middle Ages, philosophy and emerging scientific inquiry had become largely distinct from theology. The supernatural was relegated to the domain of faith, while nature could increasingly be investigated without immediate reference to God.`}
-            ontologyState="Double Truth (Twofold Truth)"
+            ontologyState="Twofold Truth (Theo/Philo)"
             epistemyState="Faith vs. Reason"
             medicalImplication="This started the idea that you study the body with science, and the soul with religion. They became two different worlds."
           />
@@ -430,7 +430,7 @@ By the mid-twentieth century, biomedical science had become increasingly reducti
 In response, alternative models emerged, most notably George Engel’s biopsychosocial model in 1977, which argued that illness can only be adequately understood by integrating biological, psychological, and social dimensions. Each approach carries trade-offs. Reductionism can give clarity and targeted intervention. A broader view can restore context and meaning.`}
             ontologyState="Nature is Everything"
             epistemyState="Only Numbers Count"
-            medicalImplication="This is why modern medicine is amazing at surgery and pills, but sometimes struggles to help people find meaning, handle suffering, or feel heard as human beings."
+            medicalImplication="This is why modern medicine is amazing at surgery and pills, but struggles to help people find meaning, handle suffering, or feel heard as human beings."
             isLast={true}
           />
 
