@@ -94,25 +94,51 @@ const Page = () => {
   const [hoveredId, setHoveredId] = useState('');
 
   useEffect(() => {
+    const header = document.getElementById('page-header');
     const topMenu = document.getElementById('top-menu');
-    if (!topMenu) return undefined;
+    if (!header || !topMenu) return undefined;
+
+    const visibility = {
+      header: true,
+      topMenu: true,
+    };
+
+    const updateVisibility = () => {
+      setShowSideNav(!visibility.header && !visibility.topMenu);
+    };
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setShowSideNav(entry.intersectionRatio < 0.2);
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.target === header) {
+            visibility.header = entry.isIntersecting;
+          }
+          if (entry.target === topMenu) {
+            visibility.topMenu = entry.isIntersecting;
+          }
+        });
+        updateVisibility();
       },
-      { threshold: [0, 0.2, 1] }
+      { threshold: 0.01 }
     );
 
+    observer.observe(header);
     observer.observe(topMenu);
     return () => observer.disconnect();
   }, []);
 
   return (
   <div className="relative bg-[#f7f5f0] text-stone-900">
-    <header className="relative overflow-hidden px-6 pb-16 pt-20">
+    <header id="page-header" className="relative overflow-hidden px-6 pb-16 pt-20">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,#d6f5f0,transparent_60%)]"></div>
       <div className="mx-auto max-w-6xl text-center">
+        <div className="mb-8">
+          <img
+            src="../../images/shifting_paradigms.png"
+            alt="Shifting Paradigms banner"
+            className="mx-auto w-full max-w-[1152px] rounded-3xl border border-stone-200/70 shadow-lg"
+          />
+        </div>
         <div className="inline-flex items-center gap-2 rounded-full border border-teal-100 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-teal-700 shadow-sm">
           Resources
         </div>
