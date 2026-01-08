@@ -162,6 +162,27 @@ const ClosingSlide = () => (
         {/* Separator */}
         <div className="w-24 h-px bg-gradient-to-r from-transparent via-stone-300 to-transparent mb-8"></div>
 
+        {/* Survey Prompt */}
+        <div className="mb-10">
+          <h3 className="text-xl font-serif font-bold text-stone-800 mb-3">Help Us Improve</h3>
+          <p className="text-base text-stone-600 max-w-2xl mx-auto">
+            Please take a moment to complete this <a href="https://docs.google.com/forms/d/e/1FAIpQLSerJuTU5x2ThLIYY1H8ONNGosIrqYrpUElLGEQTaxPZvEg9zQ/viewform" target="_blank" rel="noopener noreferrer" className="cursor-pointer text-teal-700 font-semibold">survey</a>.
+          </p>
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSerJuTU5x2ThLIYY1H8ONNGosIrqYrpUElLGEQTaxPZvEg9zQ/viewform"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block cursor-pointer"
+          >
+            <img
+              src="./assets/shifting_paradigms_survey_qr.png"
+              alt="Shifting Paradigms survey QR code"
+              className="mx-auto mt-6 w-64 max-w-full rounded-2xl border border-stone-200 shadow-sm"
+            />
+          </a>
+        </div>
+        <div className="w-24 h-px bg-gradient-to-r from-transparent via-stone-300 to-transparent mb-8"></div>
+
         {/* English Title */}
         <h3 className="text-2xl font-serif text-stone-800 tracking-widest uppercase mb-8">
           Ashrafiyya Health
@@ -297,26 +318,6 @@ Pathways for Adoption:
           <p className="text-lg text-stone-600 max-w-2xl mx-auto italic">
             "We are not replacing medicine. We are completing it. We are restoring the soul to the body, and the Creator to the creation."
           </p>
-        </div>
-
-        {/* Survey Card */}
-        <div className="my-24 p-8 bg-white rounded-3xl border border-stone-200 text-center shadow-lg">
-          <h4 className="font-serif font-bold text-2xl text-stone-800 mb-3">Help Us Improve</h4>
-          <p className="text-base text-stone-600 max-w-2xl mx-auto">
-            Please take a moment to complete this <a href="https://docs.google.com/forms/d/e/1FAIpQLSerJuTU5x2ThLIYY1H8ONNGosIrqYrpUElLGEQTaxPZvEg9zQ/viewform" target="_blank" rel="noopener noreferrer" className="cursor-pointer text-teal-700 font-semibold">survey</a>.
-          </p>
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSerJuTU5x2ThLIYY1H8ONNGosIrqYrpUElLGEQTaxPZvEg9zQ/viewform"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block cursor-pointer"
-          >
-            <img
-              src="./assets/shifting_paradigms_survey_qr.png"
-              alt="Shifting Paradigms survey QR code"
-              className="mx-auto mt-6 w-28 max-w-full rounded-xl border border-stone-200 shadow-sm"
-            />
-          </a>
         </div>
 
         {/* Closing Slide */}
