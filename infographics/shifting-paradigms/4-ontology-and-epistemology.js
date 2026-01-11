@@ -153,7 +153,7 @@ const App = () => {
           Ontology & Epistemology
         </h1>
         <p className="text-xl text-stone-500 max-w-2xl mx-auto leading-relaxed font-light">
-          Defining Reality and Knowledge within an integrated Islamic framework.
+          Defining Reality (what exists) and Knowledge (how we know it) within an integrated Islamic framework.
         </p>
         <div className="flex justify-center mt-12">
             <ArrowDown className="w-6 h-6 text-stone-300 animate-bounce" />
@@ -175,7 +175,9 @@ const App = () => {
           }}
           fullText={`Islamic metaphysical inquiry begins with existence itself, not with nature as an independent explanatory domain. The first task of dialectic theology (kalām) was to establish that existence is not uniform in kind. Rather, beings fall into fundamentally different ontological categories. At the apex stands the Necessary Being, Allah, whose existence is intrinsic and uncaused. All other beings are contingent, deriving their existence, continuity, and intelligibility entirely from Him.
 
-Contingent existences (mumkin al-wujūd) are defined precisely by their dependence. They begin, change, and cease. They require causes and conditions. Their existence is not self-explanatory. This dependence necessitates a Being whose existence is necessary in itself (wājib al-wujūd), who does not depend on anything else, and upon whom all else depends at every moment.`}
+Contingent existences (mumkin al-wujūd) are defined precisely by their dependence. They begin, change, and cease. They require causes and conditions. Their existence is not self-explanatory. This dependence necessitates a Being whose existence is necessary in itself (wājib al-wujūd), who does not depend on anything else, and upon whom all else depends at every moment.
+
+Ontologically, then, all created beings, whether material or immaterial, visible (shahādah) or unseen (ghayb), are secondary, derivative, and completely dependent. No created cause or natural process possesses independent efficacy or self-sustaining. The created order does not stand alongside Allah as a parallel explanatory layer; it stands beneath Him, continuously sustained by Him. This is the ontological heart of tawḥīd.`}
         />
 
         {/* Section 2: Divine Regularity */}
@@ -189,7 +191,11 @@ Contingent existences (mumkin al-wujūd) are defined precisely by their dependen
             title: "Methodological Naturalism",
             text: "We study the patterns (science), but we know Who created the pattern."
           }}
-          fullText={`Since all causation ultimately traces back to Allah, creation unfolds in accordance with stable, intelligible regularities. These regularities are described as Allah’s habit (sunnat Allāh or ʿādat Allāh). They are neither autonomous laws nor arbitrary sequences, but consistent expressions of divine wisdom (ḥikmah). The Qur’anic insistence on order, coherence, and non-contradiction in creation (e.g., 21:22) grounds the expectation that nature is reliable and thus knowable.`}
+          fullText={`Since all causation ultimately traces back to Allah, creation unfolds in accordance with stable, intelligible regularities. These regularities are described as Allah’s habit (sunnat Allāh or ʿādat Allāh). They are neither autonomous laws nor arbitrary sequences, but consistent expressions of divine wisdom (ḥikmah). The Qur’anic insistence on order, coherence, and non-contradiction in creation (e.g., 21:22) grounds the expectation that nature is reliable and thus knowable.
+
+This point is crucial for the philosophy of science and medicine. The predictability of biological processes does not marginalize divine agency; it presupposes it. Regularity exists because the Creator is one, wise, and consistent in His action. From this vantage point, science becomes the disciplined study of divine habit, and medicine becomes the focused study of how those habits relate to health, illness, and restoration.
+
+The emphasis on ḥikmah gives particular force to this outlook. Rather than viewing events as mere sequences of occurrences, this approach affirms that created processes are ordered toward intelligible ends.`}
         />
 
         {/* Section 3: Anthropology */}
@@ -216,7 +222,7 @@ Contingent existences (mumkin al-wujūd) are defined precisely by their dependen
           }}
           fullText={`Within this ordered creation, the human being occupies a unique ontological position. Humans are not merely biological organisms. They are created as integrated beings composed of body (jism), intellect (ʿaql), heart (qalb), soul (nafs), and spirit (rūḥ). This integration is not accidental; it is purposive.
 
-Humans are created for recognition (maʿrifah) and worship (ʿibādah) of Allah. They are moral agents, entrusted with responsibility as vicegerents (khalīfah), capable of apprehending truth and acting upon it.`}
+Humans are created for recognition (maʿrifah) and worship (ʿibādah) of Allah. They are moral agents, entrusted with responsibility as vicegerents (khalīfah), capable of apprehending truth and acting upon it. This truth-seeking orientation is not a byproduct of survival, but a defining feature of human nature. Ontologically, the human is a being ordered toward meaning, responsibility, and ultimate accountability.`}
         />
 
         {/* Section 4: Epistemology Overview */}
@@ -239,9 +245,9 @@ Humans are created for recognition (maʿrifah) and worship (ʿibādah) of Allah.
             title: "The Intellect's Role",
             text: "The Intellect is the central processor. It evaluates sensory data, authenticates testimony, and performs pure deduction."
           }}
-          fullText={`Corresponding to this ontological status, humans are granted epistemological tools that other creatures do not possess in full. Classical Muslim scholars identified three primary sources of definitive (qaṭīʻ) knowledge: the external senses (ḥawās khamsah), the sound intellect (ʿaql salīm), and truthful testimony (khabar ṣādiq).
+          fullText={`Corresponding to their ontological status, human beings are endowed with epistemological capacities that other creatures do not possess in full. Classical Muslim scholars identified three primary sources of definitive (qaṭīʿ) knowledge: the external senses (ḥawās khamsah), truthful testimony (khabar ṣādiq), and the sound intellect (ʿaql salīm). These sources are conceptually distinct yet epistemically interdependent, forming a unified framework through which humans access truth at multiple levels of reality.
           
-Together, these epistemological tools position the human being in a way unmatched by other creatures.`}
+Taken together, these epistemological tools position the human being uniquely among created beings.`}
         />
 
         {/* Section 4.1: Senses */}
@@ -255,35 +261,41 @@ Together, these epistemological tools position the human being in a way unmatche
             title: "Empirical Grounding",
             text: "The senses ground investigation in observable fact, preventing speculation."
           }}
-          fullText={`The senses provide access to the observable world and ground empirical investigation. Classical Muslim scholars identified three primary sources of definitive (qaṭīʻ) knowledge, starting with the external senses (ḥawās khamsah). These allow us to engage with the material world created by Allah.`}
+          fullText={`The external senses provide access to the observable world and thus serve as the foundational point of contact between the knower and empirical reality. Through sensory perception, human beings encounter concrete particulars such as bodies, changes, and regularities. This grounds observation, experimentation, and empirical investigation. Contemporary biomedicine operates primarily at this level, relying on data obtained through physical examination, imaging, laboratory testing, and other measurable indicators of physiological function. Sensory knowledge, however, yields raw data rather than explanation. By itself, it discloses what is observed, not how it should be interpreted or situated within a broader account of reality.`}
         />
 
-        {/* Section 4.2: Reason */}
-        <ContentCard 
-          colorTheme="gold"
-          icon={Brain}
-          subtitle="Knowledge Source 2"
-          title="The Sound Intellect (ʿAql)"
-          mainText="Reason is the engine that processes everything else. It organizes sensory data into patterns. It evaluates testimony to see if it is reliable. And it deduces pure logical truths. It connects the dots."
-          highlightBox={{
-            title: "Rational Capacity",
-            text: "Reason allows for inference, judgment, and abstraction—essential for science and diagnosis."
-          }}
-          fullText={`The intellect enables humans to reason beyond immediate perception, allowing inference and judgment. It organizes sensory data into meaningful patterns and coherent explanations. It also evaluates conveyed testimony by assessing transmitted reports, accumulated knowledge, and expert claims. In addition, the intellect engages in purely intellectual deductions that do not depend directly on sensory input or testimony, such as logical relations and metaphysical distinctions.`}
-        />
-
-        {/* Section 4.3: Testimony */}
+        {/* Section 4.2: Testimony (Moved Before Reason) */}
         <ContentCard 
           colorTheme="gold"
           icon={BookOpen}
-          subtitle="Knowledge Source 3"
+          subtitle="Knowledge Source 2"
           title="Truthful Testimony (Khabar Ṣādiq)"
           mainText="Not all knowledge is discovered personally; much of it is conveyed to us by others. The highest form of this is Revelation (Waḥī), which gives us ultimate truths about purpose and meaning that science cannot measure."
           highlightBox={{
             title: "Ultimate Meaning",
             text: "Revelation provides the 'Why' behind the scientific 'How'."
           }}
-          fullText={`Truthful testimony grants access to knowledge that lies beyond sensory observation and rational deduction. The most important form of such testimony is revelation (waḥī), which discloses ultimate purpose, moral obligation, the meaning of suffering, and the end toward which human life is directed. These are not peripheral concerns. They define the context within which all other knowledge finds its proper place.`}
+          fullText={`Truthful testimony constitutes a second source of knowledge and plays a central role in human knowing. Much of what humans know is not acquired through direct observation, but received through transmission: reports, accumulated scholarship, expert consensus, and authoritative instruction. In medical practice, this takes the form of training, published studies, clinical guidelines, and institutional knowledge.
+
+Truthful testimony, in its highest form as revelation (waḥī), grants access to realities that lie beyond sensory observation and rational deduction. It discloses ultimate purpose, moral obligation, the meaning of suffering, and the end toward which human life is directed. These are not peripheral concerns appended to an otherwise complete epistemic system. Rather, they establish the horizon within which all other forms of knowledge find their proper place.`}
+        />
+
+        {/* Section 4.3: Reason (Moved After Testimony) */}
+        <ContentCard 
+          colorTheme="gold"
+          icon={Brain}
+          subtitle="Knowledge Source 3"
+          title="The Sound Intellect (ʿAql)"
+          mainText="Reason is the engine that processes everything else. It organizes sensory data into patterns. It evaluates testimony to see if it is reliable. And it deduces pure logical truths. It connects the dots."
+          highlightBox={{
+            title: "Rational Capacity",
+            text: "Reason allows for inference, judgment, and abstraction—essential for science and diagnosis."
+          }}
+          fullText={`The intellect occupies a central and integrative position within this epistemological structure. It enables humans to reason beyond immediate perception, allowing inference, judgment, and the organization of sensory data into coherent explanatory models. Through the intellect, empirical observations are processed into diagnoses, probabilities are weighed, and ethical decisions are made under uncertainty.
+
+At the same time, the Islamic epistemological framework assigns the intellect a broader scope. In addition to interpreting sensory data and assessing testimony, the intellect is capable of purely rational operations that do not depend directly on either. These include logical deduction and induction, as well as necessary reasoning used to establish metaphysical realities.
+
+The intellect is also indispensable in engaging truthful testimony. It evaluates transmitted reports, distinguishes between reliable and unreliable sources, and determines how received knowledge should be properly understood and applied. Testimony, therefore, does not bypass reason; it presupposes rational interrogation and judgment.`}
         />
 
         {/* Section 5: Medical Implications */}
@@ -300,7 +312,9 @@ Together, these epistemological tools position the human being in a way unmatche
           }}
           fullText={`Within this framework, healthcare assumes a significance that exceeds just technical intervention. Medicine is not merely the repair of biological machinery nor the optimization of physiological parameters. It is a supportive discipline that enables human beings to fulfill their ontological purpose. Preserving health, alleviating suffering, and restoring functional integrity serve the higher aim of allowing the patient to seek truth, worship Allah, and discharge their moral responsibilities.
 
-This ontological and epistemological vision stands in stark contrast to modern frameworks that treat health as an end in itself.`}
+Illness is not only a biological disruption. It can limit a person’s capacity for worship, cognition, and responsibility. This elevates the physician’s role. Clinical care participates in preserving the patient’s ability to recognize Allah, act rightly, and live purposefully.
+
+This ontological and epistemological vision stands in stark contrast to modern frameworks that treat health as an end in itself or reduce medicine to value-neutral techniques. In the Islamic worldview, medicine is teleologically ordered: it serves life, and life serves the knowledge and worship of Allah.`}
         />
 
         {/* Footer / Synthesis */}
