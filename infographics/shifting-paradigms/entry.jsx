@@ -162,6 +162,21 @@ const Page = () => {
         <p className="mx-auto mt-5 max-w-2xl text-sm font-semibold uppercase tracking-[0.25em] text-teal-700">
           Presented by Dr. Mateen A. Khan
         </p>
+        <div className="mx-auto mt-6 w-full max-w-4xl">
+          <div className="relative w-full overflow-hidden rounded-2xl border border-stone-200/80 bg-white shadow-lg">
+            <div className="relative w-full pb-[56.25%]">
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src="https://www.youtube.com/embed/LoTb16qmITE?rel=0"
+                title="Shifting Paradigms"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </header>
 
