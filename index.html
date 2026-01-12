@@ -127,8 +127,10 @@
 
     .notes-list {
       margin: 0.25rem 0 0 0;
-      padding-left: 1.25rem;
+      padding-left: 0;
       list-style-type: "◆  ";
+      display: inline-block;
+      text-align: left;
     }
 
     .notes-link {
@@ -148,6 +150,27 @@
 
     .notes-list li:hover::marker {
       color: #A69873;
+    }
+
+    .notes-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 0.75rem 1rem 0.85rem;
+      width: 100%;
+      max-width: 560px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(33, 66, 46, 0.12);
+      text-align: center;
+    }
+
+    .notes-card-title {
+      display: inline-block;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      background: #f6f4ee;
+      border: 1px solid rgba(33, 66, 46, 0.2);
+      box-shadow: inset 0 -1px 0 rgba(33, 66, 46, 0.1);
+      margin: 0 0 0.5rem 0;
     }
 
     /* YouTube playlist container styles */
@@ -233,12 +256,6 @@
         display: block;
         width: 100%;
         max-width: 100%;
-      }
-
-      .video-scroll-container {
-        max-height: none;
-        min-height: 0;
-        overflow-y: visible;
       }
     }
 
@@ -531,10 +548,12 @@
                   <img src="https://img.youtube.com/vi/LoTb16qmITE/maxresdefault.jpg" alt="Heart of Care: Shifting Paradigms">
                   <div class="play-button"></div>
                 </a>
-                <h4>Notes and Infographics:</h4>
-                <ul class="notes-list">
-                  <li><a class="notes-link" href="resources/shifting-paradigms/"><h4>Shifting Paradigms</h4></a></li>
-                </ul>
+                <div class="notes-card">
+                  <h4 class="notes-card-title">Notes and Infographics</h4>
+                  <ul class="notes-list">
+                    <li><a class="notes-link" href="resources/shifting-paradigms/"><h4>Shifting Paradigms</h4></a></li>
+                  </ul>
+                </div>
               </div>
               <div class="video-item">
                 <h4>Heart of Care: What It Means to Be a Muslim in Healthcare</h4>
