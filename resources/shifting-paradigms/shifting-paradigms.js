@@ -1029,6 +1029,13 @@ var Page = () => {
       alt: "Shifting Paradigms banner",
       className: "mx-auto w-full max-w-[1152px] rounded-3xl border border-stone-200/70 shadow-lg"
     }
+  )), /* @__PURE__ */ React6.createElement("div", { className: "mx-auto mt-2 w-full max-w-6xl text-left" }, /* @__PURE__ */ React6.createElement(
+    "a",
+    {
+      className: "inline-flex items-center rounded-2xl border border-stone-200 bg-white px-4 py-2 text-sm font-semibold uppercase tracking-[0.25em] text-teal-700 shadow-sm",
+      href: "../../index.html#recorded-resources"
+    },
+    "Go back"
   )), /* @__PURE__ */ React6.createElement("div", { className: "mt-8 flex items-center justify-center text-stone-400" }, /* @__PURE__ */ React6.createElement("span", { className: "h-px w-20 bg-stone-200" }), /* @__PURE__ */ React6.createElement("span", { className: "mx-4 text-xs" }, "\u25C6"), /* @__PURE__ */ React6.createElement("span", { className: "h-px w-20 bg-stone-200" })), /* @__PURE__ */ React6.createElement("h1", { className: "mt-6 text-5xl font-serif font-bold text-stone-900 md:text-7xl" }, "Shifting Paradigms"), /* @__PURE__ */ React6.createElement("p", { className: "mx-auto mt-4 max-w-2xl text-lg text-stone-600" }, "A curated set of five infographics exploring the philosophical journey of medicine and the Islamic framework for knowledge, reality, and healing."), /* @__PURE__ */ React6.createElement("p", { className: "mx-auto mt-5 max-w-2xl text-sm font-semibold uppercase tracking-[0.25em] text-teal-700" }, "Presented by Dr. Mateen A. Khan"))), /* @__PURE__ */ React6.createElement("section", { id: "top-menu", className: "px-6 pb-10" }, /* @__PURE__ */ React6.createElement("div", { className: "mx-auto grid max-w-6xl gap-4 md:grid-cols-2 lg:grid-cols-3" }, sections.map((section, index) => /* @__PURE__ */ React6.createElement(TocCard, { key: section.id, index, ...section })))), /* @__PURE__ */ React6.createElement(
     "nav",
     {

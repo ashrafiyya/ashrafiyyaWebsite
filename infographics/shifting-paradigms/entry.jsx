@@ -139,6 +139,14 @@ const Page = () => {
             className="mx-auto w-full max-w-[1152px] rounded-3xl border border-stone-200/70 shadow-lg"
           />
         </div>
+        <div className="mx-auto mt-2 w-full max-w-6xl text-left">
+          <a
+            className="inline-flex items-center rounded-2xl border border-stone-200 bg-white px-4 py-2 text-sm font-semibold uppercase tracking-[0.25em] text-teal-700 shadow-sm"
+            href="../../index.html#recorded-resources"
+          >
+            Go back
+          </a>
+        </div>
         <div className="mt-8 flex items-center justify-center text-stone-400">
           <span className="h-px w-20 bg-stone-200"></span>
           <span className="mx-4 text-xs">◆</span>

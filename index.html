@@ -125,6 +125,31 @@
       background-color: #0066CC !important;
     }
 
+    .notes-list {
+      margin: 0.25rem 0 0 0;
+      padding-left: 1.25rem;
+      list-style-type: "◆  ";
+    }
+
+    .notes-link {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .notes-list h4 {
+      display: inline;
+      margin: 0;
+    }
+
+    .notes-link:hover,
+    .notes-link:hover h4 {
+      color: #A69873;
+    }
+
+    .notes-list li:hover::marker {
+      color: #A69873;
+    }
+
     /* YouTube playlist container styles */
     .youtube-playlist-container {
       position: relative;
@@ -475,7 +500,7 @@
         </div>
       </div>
       
-      <div class="previous-programs-card recorded-resources-card">
+      <div class="previous-programs-card recorded-resources-card" id="recorded-resources">
         <h2>Recorded Resources<br><small>Browse our collection of recorded programs and lectures from past events.</small></h2>
         <div class="recorded-resources-grid">
           <div class="video-playlist-column">
@@ -499,6 +524,10 @@
                   <img src="https://img.youtube.com/vi/Dl9FmmZ3l_w/maxresdefault.jpg" alt="Heart of Care: Shifting Paradigms">
                   <div class="play-button"></div>
                 </a>
+                <h4>Notes and Infographics:</h4>
+                <ul class="notes-list">
+                  <li><a class="notes-link" href="resources/shifting-paradigms/"><h4>Shifting Paradigms</h4></a></li>
+                </ul>
               </div>
               <div class="video-item">
                 <h4>Heart of Care: What It Means to Be a Muslim in Healthcare</h4>
