@@ -439,7 +439,7 @@ In response, alternative models emerged, most notably George Engel’s biopsycho
         <ParadoxVisual />
 
         <div className="mt-24 text-center text-stone-400 text-sm font-medium">
-          <p>© 2025 Educational Infographic Series</p>
+          <p>© 2026 Educational Infographic Series</p>
         </div>
 
       </main>

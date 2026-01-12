@@ -327,7 +327,7 @@ This ontological and epistemological vision stands in stark contrast to modern f
         </div>
 
         <div className="mt-16 text-center text-stone-400 text-sm font-medium">
-          <p>© 2025 Educational Infographic Series</p>
+          <p>© 2026 Educational Infographic Series</p>
         </div>
 
       </main>
