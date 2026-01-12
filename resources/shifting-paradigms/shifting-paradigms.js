@@ -1022,21 +1022,7 @@ var Page = () => {
     observer.observe(topMenu);
     return () => observer.disconnect();
   }, []);
-  return /* @__PURE__ */ React6.createElement("div", { className: "relative bg-[#f7f5f0] text-stone-900" }, /* @__PURE__ */ React6.createElement("header", { id: "page-header", className: "relative overflow-hidden px-6 pb-16 pt-20" }, /* @__PURE__ */ React6.createElement("div", { className: "absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,#d6f5f0,transparent_60%)]" }), /* @__PURE__ */ React6.createElement("div", { className: "mx-auto max-w-6xl text-center" }, /* @__PURE__ */ React6.createElement("div", { className: "mb-8" }, /* @__PURE__ */ React6.createElement(
-    "img",
-    {
-      src: "./assets/shifting_paradigms_banner.png",
-      alt: "Shifting Paradigms banner",
-      className: "mx-auto w-full max-w-[1152px] rounded-3xl border border-stone-200/70 shadow-lg"
-    }
-  )), /* @__PURE__ */ React6.createElement("div", { className: "mx-auto mt-2 w-full max-w-6xl text-left" }, /* @__PURE__ */ React6.createElement(
-    "a",
-    {
-      className: "inline-flex items-center rounded-2xl border border-stone-200 bg-white px-4 py-2 text-sm font-semibold uppercase tracking-[0.25em] text-teal-700 shadow-sm",
-      href: "../../index.html#recorded-resources"
-    },
-    "Go back"
-  )), /* @__PURE__ */ React6.createElement("div", { className: "mt-8 flex items-center justify-center text-stone-400" }, /* @__PURE__ */ React6.createElement("span", { className: "h-px w-20 bg-stone-200" }), /* @__PURE__ */ React6.createElement("span", { className: "mx-4 text-xs" }, "\u25C6"), /* @__PURE__ */ React6.createElement("span", { className: "h-px w-20 bg-stone-200" })), /* @__PURE__ */ React6.createElement("h1", { className: "mt-6 text-5xl font-serif font-bold text-stone-900 md:text-7xl" }, "Shifting Paradigms"), /* @__PURE__ */ React6.createElement("p", { className: "mx-auto mt-4 max-w-2xl text-lg text-stone-600" }, "A curated set of five infographics exploring the philosophical journey of medicine and the Islamic framework for knowledge, reality, and healing."), /* @__PURE__ */ React6.createElement("p", { className: "mx-auto mt-5 max-w-2xl text-sm font-semibold uppercase tracking-[0.25em] text-teal-700" }, "Presented by Dr. Mateen A. Khan"), /* @__PURE__ */ React6.createElement("div", { className: "mx-auto mt-6 w-full max-w-4xl" }, /* @__PURE__ */ React6.createElement("div", { className: "relative w-full overflow-hidden rounded-2xl border border-stone-200/80 bg-white shadow-lg" }, /* @__PURE__ */ React6.createElement("div", { className: "relative w-full pb-[56.25%]" }, /* @__PURE__ */ React6.createElement(
+  return /* @__PURE__ */ React6.createElement("div", { className: "relative bg-[#f7f5f0] text-stone-900" }, /* @__PURE__ */ React6.createElement("header", { id: "page-header", className: "relative overflow-hidden px-6 pb-16 pt-20" }, /* @__PURE__ */ React6.createElement("div", { className: "absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,#d6f5f0,transparent_60%)]" }), /* @__PURE__ */ React6.createElement("div", { className: "mx-auto max-w-6xl text-center" }, /* @__PURE__ */ React6.createElement("h1", { className: "mt-6 text-5xl font-serif font-bold text-stone-900 md:text-7xl" }, "Shifting Paradigms"), /* @__PURE__ */ React6.createElement("p", { className: "mx-auto mt-4 max-w-2xl text-lg text-stone-600" }, "A curated set of five infographics exploring the philosophical journey of medicine and the Islamic framework for knowledge, reality, and healing."), /* @__PURE__ */ React6.createElement("p", { className: "mx-auto mt-5 max-w-2xl text-sm font-semibold uppercase tracking-[0.25em] text-teal-700" }, "Presented by Dr. Mateen A. Khan"), /* @__PURE__ */ React6.createElement("div", { className: "mx-auto mt-10 w-full max-w-4xl" }, /* @__PURE__ */ React6.createElement("div", { className: "relative w-full overflow-hidden rounded-2xl border border-stone-200/80 bg-white shadow-lg" }, /* @__PURE__ */ React6.createElement("div", { className: "relative w-full pb-[56.25%]" }, /* @__PURE__ */ React6.createElement(
     "iframe",
     {
       className: "absolute inset-0 h-full w-full",
@@ -1047,7 +1033,14 @@ var Page = () => {
       referrerPolicy: "strict-origin-when-cross-origin",
       allowFullScreen: true
     }
-  )))))), /* @__PURE__ */ React6.createElement("section", { id: "top-menu", className: "px-6 pb-10" }, /* @__PURE__ */ React6.createElement("div", { className: "mx-auto grid max-w-6xl gap-4 md:grid-cols-2 lg:grid-cols-3" }, sections.map((section, index) => /* @__PURE__ */ React6.createElement(TocCard, { key: section.id, index, ...section })))), /* @__PURE__ */ React6.createElement(
+  )))), /* @__PURE__ */ React6.createElement("div", { className: "mx-auto mt-6 w-full max-w-6xl text-center" }, /* @__PURE__ */ React6.createElement(
+    "a",
+    {
+      className: "inline-flex items-center rounded-2xl border border-stone-200 bg-white px-4 py-2 text-sm font-semibold uppercase tracking-[0.25em] text-teal-700 shadow-sm",
+      href: "../../index.html#recorded-resources"
+    },
+    "Return to the Homepage"
+  )))), /* @__PURE__ */ React6.createElement("section", { id: "top-menu", className: "px-6 pb-10" }, /* @__PURE__ */ React6.createElement("div", { className: "mx-auto grid max-w-6xl gap-4 md:grid-cols-2 lg:grid-cols-3" }, sections.map((section, index) => /* @__PURE__ */ React6.createElement(TocCard, { key: section.id, index, ...section })))), /* @__PURE__ */ React6.createElement(
     "nav",
     {
       className: `fixed left-1/2 top-4 z-[9999] flex -translate-x-1/2 flex-row gap-2 rounded-full border border-stone-200 bg-white/80 p-2 text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 shadow-sm backdrop-blur transition-opacity duration-300 sm:gap-3 sm:p-3 sm:scale-90 md:scale-95 xl:left-auto xl:right-6 xl:top-1/2 xl:-translate-x-0 xl:-translate-y-1/2 xl:flex-col xl:scale-100 ${showSideNav ? "opacity-100" : "pointer-events-none opacity-0"}`,

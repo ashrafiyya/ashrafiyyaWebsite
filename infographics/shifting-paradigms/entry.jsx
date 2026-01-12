@@ -132,26 +132,6 @@ const Page = () => {
     <header id="page-header" className="relative overflow-hidden px-6 pb-16 pt-20">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,#d6f5f0,transparent_60%)]"></div>
       <div className="mx-auto max-w-6xl text-center">
-        <div className="mb-8">
-          <img
-            src="./assets/shifting_paradigms_banner.png"
-            alt="Shifting Paradigms banner"
-            className="mx-auto w-full max-w-[1152px] rounded-3xl border border-stone-200/70 shadow-lg"
-          />
-        </div>
-        <div className="mx-auto mt-2 w-full max-w-6xl text-left">
-          <a
-            className="inline-flex items-center rounded-2xl border border-stone-200 bg-white px-4 py-2 text-sm font-semibold uppercase tracking-[0.25em] text-teal-700 shadow-sm"
-            href="../../index.html#recorded-resources"
-          >
-            Go back
-          </a>
-        </div>
-        <div className="mt-8 flex items-center justify-center text-stone-400">
-          <span className="h-px w-20 bg-stone-200"></span>
-          <span className="mx-4 text-xs">◆</span>
-          <span className="h-px w-20 bg-stone-200"></span>
-        </div>
         <h1 className="mt-6 text-5xl font-serif font-bold text-stone-900 md:text-7xl">
           Shifting Paradigms
         </h1>
@@ -162,7 +142,7 @@ const Page = () => {
         <p className="mx-auto mt-5 max-w-2xl text-sm font-semibold uppercase tracking-[0.25em] text-teal-700">
           Presented by Dr. Mateen A. Khan
         </p>
-        <div className="mx-auto mt-6 w-full max-w-4xl">
+        <div className="mx-auto mt-10 w-full max-w-4xl">
           <div className="relative w-full overflow-hidden rounded-2xl border border-stone-200/80 bg-white shadow-lg">
             <div className="relative w-full pb-[56.25%]">
               <iframe
@@ -176,6 +156,14 @@ const Page = () => {
               />
             </div>
           </div>
+        </div>
+        <div className="mx-auto mt-6 w-full max-w-6xl text-center">
+          <a
+            className="inline-flex items-center rounded-2xl border border-stone-200 bg-white px-4 py-2 text-sm font-semibold uppercase tracking-[0.25em] text-teal-700 shadow-sm"
+            href="../../index.html#recorded-resources"
+          >
+            Return to the Homepage
+          </a>
         </div>
       </div>
     </header>
