@@ -212,3 +212,63 @@ if (document.readyState === 'loading') {
 } else {
   initExpandableDescriptions();
 }
+
+function initRecordedResourcesScrollbars() {
+  const containers = document.querySelectorAll('.video-scroll-container');
+  if (!containers.length) return;
+
+  containers.forEach(container => {
+    if (container.querySelector('.video-scroll-inner')) return;
+
+    const inner = document.createElement('div');
+    inner.className = 'video-scroll-inner';
+
+    while (container.firstChild) {
+      inner.appendChild(container.firstChild);
+    }
+
+    const track = document.createElement('div');
+    track.className = 'custom-scrollbar';
+
+    const thumb = document.createElement('div');
+    thumb.className = 'custom-scrollbar-thumb';
+
+    track.appendChild(thumb);
+    container.appendChild(inner);
+    container.appendChild(track);
+
+    const updateThumb = () => {
+      const scrollHeight = inner.scrollHeight;
+      const clientHeight = inner.clientHeight;
+      const trackHeight = track.clientHeight;
+      const maxScroll = Math.max(scrollHeight - clientHeight, 0);
+      const minThumbHeight = 28;
+      const calculatedThumb = (clientHeight / Math.max(scrollHeight, 1)) * trackHeight;
+      const thumbHeight = Math.max(calculatedThumb, minThumbHeight);
+      const maxThumbTop = Math.max(trackHeight - thumbHeight, 0);
+      const thumbTop = maxScroll === 0 ? 0 : (inner.scrollTop / maxScroll) * maxThumbTop;
+
+      thumb.style.height = `${thumbHeight}px`;
+      thumb.style.transform = `translateY(${thumbTop}px)`;
+    };
+
+    inner.addEventListener('scroll', updateThumb, { passive: true });
+
+    if ('ResizeObserver' in window) {
+      const resizeObserver = new ResizeObserver(updateThumb);
+      resizeObserver.observe(inner);
+      resizeObserver.observe(container);
+    } else {
+      window.addEventListener('resize', updateThumb);
+    }
+
+    window.addEventListener('load', updateThumb);
+    updateThumb();
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initRecordedResourcesScrollbars);
+} else {
+  initRecordedResourcesScrollbars();
+}

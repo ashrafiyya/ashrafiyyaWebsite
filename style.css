@@ -1867,13 +1867,12 @@ body {
 }
 
 .video-scroll-container {
-  overflow-y: auto;
-  overflow-x: hidden;
-  max-height: 400px;
-  min-height: 200px;
-  padding-right: 0.5rem;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(166, 152, 115, 0.4) rgba(166, 152, 115, 0.1);
+  position: relative;
+  overflow: hidden;
+  --scrollbar-width: 7px;
+  --scrollbar-track: rgba(166, 152, 115, 0.18);
+  --scrollbar-thumb: rgba(166, 152, 115, 0.55);
+  --scrollbar-thumb-hover: rgba(166, 152, 115, 0.75);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1883,26 +1882,50 @@ body {
   flex-direction: column;
 }
 
-.video-scroll-container::-webkit-scrollbar {
-  width: 6px;
+.video-scroll-inner {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 400px;
+  min-height: 200px;
+  padding-right: calc(0.5rem + var(--scrollbar-width));
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
-.video-scroll-container::-webkit-scrollbar-track {
-  background: rgba(166, 152, 115, 0.1);
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
+.video-scroll-inner::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
-.video-scroll-container::-webkit-scrollbar-thumb {
-  background: rgba(166, 152, 115, 0.4);
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
+.custom-scrollbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--scrollbar-width);
+  height: 100%;
+  background: var(--scrollbar-track);
+  border-radius: 999px;
 }
 
-.video-scroll-container::-webkit-scrollbar-thumb:hover {
-  background: rgba(166, 152, 115, 0.6);
+.custom-scrollbar-thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--scrollbar-thumb);
+  border-radius: 999px;
+  transition: background 0.2s ease;
+}
+
+.video-scroll-container:hover .custom-scrollbar-thumb {
+  background: var(--scrollbar-thumb-hover);
 }
 
 .video-item {
@@ -1966,6 +1989,10 @@ body {
   }
   
   .video-scroll-container {
+    --scrollbar-width: 7px;
+  }
+
+  .video-scroll-inner {
     max-height: 350px;
     min-height: 175px;
   }
@@ -1983,6 +2010,10 @@ body {
   }
   
   .video-scroll-container {
+    --scrollbar-width: 7px;
+  }
+
+  .video-scroll-inner {
     max-height: 325px;
     min-height: 150px;
   }
@@ -2012,9 +2043,13 @@ body {
   }
   
   .video-scroll-container {
+    --scrollbar-width: 7px;
+  }
+  
+  .video-scroll-inner {
     max-height: 300px;
     min-height: 125px;
-    padding-right: 0.25rem;
+    padding-right: calc(0.25rem + var(--scrollbar-width));
   }
   
   .video-item {
