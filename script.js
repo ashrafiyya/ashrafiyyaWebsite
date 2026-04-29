@@ -546,3 +546,208 @@ if (document.readyState === 'loading') {
   }
 })();
 
+// === Slot Renderer Helpers (Phase 4) ===
+// Pure DOM builders for current-program slot markup. They never touch the live
+// page by default. A flag-controlled test mount renders The Heart of Care into
+// a hidden container so generated markup can be compared against the existing
+// hard-coded HTML. See docs/content-schema.md for the contract.
+(function () {
+  if (!window.AshrafiyyaContent) return;
+
+  var ALLOWED_BUTTON_STYLES = { 'insta-link-light': true, 'insta-link': true };
+  var DEFAULT_BUTTON_STYLE = 'insta-link-light';
+  var TEST_MOUNT_ID = 'ashrafiyya-content-test-mount';
+  var LOG_PREFIX = '[ashrafiyya-content]';
+
+  function safeText(value) {
+    return value == null ? '' : String(value);
+  }
+
+  function isSafeHref(href) {
+    if (typeof href !== 'string' || !href) return false;
+    if (/^javascript:/i.test(href)) return false;
+    if (href === '#') return true;
+    if (/^https?:\/\//i.test(href)) return true;
+    if (/^mailto:/i.test(href)) return true;
+    if (/^[a-zA-Z0-9_./\-?#]/.test(href)) return true;
+    return false;
+  }
+
+  function createDetailRow(label, value) {
+    var row = document.createElement('div');
+    row.className = 'detail-row';
+    var strong = document.createElement('strong');
+    strong.textContent = safeText(label);
+    var span = document.createElement('span');
+    // Leading space matches the legacy hard-coded markup pattern
+    // <strong>Status</strong><span> More Coming Soon</span>.
+    span.textContent = ' ' + safeText(value);
+    row.appendChild(strong);
+    row.appendChild(span);
+    return row;
+  }
+
+  function createEventDetails(details) {
+    if (!details || !details.length) return null;
+    var wrap = document.createElement('div');
+    wrap.className = 'event-details';
+    details.forEach(function (d) {
+      if (!d) return;
+      wrap.appendChild(createDetailRow(d.label, d.value));
+    });
+    return wrap;
+  }
+
+  function createButton(button) {
+    if (!button) return null;
+    var a = document.createElement('a');
+    var style = ALLOWED_BUTTON_STYLES[button.style] ? button.style : DEFAULT_BUTTON_STYLE;
+    a.className = 'insta-link ' + style;
+    var href = isSafeHref(button.href) ? button.href : '#';
+    a.setAttribute('href', href);
+    if (button.target) a.setAttribute('target', safeText(button.target));
+    if (button.rel) a.setAttribute('rel', safeText(button.rel));
+    // is_placeholder stays in the data as semantic intent; the renderer does
+    // not auto-disable the button so generated markup matches the existing
+    // hard-coded "Coming Soon" button. An explicit is_disabled flag wires up
+    // the .insta-link-deactivated style.
+    if (button.is_disabled === true) {
+      a.classList.add('insta-link-deactivated');
+    }
+    a.textContent = safeText(button.text);
+    return a;
+  }
+
+  function createButtonContainer(button) {
+    var node = createButton(button);
+    if (!node) return null;
+    var wrap = document.createElement('div');
+    wrap.className = 'button-container';
+    wrap.appendChild(node);
+    return wrap;
+  }
+
+  function createProgramItem(slot, event) {
+    var src = event ? event : slot;
+    var item = document.createElement('div');
+    item.className = 'program-item';
+    if (slot && slot.slot_id) {
+      item.setAttribute('data-slot-id', slot.slot_id);
+    }
+
+    var h4 = document.createElement('h4');
+    h4.textContent = safeText(src && src.title || (slot && slot.title));
+    item.appendChild(h4);
+
+    var description = src && src.description != null
+      ? src.description
+      : (slot && slot.description);
+    if (description) {
+      var p = document.createElement('p');
+      p.textContent = safeText(description);
+      item.appendChild(p);
+    }
+
+    var details = src && src.details ? src.details : (slot && slot.default_details);
+    var detailsNode = createEventDetails(details);
+    if (detailsNode) item.appendChild(detailsNode);
+
+    var button = src && src.button ? src.button : (slot && slot.default_button);
+    var btnNode = createButtonContainer(button);
+    if (btnNode) item.appendChild(btnNode);
+
+    // Always include the divider span. CSS hides it on :last-child, so this
+    // keeps the renderer markup identical regardless of position.
+    var divider = document.createElement('span');
+    divider.className = 'divider';
+    divider.textContent = '\u25c6';
+    item.appendChild(divider);
+
+    return item;
+  }
+
+  function isTestRenderEnabled() {
+    try {
+      if (window.location && window.location.search &&
+          window.location.search.indexOf('ashrafiyya-test-render=1') !== -1) {
+        return true;
+      }
+      if (window.localStorage &&
+          window.localStorage.getItem('ashrafiyya:test-render') === '1') {
+        return true;
+      }
+    } catch (e) { /* sandboxed storage / cross-origin frames */ }
+    return false;
+  }
+
+  function findSlotById(state, slotId) {
+    if (!state || !state.programSlots) return null;
+    for (var i = 0; i < state.programSlots.length; i++) {
+      if (state.programSlots[i].slot_id === slotId) return state.programSlots[i];
+    }
+    return null;
+  }
+
+  function runTestRender(state) {
+    if (!document || !document.body) return;
+    var slot = findSlotById(state, 'health_heart_of_care');
+    if (!slot) {
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(LOG_PREFIX + ' test render skipped: health_heart_of_care slot not found');
+      }
+      return;
+    }
+    var existing = document.getElementById(TEST_MOUNT_ID);
+    if (existing && existing.parentNode) existing.parentNode.removeChild(existing);
+
+    var mount = document.createElement('div');
+    mount.id = TEST_MOUNT_ID;
+    mount.setAttribute('hidden', '');
+    mount.setAttribute('aria-hidden', 'true');
+    mount.style.display = 'none';
+    mount.appendChild(createProgramItem(slot, null));
+    document.body.appendChild(mount);
+
+    if (typeof console !== 'undefined' && console.info) {
+      console.info(LOG_PREFIX + ' test render mounted at #' + TEST_MOUNT_ID +
+        ' (use DevTools to inspect; remove [hidden] to view)');
+    }
+  }
+
+  window.AshrafiyyaContent.render = {
+    createDetailRow: createDetailRow,
+    createEventDetails: createEventDetails,
+    createButton: createButton,
+    createButtonContainer: createButtonContainer,
+    createProgramItem: createProgramItem,
+    runTestRender: runTestRender,
+    isSafeHref: isSafeHref,
+    findSlotById: findSlotById
+  };
+
+  function tryTestRender() {
+    if (!isTestRenderEnabled()) return;
+    var api = window.AshrafiyyaContent;
+    if (!api) return;
+    var doRender = function (state) {
+      try { runTestRender(state); }
+      catch (e) {
+        if (typeof console !== 'undefined' && console.warn) {
+          console.warn(LOG_PREFIX + ' test render failed: ' + (e && e.message || e));
+        }
+      }
+    };
+    if (api.state) {
+      doRender(api.state);
+    } else if (typeof api.loadContentData === 'function') {
+      api.loadContentData().then(doRender);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', tryTestRender);
+  } else {
+    tryTestRender();
+  }
+})();
+
