@@ -26,6 +26,34 @@
       "thumbnail_url": "https://img.youtube.com/vi/3aQm_H8ElJo/maxresdefault.jpg",
       "visible": true,
       "sort_order": 20
+    },
+    {
+      "video_id": "circles_hierarchy_of_knowledges",
+      "branch": "circles",
+      "title": "Hierarchy of Knowledges",
+      "youtube_url": "https://www.youtube.com/watch?v=eefDI6StAzc",
+      "embed_url": "https://www.youtube.com/embed/eefDI6StAzc?si=-vrrXF8hvoK8Ppdi&rel=0",
+      "thumbnail_url": "https://img.youtube.com/vi/eefDI6StAzc/maxresdefault.jpg",
+      "notes": [
+        {
+          "label": "Tartib Al-Ulum",
+          "href": "resources/circles/hierarchy-of-knowledges/circles-tartib-al-ulum-v2.pdf",
+          "target": "_blank",
+          "rel": "noopener noreferrer"
+        }
+      ],
+      "visible": true,
+      "sort_order": 10
+    },
+    {
+      "video_id": "circles_intro_tasawwuf_mufti_husain",
+      "branch": "circles",
+      "title": "Introduction to Tasawwuf w/ Mufti Husain",
+      "youtube_url": "https://www.youtube.com/live/KJFImXyLPYs?si=Czt9dGSQF50tudJE",
+      "embed_url": "https://www.youtube.com/embed/KJFImXyLPYs?si=Czt9dGSQF50tudJE&rel=0",
+      "thumbnail_url": "https://img.youtube.com/vi/KJFImXyLPYs/maxresdefault.jpg",
+      "visible": true,
+      "sort_order": 20
     }
   ]
 }
