@@ -872,3 +872,114 @@ if (document.readyState === 'loading') {
   }
 })();
 
+// === Past Event Mount (Phase 6) ===
+// Renders past-event cards from repo JSON. This phase only migrates entries
+// flagged in HTML with data-past-event-id; siblings without the attribute
+// remain hard-coded until their own migration phase. The event_id in the
+// attribute must match an event in data/events.json.
+(function () {
+  if (!window.AshrafiyyaContent || !window.AshrafiyyaContent.render) return;
+  var api = window.AshrafiyyaContent;
+  var render = api.render;
+  var LOG_PREFIX = '[ashrafiyya-content]';
+
+  function findEventById(state, eventId) {
+    if (!state || !state.events) return null;
+    for (var i = 0; i < state.events.length; i++) {
+      if (state.events[i] && state.events[i].event_id === eventId) {
+        return state.events[i];
+      }
+    }
+    return null;
+  }
+
+  function isPastEvent(event, now) {
+    if (!event) return false;
+    if (typeof event.end !== 'string') return false;
+    var endMs = Date.parse(event.end);
+    if (isNaN(endMs)) return false;
+    var nowMs = now ? +now : Date.now();
+    return endMs < nowMs;
+  }
+
+  function createPastEventCard(event) {
+    if (!event) return null;
+    var card = document.createElement('div');
+    card.className = 'event-card';
+    if (event.event_id) card.setAttribute('data-past-event-id', event.event_id);
+    var rows = (event.details && event.details.length) ? event.details : [];
+    rows.forEach(function (r) {
+      if (!r) return;
+      card.appendChild(render.createDetailRow(r.label, r.value));
+    });
+    return card;
+  }
+
+  function mountPastEventById(target, state, eventId) {
+    if (!target || !state || !eventId) return false;
+    var event = findEventById(state, eventId);
+    if (!event || event.visible !== true) return false;
+    if (!isPastEvent(event)) return false;
+    var fresh = createPastEventCard(event);
+    if (!fresh) return false;
+    while (target.firstChild) target.removeChild(target.firstChild);
+    while (fresh.firstChild) target.appendChild(fresh.firstChild);
+    if (!target.classList.contains('event-card')) {
+      target.classList.add('event-card');
+    }
+    return true;
+  }
+
+  function mountAllPastEvents(state) {
+    if (!document || typeof document.querySelectorAll !== 'function') return;
+    var els = document.querySelectorAll('[data-past-event-id]');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      var id = el.getAttribute('data-past-event-id');
+      if (!id) continue;
+      try {
+        var ok = mountPastEventById(el, state, id);
+        if (!ok && typeof console !== 'undefined' && console.warn) {
+          console.warn(LOG_PREFIX + ' past event "' + id + '" did not mount; legacy fallback retained');
+        }
+      } catch (e) {
+        if (typeof console !== 'undefined' && console.warn) {
+          console.warn(LOG_PREFIX + ' failed to mount past event "' + id + '": ' + (e && e.message || e));
+        }
+      }
+    }
+  }
+
+  render.createPastEventCard = createPastEventCard;
+  api.findEventById = findEventById;
+  api.isPastEvent = isPastEvent;
+  api.mountPastEventById = mountPastEventById;
+  api.mountAllPastEvents = mountAllPastEvents;
+
+  function start() {
+    var doMount = function (state) {
+      try { mountAllPastEvents(state); }
+      catch (e) {
+        if (typeof console !== 'undefined' && console.warn) {
+          console.warn(LOG_PREFIX + ' mountAllPastEvents failed: ' + (e && e.message || e));
+        }
+      }
+    };
+    if (api.state) {
+      doMount(api.state);
+    } else if (api.loadingPromise) {
+      api.loadingPromise.then(doMount);
+    } else if (typeof api.kickoffLoad === 'function') {
+      api.kickoffLoad().then(doMount);
+    } else if (typeof api.loadContentData === 'function') {
+      api.loadContentData().then(doMount);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+})();
+

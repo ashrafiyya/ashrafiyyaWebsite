@@ -1,4 +1,37 @@
 {
   "schema_version": 1,
-  "events": []
+  "events": [
+    {
+      "event_id": "hoc_shifting_paradigms_2026_01_08",
+      "slot_id": "health_heart_of_care",
+      "branch": "health",
+      "title": "The Heart of Care: Shifting Paradigms - Medicine on an Islamic Foundation",
+      "venue": "Remote",
+      "start": "2026-01-08T19:00:00Z",
+      "end":   "2026-01-08T22:00:00Z",
+      "details": [
+        { "label": "Event", "value": "The Heart of Care: Shifting Paradigms - Medicine on an Islamic Foundation" },
+        { "label": "Date",  "value": "Thursday, January 08, 2026" },
+        { "label": "Venue", "value": "Remote" }
+      ],
+      "visible": true,
+      "sort_order": 10
+    },
+    {
+      "event_id": "hoc_heart_of_care_2025_09_30",
+      "slot_id": "health_heart_of_care",
+      "branch": "health",
+      "title": "The Heart of Care",
+      "venue": "RWJ Medical School - Piscataway Campus",
+      "start": "2025-09-30T22:00:00Z",
+      "end":   "2025-10-01T01:00:00Z",
+      "details": [
+        { "label": "Event", "value": "The Heart of Care" },
+        { "label": "Date",  "value": "Tuesday, September 30th, 2025" },
+        { "label": "Venue", "value": "RWJ Medical School - Piscataway Campus" }
+      ],
+      "visible": true,
+      "sort_order": 10
+    }
+  ]
 }
