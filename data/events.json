@@ -26,6 +26,22 @@
       "sort_order": 10
     },
     {
+      "event_id": "rise_to_respond_2026_02_08_icmc",
+      "slot_id": "health_rise_to_respond",
+      "branch": "health",
+      "title": "Rise to Respond: Heartsaver Course for Sisters",
+      "venue": "Islamic Circle of Mercer County (ICMC)",
+      "start": "2026-02-08T19:30:00Z",
+      "end":   "2026-02-09T01:00:00Z",
+      "details": [
+        { "label": "Event", "value": "Rise to Respond: Heartsaver Course for Sisters" },
+        { "label": "Date",  "value": "Sunday, February 8, 2026" },
+        { "label": "Venue", "value": "Islamic Circle of Mercer County (ICMC)" }
+      ],
+      "visible": true,
+      "sort_order": 10
+    },
+    {
       "event_id": "hoc_shifting_paradigms_2026_01_08",
       "slot_id": "health_heart_of_care",
       "branch": "health",
@@ -42,6 +58,22 @@
       "sort_order": 10
     },
     {
+      "event_id": "rise_to_respond_2025_10_18_iceb",
+      "slot_id": "health_rise_to_respond",
+      "branch": "health",
+      "title": "Rise to Respond: Heartsaver Course for Sisters",
+      "venue": "Islamic Center of East Brunswick (ICEB)",
+      "start": "2025-10-18T18:30:00Z",
+      "end":   "2025-10-19T00:00:00Z",
+      "details": [
+        { "label": "Event", "value": "Rise to Respond: Heartsaver Course for Sisters" },
+        { "label": "Date",  "value": "Saturday, October 18th, 2025" },
+        { "label": "Venue", "value": "Islamic Center of East Brunswick (ICEB)" }
+      ],
+      "visible": true,
+      "sort_order": 10
+    },
+    {
       "event_id": "hoc_heart_of_care_2025_09_30",
       "slot_id": "health_heart_of_care",
       "branch": "health",
@@ -53,6 +85,38 @@
         { "label": "Event", "value": "The Heart of Care" },
         { "label": "Date",  "value": "Tuesday, September 30th, 2025" },
         { "label": "Venue", "value": "RWJ Medical School - Piscataway Campus" }
+      ],
+      "visible": true,
+      "sort_order": 10
+    },
+    {
+      "event_id": "rise_to_respond_2025_07_20_mcmc",
+      "slot_id": "health_rise_to_respond",
+      "branch": "health",
+      "title": "Rise to Respond: Heartsaver Course for Sisters",
+      "venue": "Muslim Center of Mercer County (MCMC)",
+      "start": "2025-07-20T18:30:00Z",
+      "end":   "2025-07-21T00:00:00Z",
+      "details": [
+        { "label": "Event", "value": "Rise to Respond: Heartsaver Course for Sisters" },
+        { "label": "Date",  "value": "Sunday, July 20th, 2025" },
+        { "label": "Venue", "value": "Muslim Center of Mercer County (MCMC)" }
+      ],
+      "visible": true,
+      "sort_order": 10
+    },
+    {
+      "event_id": "rise_to_respond_2025_07_06_tdc",
+      "slot_id": "health_rise_to_respond",
+      "branch": "health",
+      "title": "Rise to Respond: Heartsaver Course for Sisters",
+      "venue": "Tawheed Dawah Center (TDC)",
+      "start": "2025-07-06T18:30:00Z",
+      "end":   "2025-07-07T00:00:00Z",
+      "details": [
+        { "label": "Event", "value": "Rise to Respond: Heartsaver Course for Sisters" },
+        { "label": "Date",  "value": "Sunday, July 6th, 2025" },
+        { "label": "Venue", "value": "Tawheed Dawah Center (TDC)" }
       ],
       "visible": true,
       "sort_order": 10
