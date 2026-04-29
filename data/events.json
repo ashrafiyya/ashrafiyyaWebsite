@@ -120,6 +120,51 @@
       ],
       "visible": true,
       "sort_order": 10
+    },
+    {
+      "event_id": "circles_islahi_majlis_2026_04_11_tdc",
+      "branch": "circles",
+      "title": "Islahi Majlis with Shaykh Ibrahim Madani and Mufti Husain Ahmad Madani (DU Canada)",
+      "venue": "Tawheed Dawah Center (TDC)",
+      "start": "2026-04-11T18:00:00Z",
+      "end":   "2026-04-11T22:00:00Z",
+      "details": [
+        { "label": "Event", "value": "Islahi Majlis with Shaykh Ibrahim Madani and Mufti Husain Ahmad Madani (DU Canada)" },
+        { "label": "Venue", "value": "Tawheed Dawah Center (TDC)" },
+        { "label": "Date",  "value": "Saturday, April 11th, 2026" }
+      ],
+      "visible": true,
+      "sort_order": 10
+    },
+    {
+      "event_id": "circles_hierarchy_of_knowledges_2026_01_10_zf",
+      "branch": "circles",
+      "title": "Hierarchy of Knowledges",
+      "venue": "Zubaida Foundation (ZF)",
+      "start": "2026-01-10T18:00:00Z",
+      "end":   "2026-01-10T22:00:00Z",
+      "details": [
+        { "label": "Event", "value": "Hierarchy of Knowledges" },
+        { "label": "Date",  "value": "Saturday, January 10, 2026" },
+        { "label": "Venue", "value": "Zubaida Foundation (ZF)" }
+      ],
+      "visible": true,
+      "sort_order": 10
+    },
+    {
+      "event_id": "circles_urdu_islahi_majlis_2025_07_13_mcsc",
+      "branch": "circles",
+      "title": "Urdu Islahi Majlis with Mufti Husain Ahmad (DU Canada)",
+      "venue": "Muslim Center of Somerset County (MCSC)",
+      "start": "2025-07-13T18:00:00Z",
+      "end":   "2025-07-13T22:00:00Z",
+      "details": [
+        { "label": "Event", "value": "Urdu Islahi Majlis with Mufti Husain Ahmad (DU Canada)" },
+        { "label": "Venue", "value": "Muslim Center of Somerset County (MCSC)" },
+        { "label": "Date",  "value": "Sunday, July 13th, 2025" }
+      ],
+      "visible": true,
+      "sort_order": 10
     }
   ]
 }
