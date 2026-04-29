@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "generated_at": null,
+  "source": "manual",
+  "files": {
+    "program-slots.json": { "schema_version": 1 },
+    "events.json": { "schema_version": 1 },
+    "videos.json": { "schema_version": 1 }
+  },
+  "notes": "Initial seed for content automation migration. No runtime code reads these files yet."
+}

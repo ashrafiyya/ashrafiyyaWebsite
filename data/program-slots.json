@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "slots": [
+    {
+      "slot_id": "health_heart_of_care",
+      "branch": "health",
+      "section": "programs",
+      "sort_order": 10,
+      "is_enabled": true,
+      "title": "The Heart of Care",
+      "description": "Seminars with topics covering the incorporation of Islamic principles into modern medical practice.",
+      "default_details": [
+        { "label": "Status", "value": "More Coming Soon" }
+      ],
+      "default_button": {
+        "text": "Details & Registration Coming Soon",
+        "href": "#",
+        "target": "_blank",
+        "rel": "noopener noreferrer",
+        "style": "insta-link-light",
+        "is_placeholder": true
+      },
+      "default_template_html": "<div class=\"program-item\">\n  <h4>The Heart of Care</h4>\n  <p>Seminars with topics covering the incorporation of Islamic principles into modern medical practice.</p>\n  <div class=\"event-details\">\n    <div class=\"detail-row\"><strong>Status</strong><span> More Coming Soon</span></div>\n  </div>\n  <div class=\"button-container\">\n    <a class=\"insta-link insta-link-light\" href=\"#\" target=\"_blank\" rel=\"noopener noreferrer\">Details & Registration Coming Soon</a>\n  </div>\n  <span class=\"divider\">\u25c6</span>\n</div>"
+    },
+    {
+      "slot_id": "health_rise_to_respond",
+      "branch": "health",
+      "section": "programs",
+      "sort_order": 20,
+      "is_enabled": true,
+      "title": "Rise to Respond: Heartsaver Course for Sisters"
+    },
+    {
+      "slot_id": "circles_kayfiyyat_salat",
+      "branch": "circles",
+      "section": "programs",
+      "sort_order": 10,
+      "is_enabled": true,
+      "title": "A Study of Kayfiyyat \u1e62al\u0101t al-Nab\u012b \ufdfa"
+    },
+    {
+      "slot_id": "itqan_al_durr",
+      "branch": "itqan",
+      "section": "programs",
+      "sort_order": 10,
+      "is_enabled": true,
+      "title": "Al-Durr Study Program"
+    }
+  ]
+}
