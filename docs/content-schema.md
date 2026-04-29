@@ -213,9 +213,13 @@ These rules are non-negotiable.
    formatting allowed is the rich-text segment allowlist documented under
    [Rich text segments](#rich-text-segments). Editors cannot extend the
    allowlist; new tags require a code change.
-5. If `events.json` or `videos.json` cannot be loaded or fails validation, the
-   renderer must keep the last-known-good legacy / default content visible and
-   log the failure. Empty or malformed content must never blank the page.
+5. Migrated sections use empty mount shells in [`index.html`](../index.html)
+   (`data-program-slot`, `data-past-event-id`, `data-video-id`). If
+   `program-slots.json`, `events.json`, or `videos.json` cannot be loaded or
+   fails validation, the renderer must log the failure clearly; those shells
+   may remain empty until data is fixed. The automated sync pipeline must
+   refuse to overwrite last-known-good repo JSON with empty or invalid output.
+   (Sections of the page not yet modeled in JSON may still carry static markup.)
 6. Default slot templates live in [`data/program-slots.json`](../data/program-slots.json)
    and are repo-controlled. They are the safety net when scheduled events end.
 

@@ -564,16 +564,13 @@ if (document.readyState === 'loading') {
 })();
 
 // === Slot Renderer Helpers (Phase 4) ===
-// Pure DOM builders for current-program slot markup. They never touch the live
-// page by default. A flag-controlled test mount renders The Heart of Care into
-// a hidden container so generated markup can be compared against the existing
-// hard-coded HTML. See docs/content-schema.md for the contract.
+// Pure DOM builders for current-program slot markup. See
+// docs/content-schema.md for the contract.
 (function () {
   if (!window.AshrafiyyaContent) return;
 
   var ALLOWED_BUTTON_STYLES = { 'insta-link-light': true, 'insta-link': true };
   var DEFAULT_BUTTON_STYLE = 'insta-link-light';
-  var TEST_MOUNT_ID = 'ashrafiyya-content-test-mount';
   var LOG_PREFIX = '[ashrafiyya-content]';
 
   function safeText(value) {
@@ -712,52 +709,12 @@ if (document.readyState === 'loading') {
     return item;
   }
 
-  function isTestRenderEnabled() {
-    try {
-      if (window.location && window.location.search &&
-          window.location.search.indexOf('ashrafiyya-test-render=1') !== -1) {
-        return true;
-      }
-      if (window.localStorage &&
-          window.localStorage.getItem('ashrafiyya:test-render') === '1') {
-        return true;
-      }
-    } catch (e) { /* sandboxed storage / cross-origin frames */ }
-    return false;
-  }
-
   function findSlotById(state, slotId) {
     if (!state || !state.programSlots) return null;
     for (var i = 0; i < state.programSlots.length; i++) {
       if (state.programSlots[i].slot_id === slotId) return state.programSlots[i];
     }
     return null;
-  }
-
-  function runTestRender(state) {
-    if (!document || !document.body) return;
-    var slot = findSlotById(state, 'health_heart_of_care');
-    if (!slot) {
-      if (typeof console !== 'undefined' && console.warn) {
-        console.warn(LOG_PREFIX + ' test render skipped: health_heart_of_care slot not found');
-      }
-      return;
-    }
-    var existing = document.getElementById(TEST_MOUNT_ID);
-    if (existing && existing.parentNode) existing.parentNode.removeChild(existing);
-
-    var mount = document.createElement('div');
-    mount.id = TEST_MOUNT_ID;
-    mount.setAttribute('hidden', '');
-    mount.setAttribute('aria-hidden', 'true');
-    mount.style.display = 'none';
-    mount.appendChild(createProgramItem(slot, null));
-    document.body.appendChild(mount);
-
-    if (typeof console !== 'undefined' && console.info) {
-      console.info(LOG_PREFIX + ' test render mounted at #' + TEST_MOUNT_ID +
-        ' (use DevTools to inspect; remove [hidden] to view)');
-    }
   }
 
   window.AshrafiyyaContent.render = {
@@ -767,46 +724,16 @@ if (document.readyState === 'loading') {
     createButtonContainer: createButtonContainer,
     createProgramItem: createProgramItem,
     appendRichText: appendRichText,
-    runTestRender: runTestRender,
     isSafeHref: isSafeHref,
     findSlotById: findSlotById
   };
-
-  function tryTestRender() {
-    if (!isTestRenderEnabled()) return;
-    var api = window.AshrafiyyaContent;
-    if (!api) return;
-    var doRender = function (state) {
-      try { runTestRender(state); }
-      catch (e) {
-        if (typeof console !== 'undefined' && console.warn) {
-          console.warn(LOG_PREFIX + ' test render failed: ' + (e && e.message || e));
-        }
-      }
-    };
-    if (api.state) {
-      doRender(api.state);
-    } else if (api.loadingPromise) {
-      api.loadingPromise.then(doRender);
-    } else if (typeof api.kickoffLoad === 'function') {
-      api.kickoffLoad().then(doRender);
-    } else if (typeof api.loadContentData === 'function') {
-      api.loadContentData().then(doRender);
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', tryTestRender);
-  } else {
-    tryTestRender();
-  }
 })();
 
 // === Slot Mount (Phase 5) ===
 // Renders any element marked with data-program-slot from repo JSON. Each mount
-// keeps its existing children as a non-blank fallback; once data loads, the
-// children are replaced with rendered output. If loading or rendering fails,
-// the legacy fallback content remains visible.
+// target is an empty shell in index.html; the children are replaced once data
+// loads. If loading or rendering fails, the shell stays empty and a warning is
+// logged.
 (function () {
   if (!window.AshrafiyyaContent || !window.AshrafiyyaContent.render) return;
 
@@ -869,7 +796,7 @@ if (document.readyState === 'loading') {
       try {
         var ok = mountProgramSlot(el, state, slotId);
         if (!ok && typeof console !== 'undefined' && console.warn) {
-          console.warn(LOG_PREFIX + ' slot "' + slotId + '" did not mount; legacy fallback retained');
+          console.warn(LOG_PREFIX + ' slot "' + slotId + '" did not mount; empty shell retained');
         }
       } catch (e) {
         if (typeof console !== 'undefined' && console.warn) {
@@ -911,10 +838,8 @@ if (document.readyState === 'loading') {
 })();
 
 // === Past Event Mount (Phase 6) ===
-// Renders past-event cards from repo JSON. This phase only migrates entries
-// flagged in HTML with data-past-event-id; siblings without the attribute
-// remain hard-coded until their own migration phase. The event_id in the
-// attribute must match an event in data/events.json.
+// Renders past-event cards from repo JSON into empty event-card shells marked
+// with data-past-event-id. The event_id must match an event in data/events.json.
 (function () {
   if (!window.AshrafiyyaContent || !window.AshrafiyyaContent.render) return;
   var api = window.AshrafiyyaContent;
@@ -978,7 +903,7 @@ if (document.readyState === 'loading') {
       try {
         var ok = mountPastEventById(el, state, id);
         if (!ok && typeof console !== 'undefined' && console.warn) {
-          console.warn(LOG_PREFIX + ' past event "' + id + '" did not mount; legacy fallback retained');
+          console.warn(LOG_PREFIX + ' past event "' + id + '" did not mount; empty shell retained');
         }
       } catch (e) {
         if (typeof console !== 'undefined' && console.warn) {
@@ -1022,10 +947,8 @@ if (document.readyState === 'loading') {
 })();
 
 // === Recorded Resources Mount (Phase 13) ===
-// Renders <div class="video-item"> contents from data/videos.json into elements
-// flagged with data-video-id. Siblings without the attribute remain
-// hard-coded until their own migration phase. The video_id in the attribute
-// must match a record in data/videos.json.
+// Renders <div class="video-item"> contents from data/videos.json into empty
+// shells flagged with data-video-id. The video_id must match data/videos.json.
 (function () {
   if (!window.AshrafiyyaContent || !window.AshrafiyyaContent.render) return;
   var api = window.AshrafiyyaContent;
@@ -1179,7 +1102,7 @@ if (document.readyState === 'loading') {
         var ok = mountVideoById(el, state, id);
         if (ok) mounted++;
         else if (typeof console !== 'undefined' && console.warn) {
-          console.warn(LOG_PREFIX + ' video "' + id + '" did not mount; legacy fallback retained');
+          console.warn(LOG_PREFIX + ' video "' + id + '" did not mount; empty shell retained');
         }
       } catch (e) {
         if (typeof console !== 'undefined' && console.warn) {
