@@ -165,6 +165,20 @@
       ],
       "visible": true,
       "sort_order": 10
+    },
+    {
+      "event_id": "itqan_ulama_majlis_2025_07_13",
+      "branch": "itqan",
+      "title": "Ulama Majlis",
+      "start": "2025-07-13T18:00:00Z",
+      "end":   "2025-07-13T22:00:00Z",
+      "details": [
+        { "label": "Event", "value": "Ulama Majlis" },
+        { "label": "Date",  "value": "Sunday, July 13th, 2025" },
+        { "label": "Notes", "value": "By invite only" }
+      ],
+      "visible": true,
+      "sort_order": 10
     }
   ]
 }
