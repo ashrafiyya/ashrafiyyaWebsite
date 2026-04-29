@@ -536,13 +536,22 @@ if (document.readyState === 'loading') {
     validateEvents: validateEvents,
     validateVideos: validateVideos,
     loadContentData: loadContentData,
-    state: null
+    state: null,
+    loadingPromise: null
   };
 
+  function kickoffLoad() {
+    if (!window.AshrafiyyaContent.loadingPromise) {
+      window.AshrafiyyaContent.loadingPromise = loadContentData();
+    }
+    return window.AshrafiyyaContent.loadingPromise;
+  }
+  window.AshrafiyyaContent.kickoffLoad = kickoffLoad;
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () { loadContentData(); });
+    document.addEventListener('DOMContentLoaded', kickoffLoad);
   } else {
-    loadContentData();
+    kickoffLoad();
   }
 })();
 
@@ -739,6 +748,10 @@ if (document.readyState === 'loading') {
     };
     if (api.state) {
       doRender(api.state);
+    } else if (api.loadingPromise) {
+      api.loadingPromise.then(doRender);
+    } else if (typeof api.kickoffLoad === 'function') {
+      api.kickoffLoad().then(doRender);
     } else if (typeof api.loadContentData === 'function') {
       api.loadContentData().then(doRender);
     }
@@ -748,6 +761,114 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', tryTestRender);
   } else {
     tryTestRender();
+  }
+})();
+
+// === Slot Mount (Phase 5) ===
+// Renders any element marked with data-program-slot from repo JSON. Each mount
+// keeps its existing children as a non-blank fallback; once data loads, the
+// children are replaced with rendered output. If loading or rendering fails,
+// the legacy fallback content remains visible.
+(function () {
+  if (!window.AshrafiyyaContent || !window.AshrafiyyaContent.render) return;
+
+  var api = window.AshrafiyyaContent;
+  var render = api.render;
+  var LOG_PREFIX = '[ashrafiyya-content]';
+
+  function findActiveEventForSlot(state, slotId, now) {
+    if (!state || !state.events || !state.events.length) return null;
+    var nowMs = now ? +now : Date.now();
+    var active = null;
+    var activeStartMs = -Infinity;
+    state.events.forEach(function (evt) {
+      if (!evt || evt.visible !== true) return;
+      if (evt.slot_id !== slotId) return;
+      if (typeof evt.start !== 'string' || typeof evt.end !== 'string') return;
+      var startMs = Date.parse(evt.start);
+      var endMs = Date.parse(evt.end);
+      if (isNaN(startMs) || isNaN(endMs)) return;
+      if (startMs <= nowMs && nowMs <= endMs) {
+        if (startMs > activeStartMs) {
+          active = evt;
+          activeStartMs = startMs;
+        }
+      }
+    });
+    return active;
+  }
+
+  function mountProgramSlot(target, state, slotId) {
+    if (!target || !state) return false;
+    var slot = render.findSlotById(state, slotId);
+    if (!slot) return false;
+    if (slot.is_enabled === false) {
+      while (target.firstChild) target.removeChild(target.firstChild);
+      target.setAttribute('hidden', '');
+      return true;
+    }
+    var event = findActiveEventForSlot(state, slotId);
+    var fresh = render.createProgramItem(slot, event);
+    if (!fresh) return false;
+
+    while (target.firstChild) target.removeChild(target.firstChild);
+    while (fresh.firstChild) target.appendChild(fresh.firstChild);
+    if (!target.classList.contains('program-item')) {
+      target.classList.add('program-item');
+    }
+    target.setAttribute('data-slot-id', slotId);
+    target.removeAttribute('hidden');
+    return true;
+  }
+
+  function mountAllProgramSlots(state) {
+    if (!document || typeof document.querySelectorAll !== 'function') return;
+    var els = document.querySelectorAll('[data-program-slot]');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      var slotId = el.getAttribute('data-program-slot');
+      if (!slotId) continue;
+      try {
+        var ok = mountProgramSlot(el, state, slotId);
+        if (!ok && typeof console !== 'undefined' && console.warn) {
+          console.warn(LOG_PREFIX + ' slot "' + slotId + '" did not mount; legacy fallback retained');
+        }
+      } catch (e) {
+        if (typeof console !== 'undefined' && console.warn) {
+          console.warn(LOG_PREFIX + ' failed to mount slot "' + slotId + '": ' + (e && e.message || e));
+        }
+      }
+    }
+  }
+
+  api.findActiveEventForSlot = findActiveEventForSlot;
+  api.mountProgramSlot = mountProgramSlot;
+  api.mountAllProgramSlots = mountAllProgramSlots;
+
+  function start() {
+    var doMount = function (state) {
+      try { mountAllProgramSlots(state); }
+      catch (e) {
+        if (typeof console !== 'undefined' && console.warn) {
+          console.warn(LOG_PREFIX + ' mountAllProgramSlots failed: ' + (e && e.message || e));
+        }
+      }
+    };
+    if (api.state) {
+      doMount(api.state);
+    } else if (api.loadingPromise) {
+      api.loadingPromise.then(doMount);
+    } else if (typeof api.kickoffLoad === 'function') {
+      api.kickoffLoad().then(doMount);
+    } else if (typeof api.loadContentData === 'function') {
+      api.loadContentData().then(doMount);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
   }
 })();
 
