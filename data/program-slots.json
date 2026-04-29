@@ -48,7 +48,19 @@
       "section": "programs",
       "sort_order": 10,
       "is_enabled": true,
-      "title": "A Study of Kayfiyyat \u1e62al\u0101t al-Nab\u012b \ufdfa"
+      "title": "A Study of Kayfiyyat Ṣalāt al-Nabī ﷺ",
+      "description": "A focused reading of this treatise on the Prophet's ﷺ prayer as upheld by the Ḥanafī school. Rooted in Qur'an, ḥadīth, early authorities, and sound legal reasoning, the work offers a rigorous defense of the school's method and reaffirms its deep connection to the Sunnah.",
+      "default_details": [
+        { "label": "Status", "value": "Coming Soon" }
+      ],
+      "default_button": {
+        "text": "Details & Registration Coming Soon",
+        "href": "#",
+        "target": "_blank",
+        "rel": "noopener noreferrer",
+        "style": "insta-link-light",
+        "is_placeholder": true
+      }
     },
     {
       "slot_id": "itqan_al_durr",
