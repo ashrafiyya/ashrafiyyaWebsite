@@ -471,6 +471,14 @@ if (document.readyState === 'loading') {
         errors.push('video ' + video.video_id + ': embed_url missing');
         return;
       }
+      if (typeof video.youtube_url !== 'string' || !video.youtube_url) {
+        errors.push('video ' + video.video_id + ': youtube_url missing');
+        return;
+      }
+      if (typeof video.visible !== 'boolean') {
+        errors.push('video ' + video.video_id + ': visible missing');
+        return;
+      }
       validVideos.push(video);
     });
     return { ok: errors.length === 0, errors: errors, videos: validVideos };
@@ -1010,6 +1018,209 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', start);
   } else {
     start();
+  }
+})();
+
+// === Recorded Resources Mount (Phase 13) ===
+// Renders <div class="video-item"> contents from data/videos.json into elements
+// flagged with data-video-id. Siblings without the attribute remain
+// hard-coded until their own migration phase. The video_id in the attribute
+// must match a record in data/videos.json.
+(function () {
+  if (!window.AshrafiyyaContent || !window.AshrafiyyaContent.render) return;
+  var api = window.AshrafiyyaContent;
+  var render = api.render;
+  var LOG_PREFIX = '[ashrafiyya-content]';
+
+  function findVideoById(state, videoId) {
+    if (!state || !state.videos) return null;
+    for (var i = 0; i < state.videos.length; i++) {
+      if (state.videos[i] && state.videos[i].video_id === videoId) {
+        return state.videos[i];
+      }
+    }
+    return null;
+  }
+
+  // The iframe attributes are layout/structural and not editor-controlled, so
+  // the renderer emits a fixed, normalized attribute set for every video. The
+  // legacy markup contained one inconsistent iframe (width="560") whose visual
+  // width was already overridden by CSS via .youtube-playlist-container; the
+  // normalized markup matches the on-screen result.
+  function createVideoIframe(video) {
+    var wrap = document.createElement('div');
+    wrap.className = 'youtube-playlist-container';
+    var iframe = document.createElement('iframe');
+    iframe.setAttribute('width', '100%');
+    iframe.setAttribute('height', '315');
+    iframe.setAttribute('src', video.embed_url);
+    iframe.setAttribute('title', video.title || 'YouTube video player');
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+    iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+    iframe.setAttribute('allowfullscreen', '');
+    wrap.appendChild(iframe);
+    return wrap;
+  }
+
+  function createVideoThumbnail(video) {
+    if (!video || !video.youtube_url || !render.isSafeHref(video.youtube_url)) return null;
+    var a = document.createElement('a');
+    a.setAttribute('href', video.youtube_url);
+    a.setAttribute('target', '_blank');
+    a.setAttribute('rel', 'noopener noreferrer');
+    a.className = 'youtube-thumbnail';
+
+    var img = document.createElement('img');
+    img.setAttribute('src', video.thumbnail_url || '');
+    img.setAttribute('alt', video.title || '');
+    a.appendChild(img);
+
+    var play = document.createElement('div');
+    play.className = 'play-button';
+    a.appendChild(play);
+    return a;
+  }
+
+  function createNotesLink(note) {
+    if (!note || typeof note.label !== 'string' || typeof note.href !== 'string') return null;
+    if (!render.isSafeHref(note.href)) return null;
+    var li = document.createElement('li');
+    var a = document.createElement('a');
+    a.className = 'notes-link';
+    a.setAttribute('href', note.href);
+    if (note.target) a.setAttribute('target', note.target);
+    if (note.rel) a.setAttribute('rel', note.rel);
+    var h = document.createElement('h4');
+    h.textContent = note.label;
+    a.appendChild(h);
+    li.appendChild(a);
+    return li;
+  }
+
+  function createNotesCard(notes) {
+    if (!Array.isArray(notes) || notes.length === 0) return null;
+    var card = document.createElement('div');
+    card.className = 'notes-card';
+    var title = document.createElement('h4');
+    title.className = 'notes-card-title';
+    title.textContent = 'Notes and Infographics';
+    card.appendChild(title);
+    var list = document.createElement('ul');
+    list.className = 'notes-list';
+    var added = 0;
+    notes.forEach(function (n) {
+      var li = createNotesLink(n);
+      if (li) { list.appendChild(li); added++; }
+    });
+    if (added === 0) return null;
+    card.appendChild(list);
+    return card;
+  }
+
+  function createVideoItem(video) {
+    if (!video) return null;
+    var item = document.createElement('div');
+    item.className = 'video-item';
+    if (video.video_id) item.setAttribute('data-video-id', video.video_id);
+
+    var h4 = document.createElement('h4');
+    h4.textContent = video.title || '';
+    item.appendChild(h4);
+
+    item.appendChild(createVideoIframe(video));
+
+    var thumb = createVideoThumbnail(video);
+    if (thumb) item.appendChild(thumb);
+
+    var notesCard = createNotesCard(video.notes);
+    if (notesCard) item.appendChild(notesCard);
+
+    return item;
+  }
+
+  function mountVideoById(target, state, videoId) {
+    if (!target || !state || !videoId) return false;
+    var video = findVideoById(state, videoId);
+    if (!video || video.visible !== true) return false;
+    var fresh = createVideoItem(video);
+    if (!fresh) return false;
+    while (target.firstChild) target.removeChild(target.firstChild);
+    while (fresh.firstChild) target.appendChild(fresh.firstChild);
+    if (!target.classList.contains('video-item')) {
+      target.classList.add('video-item');
+    }
+    return true;
+  }
+
+  // The recorded-resources scrollbar wraps each .video-scroll-container's
+  // children in a .video-scroll-inner on DOMContentLoaded. After we replace
+  // video-item children, dispatch a scroll event so the scrollbar's
+  // updateThumb listener recomputes thumb height/position. Calling
+  // initRecordedResourcesScrollbars again is a no-op due to its own guard.
+  function refreshScrollbars() {
+    if (!document || typeof document.querySelectorAll !== 'function') return;
+    var inners = document.querySelectorAll('.video-scroll-container .video-scroll-inner');
+    for (var i = 0; i < inners.length; i++) {
+      try { inners[i].dispatchEvent(new Event('scroll')); }
+      catch (e) { /* ignore in older browsers */ }
+    }
+  }
+
+  function mountAllVideos(state) {
+    if (!document || typeof document.querySelectorAll !== 'function') return;
+    var els = document.querySelectorAll('[data-video-id]');
+    var mounted = 0;
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      var id = el.getAttribute('data-video-id');
+      if (!id) continue;
+      try {
+        var ok = mountVideoById(el, state, id);
+        if (ok) mounted++;
+        else if (typeof console !== 'undefined' && console.warn) {
+          console.warn(LOG_PREFIX + ' video "' + id + '" did not mount; legacy fallback retained');
+        }
+      } catch (e) {
+        if (typeof console !== 'undefined' && console.warn) {
+          console.warn(LOG_PREFIX + ' failed to mount video "' + id + '": ' + (e && e.message || e));
+        }
+      }
+    }
+    if (mounted > 0) refreshScrollbars();
+  }
+
+  render.createVideoItem = createVideoItem;
+  render.createNotesCard = createNotesCard;
+  render.createNotesLink = createNotesLink;
+  api.findVideoById = findVideoById;
+  api.mountVideoById = mountVideoById;
+  api.mountAllVideos = mountAllVideos;
+
+  function startVideos() {
+    var doMount = function (state) {
+      try { mountAllVideos(state); }
+      catch (e) {
+        if (typeof console !== 'undefined' && console.warn) {
+          console.warn(LOG_PREFIX + ' mountAllVideos failed: ' + (e && e.message || e));
+        }
+      }
+    };
+    if (api.state) {
+      doMount(api.state);
+    } else if (api.loadingPromise) {
+      api.loadingPromise.then(doMount);
+    } else if (typeof api.kickoffLoad === 'function') {
+      api.kickoffLoad().then(doMount);
+    } else if (typeof api.loadContentData === 'function') {
+      api.loadContentData().then(doMount);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startVideos);
+  } else {
+    startVideos();
   }
 })();
 

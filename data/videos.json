@@ -1,4 +1,31 @@
 {
   "schema_version": 1,
-  "videos": []
+  "videos": [
+    {
+      "video_id": "health_shifting_paradigms",
+      "branch": "health",
+      "title": "Heart of Care: Shifting Paradigms",
+      "youtube_url": "https://www.youtube.com/watch?v=LoTb16qmITE",
+      "embed_url": "https://www.youtube.com/embed/LoTb16qmITE?si=bGJbGajX80MzJBwL",
+      "thumbnail_url": "https://img.youtube.com/vi/LoTb16qmITE/maxresdefault.jpg",
+      "notes": [
+        {
+          "label": "Shifting Paradigms",
+          "href": "resources/shifting-paradigms/"
+        }
+      ],
+      "visible": true,
+      "sort_order": 10
+    },
+    {
+      "video_id": "health_what_it_means_to_be_a_muslim_in_healthcare",
+      "branch": "health",
+      "title": "Heart of Care: What It Means to Be a Muslim in Healthcare",
+      "youtube_url": "https://www.youtube.com/watch?v=3aQm_H8ElJo",
+      "embed_url": "https://www.youtube.com/embed/3aQm_H8ElJo?si=XGdL0fnnz1xfxh2R&rel=0",
+      "thumbnail_url": "https://img.youtube.com/vi/3aQm_H8ElJo/maxresdefault.jpg",
+      "visible": true,
+      "sort_order": 20
+    }
+  ]
 }
