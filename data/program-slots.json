@@ -68,7 +68,25 @@
       "section": "programs",
       "sort_order": 10,
       "is_enabled": true,
-      "title": "Al-Durr Study Program"
+      "title": "Al-Durr Study Program",
+      "description": [
+        "A rare opportunity for graduates and advanced students to engage the influential \u1e24anaf\u012b text ",
+        { "em": "Al-Durr al-Mukht\u0101r" },
+        " through structured group readings\u2014paired with Ibn \u02bf\u0100bid\u012bn's ",
+        { "em": "Radd al-Mu\u1e25t\u0101r" },
+        " for deeper fiqh understanding."
+      ],
+      "default_details": [
+        { "label": "Status", "value": "Ongoing" },
+        { "label": "Notes", "value": "By invite only" }
+      ],
+      "default_button": {
+        "text": "Inquire",
+        "href": "mailto:admin@ashrafiyya.com",
+        "target": "_blank",
+        "rel": "noopener noreferrer",
+        "style": "insta-link-light"
+      }
     }
   ]
 }

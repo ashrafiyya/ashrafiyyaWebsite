@@ -59,7 +59,8 @@ be inserted later without renumbering everything.
   "sort_order": 10,                    // required, integer
   "is_enabled": true,                  // required; if false, slot is not rendered
   "title": "The Heart of Care",        // required
-  "description": "...",                // optional, plain text
+  "description": "...",                // optional, plain text or rich-text segments
+                                        // (see "Rich text segments" below)
   "default_details": [                 // optional, rendered as detail rows
     { "label": "Status", "value": "More Coming Soon" }
   ],
@@ -89,7 +90,7 @@ fields, not from this string.
   "slot_id": "health_rise_to_respond", // required when the event occupies a slot
   "branch": "health",                  // required
   "title": "...",                      // required
-  "description": "...",                // optional, plain text
+  "description": "...",                // optional, plain text or rich-text segments
   "start": "2026-05-10T18:30:00Z",     // ISO 8601 UTC; required for scheduled events
   "end":   "2026-05-11T00:00:00Z",     // ISO 8601 UTC; required for scheduled events
   "venue": "Al-Falah Center",          // optional
@@ -153,6 +154,40 @@ renders nothing.
 Videos are grouped into the Recorded Resources columns by `branch` and ordered
 by `sort_order` ascending, then `video_id`.
 
+## Rich text segments
+
+Some text fields (currently only `description` on slot records and event
+records) support a small, code-controlled allowlist of inline formatting. This
+is the **only** place editor-provided data may produce a non-text DOM node.
+
+A `description` value can be either:
+
+1. A plain string (most common case), rendered as a single text node, or
+2. An array of segments, rendered in order. Each segment is one of:
+   - A plain string &mdash; appended as a text node.
+   - `{ "em": "..." }` &mdash; rendered as `<em>…</em>` (italic emphasis).
+   - `{ "text": "..." }` &mdash; explicit text segment, equivalent to a plain
+     string. Useful when an editor tool prefers uniform object segments.
+
+Any other shape is silently dropped by the renderer. Editors cannot add new
+segment types; doing so requires a code change in `appendRichText` and an
+update to this schema.
+
+Example (from `itqan_al_durr`):
+
+```jsonc
+"description": [
+  "A rare opportunity for graduates and advanced students to engage the influential Ḥanafī text ",
+  { "em": "Al-Durr al-Mukhtār" },
+  " through structured group readings—paired with Ibn ʿĀbidīn's ",
+  { "em": "Radd al-Muḥtār" },
+  " for deeper fiqh understanding."
+]
+```
+
+Whitespace inside string segments is significant. Authors are responsible for
+the spaces that surround `em` segments.
+
 ## Allowed button styles
 
 `button.style` and `default_button.style` must be one of:
@@ -174,8 +209,10 @@ These rules are non-negotiable.
 3. URLs (`href`, `youtube_url`, etc.) must be validated as `http(s)://`,
    `mailto:`, or repo-relative paths. Anything else is rejected and the slot
    falls back to its default state.
-4. Text fields are rendered as text content, not HTML. Minimal inline emphasis
-   may be allowed later only via a vetted, code-controlled allowlist.
+4. Text fields are rendered as text content, not HTML. The only inline
+   formatting allowed is the rich-text segment allowlist documented under
+   [Rich text segments](#rich-text-segments). Editors cannot extend the
+   allowlist; new tags require a code change.
 5. If `events.json` or `videos.json` cannot be loaded or fails validation, the
    renderer must keep the last-known-good legacy / default content visible and
    log the failure. Empty or malformed content must never blank the page.

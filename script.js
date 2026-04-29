@@ -572,6 +572,35 @@ if (document.readyState === 'loading') {
     return value == null ? '' : String(value);
   }
 
+  // appendRichText renders a description-style value as DOM children of `parent`.
+  // It accepts either a plain string or an array of allowlisted segments. The
+  // only allowed segment shapes are: a plain string, { "em": "..." } for
+  // italics, or { "text": "..." } as an explicit text segment. Anything else is
+  // silently dropped, matching the "ignore unknown" rule in
+  // docs/content-schema.md.
+  function appendRichText(parent, value) {
+    if (value == null || !parent) return;
+    if (typeof value === 'string') {
+      parent.appendChild(document.createTextNode(value));
+      return;
+    }
+    if (Array.isArray(value)) {
+      value.forEach(function (seg) {
+        if (typeof seg === 'string') {
+          parent.appendChild(document.createTextNode(seg));
+        } else if (seg && typeof seg.em === 'string') {
+          var em = document.createElement('em');
+          em.textContent = seg.em;
+          parent.appendChild(em);
+        } else if (seg && typeof seg.text === 'string') {
+          parent.appendChild(document.createTextNode(seg.text));
+        }
+      });
+      return;
+    }
+    parent.appendChild(document.createTextNode(String(value)));
+  }
+
   function isSafeHref(href) {
     if (typeof href !== 'string' || !href) return false;
     if (/^javascript:/i.test(href)) return false;
@@ -651,9 +680,9 @@ if (document.readyState === 'loading') {
     var description = src && src.description != null
       ? src.description
       : (slot && slot.description);
-    if (description) {
+    if (description && description.length > 0) {
       var p = document.createElement('p');
-      p.textContent = safeText(description);
+      appendRichText(p, description);
       item.appendChild(p);
     }
 
@@ -729,6 +758,7 @@ if (document.readyState === 'loading') {
     createButton: createButton,
     createButtonContainer: createButtonContainer,
     createProgramItem: createProgramItem,
+    appendRichText: appendRichText,
     runTestRender: runTestRender,
     isSafeHref: isSafeHref,
     findSlotById: findSlotById
