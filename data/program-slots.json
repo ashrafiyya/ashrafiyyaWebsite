@@ -28,7 +28,19 @@
       "section": "programs",
       "sort_order": 20,
       "is_enabled": true,
-      "title": "Rise to Respond: Heartsaver Course for Sisters"
+      "title": "Rise to Respond: Heartsaver Course for Sisters",
+      "description": "A sister-led initiative providing American Heart Association-certified CPR training with a focus on essential first aid and emergency response\u2014equipping Muslim women with the skills and confidence to act when it matters most.",
+      "default_details": [
+        { "label": "Status", "value": "More Coming Soon" }
+      ],
+      "default_button": {
+        "text": "Details & Registration Coming Soon",
+        "href": "#",
+        "target": "_blank",
+        "rel": "noopener noreferrer",
+        "style": "insta-link-light",
+        "is_placeholder": true
+      }
     },
     {
       "slot_id": "circles_kayfiyyat_salat",

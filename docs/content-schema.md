@@ -115,8 +115,9 @@ fields, not from this string.
 For a given slot:
 
 1. Pick the event with `slot_id === slot.slot_id`, `visible === true`, and
-   whose time window contains the current moment, defined as
-   `start <= now <= end`. Ties are broken by largest `start`.
+   `end >= now`. This treats both upcoming and in-progress events as
+   "active". Ties are broken by smallest `end` so an in-progress or imminent
+   event wins over a far-future one.
 2. If no such event exists, the slot renders its **default template**:
    `title`, `description`, `default_details`, and `default_button`.
 3. Once `now > end`, the event becomes a **past event** for its `branch` and

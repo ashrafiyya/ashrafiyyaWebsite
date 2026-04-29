@@ -2,6 +2,30 @@
   "schema_version": 1,
   "events": [
     {
+      "event_id": "rise_to_respond_2026_05_10_al_falah",
+      "slot_id": "health_rise_to_respond",
+      "branch": "health",
+      "title": "Rise to Respond: Heartsaver Course for Sisters",
+      "description": "A sister-led initiative providing American Heart Association-certified CPR training with a focus on essential first aid and emergency response\u2014equipping Muslim women with the skills and confidence to act when it matters most.",
+      "venue": "Al-Falah Center",
+      "start": "2026-05-10T18:30:00Z",
+      "end":   "2026-05-11T00:00:00Z",
+      "details": [
+        { "label": "Date:",  "value": "Sunday, May 10, 2026" },
+        { "label": "Time:",  "value": "2:30 PM - 8:00 PM EST" },
+        { "label": "Venue:", "value": "Al-Falah Center" }
+      ],
+      "button": {
+        "text": "Details & Registration",
+        "href": "https://www.zeffy.com/en-US/ticketing/rise-to-respond-cpr-and-first-aid-training-al-falah",
+        "target": "_blank",
+        "rel": "noopener noreferrer",
+        "style": "insta-link-light"
+      },
+      "visible": true,
+      "sort_order": 10
+    },
+    {
       "event_id": "hoc_shifting_paradigms_2026_01_08",
       "slot_id": "health_heart_of_care",
       "branch": "health",

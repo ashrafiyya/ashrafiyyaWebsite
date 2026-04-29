@@ -780,19 +780,19 @@ if (document.readyState === 'loading') {
     if (!state || !state.events || !state.events.length) return null;
     var nowMs = now ? +now : Date.now();
     var active = null;
-    var activeStartMs = -Infinity;
+    var activeEndMs = Infinity;
+    // "Active" per the implementation plan = "found and not past": any
+    // visible event for this slot whose end has not yet passed. Ties broken
+    // by the soonest end so an in-progress event wins over a far-future one.
     state.events.forEach(function (evt) {
       if (!evt || evt.visible !== true) return;
       if (evt.slot_id !== slotId) return;
-      if (typeof evt.start !== 'string' || typeof evt.end !== 'string') return;
-      var startMs = Date.parse(evt.start);
+      if (typeof evt.end !== 'string') return;
       var endMs = Date.parse(evt.end);
-      if (isNaN(startMs) || isNaN(endMs)) return;
-      if (startMs <= nowMs && nowMs <= endMs) {
-        if (startMs > activeStartMs) {
-          active = evt;
-          activeStartMs = startMs;
-        }
+      if (isNaN(endMs)) return;
+      if (endMs >= nowMs && endMs < activeEndMs) {
+        active = evt;
+        activeEndMs = endMs;
       }
     });
     return active;
