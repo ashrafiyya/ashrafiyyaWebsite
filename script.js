@@ -272,3 +272,277 @@ if (document.readyState === 'loading') {
 } else {
   initRecordedResourcesScrollbars();
 }
+
+// === Content Data Loader (Phase 3) ===
+// Loads repo JSON content for future runtime rendering. This phase only fetches
+// and validates; it does not modify the rendered DOM. See docs/content-schema.md
+// for the full contract.
+(function () {
+  var CONTENT_PATHS = {
+    programSlots: 'data/program-slots.json',
+    events: 'data/events.json',
+    videos: 'data/videos.json',
+    meta: 'data/meta.json'
+  };
+  var CONTENT_FETCH_TIMEOUT_MS = 8000;
+  var LOG_PREFIX = '[ashrafiyya-content]';
+
+  function fetchJsonWithTimeout(url, timeoutMs) {
+    if (timeoutMs == null) timeoutMs = CONTENT_FETCH_TIMEOUT_MS;
+    if (typeof fetch !== 'function') {
+      return Promise.reject(new Error('Fetch API is not available in this browser'));
+    }
+    if (typeof AbortController !== 'function') {
+      return new Promise(function (resolve, reject) {
+        var didTimeout = false;
+        var timer = setTimeout(function () {
+          didTimeout = true;
+          reject(new Error('Timed out fetching ' + url));
+        }, timeoutMs);
+        fetch(url, { credentials: 'omit', cache: 'no-store' })
+          .then(function (response) {
+            if (didTimeout) return;
+            clearTimeout(timer);
+            if (!response.ok) {
+              reject(new Error('HTTP ' + response.status + ' ' + url));
+              return;
+            }
+            response.json().then(resolve, reject);
+          })
+          .catch(function (err) {
+            if (didTimeout) return;
+            clearTimeout(timer);
+            reject(err);
+          });
+      });
+    }
+    var controller = new AbortController();
+    var timer = setTimeout(function () { controller.abort(); }, timeoutMs);
+    return fetch(url, {
+      credentials: 'omit',
+      cache: 'no-store',
+      signal: controller.signal
+    }).then(function (response) {
+      clearTimeout(timer);
+      if (!response.ok) {
+        throw new Error('HTTP ' + response.status + ' ' + url);
+      }
+      return response.json();
+    }, function (err) {
+      clearTimeout(timer);
+      throw err;
+    });
+  }
+
+  function isPlainObject(v) {
+    return v !== null && typeof v === 'object' && !Array.isArray(v);
+  }
+
+  function validateProgramSlots(data) {
+    var errors = [];
+    if (!isPlainObject(data)) {
+      errors.push('program-slots.json: root must be an object');
+      return { ok: false, errors: errors, slots: [] };
+    }
+    if (data.schema_version !== 1) {
+      errors.push('program-slots.json: unsupported schema_version ' + data.schema_version);
+    }
+    if (!Array.isArray(data.slots)) {
+      errors.push('program-slots.json: slots must be an array');
+      return { ok: false, errors: errors, slots: [] };
+    }
+    var seen = {};
+    var validSlots = [];
+    data.slots.forEach(function (slot, idx) {
+      if (!isPlainObject(slot)) {
+        errors.push('slot[' + idx + ']: not an object');
+        return;
+      }
+      if (typeof slot.slot_id !== 'string' || !slot.slot_id) {
+        errors.push('slot[' + idx + ']: slot_id missing');
+        return;
+      }
+      if (seen[slot.slot_id]) {
+        errors.push('slot[' + idx + ']: duplicate slot_id ' + slot.slot_id);
+        return;
+      }
+      seen[slot.slot_id] = true;
+      if (typeof slot.branch !== 'string' || !slot.branch) {
+        errors.push('slot ' + slot.slot_id + ': branch missing');
+        return;
+      }
+      if (typeof slot.title !== 'string' || !slot.title) {
+        errors.push('slot ' + slot.slot_id + ': title missing');
+        return;
+      }
+      if (typeof slot.sort_order !== 'number') {
+        errors.push('slot ' + slot.slot_id + ': sort_order missing');
+        return;
+      }
+      validSlots.push(slot);
+    });
+    return { ok: errors.length === 0, errors: errors, slots: validSlots };
+  }
+
+  function validateEvents(data) {
+    var errors = [];
+    if (!isPlainObject(data)) {
+      errors.push('events.json: root must be an object');
+      return { ok: false, errors: errors, events: [] };
+    }
+    if (data.schema_version !== 1) {
+      errors.push('events.json: unsupported schema_version ' + data.schema_version);
+    }
+    if (!Array.isArray(data.events)) {
+      errors.push('events.json: events must be an array');
+      return { ok: false, errors: errors, events: [] };
+    }
+    var seen = {};
+    var validEvents = [];
+    data.events.forEach(function (evt, idx) {
+      if (!isPlainObject(evt)) {
+        errors.push('event[' + idx + ']: not an object');
+        return;
+      }
+      if (typeof evt.event_id !== 'string' || !evt.event_id) {
+        errors.push('event[' + idx + ']: event_id missing');
+        return;
+      }
+      if (seen[evt.event_id]) {
+        errors.push('event[' + idx + ']: duplicate event_id ' + evt.event_id);
+        return;
+      }
+      seen[evt.event_id] = true;
+      if (typeof evt.branch !== 'string' || !evt.branch) {
+        errors.push('event ' + evt.event_id + ': branch missing');
+        return;
+      }
+      if (typeof evt.title !== 'string' || !evt.title) {
+        errors.push('event ' + evt.event_id + ': title missing');
+        return;
+      }
+      if (typeof evt.visible !== 'boolean') {
+        errors.push('event ' + evt.event_id + ': visible missing');
+        return;
+      }
+      validEvents.push(evt);
+    });
+    return { ok: errors.length === 0, errors: errors, events: validEvents };
+  }
+
+  function validateVideos(data) {
+    var errors = [];
+    if (!isPlainObject(data)) {
+      errors.push('videos.json: root must be an object');
+      return { ok: false, errors: errors, videos: [] };
+    }
+    if (data.schema_version !== 1) {
+      errors.push('videos.json: unsupported schema_version ' + data.schema_version);
+    }
+    if (!Array.isArray(data.videos)) {
+      errors.push('videos.json: videos must be an array');
+      return { ok: false, errors: errors, videos: [] };
+    }
+    var seen = {};
+    var validVideos = [];
+    data.videos.forEach(function (video, idx) {
+      if (!isPlainObject(video)) {
+        errors.push('video[' + idx + ']: not an object');
+        return;
+      }
+      if (typeof video.video_id !== 'string' || !video.video_id) {
+        errors.push('video[' + idx + ']: video_id missing');
+        return;
+      }
+      if (seen[video.video_id]) {
+        errors.push('video[' + idx + ']: duplicate video_id ' + video.video_id);
+        return;
+      }
+      seen[video.video_id] = true;
+      if (typeof video.branch !== 'string' || !video.branch) {
+        errors.push('video ' + video.video_id + ': branch missing');
+        return;
+      }
+      if (typeof video.title !== 'string' || !video.title) {
+        errors.push('video ' + video.video_id + ': title missing');
+        return;
+      }
+      if (typeof video.embed_url !== 'string' || !video.embed_url) {
+        errors.push('video ' + video.video_id + ': embed_url missing');
+        return;
+      }
+      validVideos.push(video);
+    });
+    return { ok: errors.length === 0, errors: errors, videos: validVideos };
+  }
+
+  function logErrors(errors) {
+    if (!errors || !errors.length) return;
+    errors.forEach(function (e) {
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(LOG_PREFIX + ' ' + e);
+      }
+    });
+  }
+
+  function safeFetch(key, validator) {
+    return fetchJsonWithTimeout(CONTENT_PATHS[key]).then(function (raw) {
+      var result = validator(raw);
+      logErrors(result.errors);
+      return result;
+    }, function (err) {
+      var msg = err && err.message ? err.message : String(err);
+      if (typeof console !== 'undefined' && console.warn) {
+        console.warn(LOG_PREFIX + ' failed to load ' + CONTENT_PATHS[key] + ': ' + msg);
+      }
+      return { ok: false, errors: [msg], slots: [], events: [], videos: [] };
+    });
+  }
+
+  function loadContentData() {
+    return Promise.all([
+      safeFetch('programSlots', validateProgramSlots),
+      safeFetch('events', validateEvents),
+      safeFetch('videos', validateVideos),
+      fetchJsonWithTimeout(CONTENT_PATHS.meta).then(function (raw) { return raw; }, function (err) {
+        if (typeof console !== 'undefined' && console.warn) {
+          console.warn(LOG_PREFIX + ' failed to load meta.json: ' + (err && err.message ? err.message : err));
+        }
+        return null;
+      })
+    ]).then(function (results) {
+      var state = {
+        programSlots: results[0].slots || [],
+        events: results[1].events || [],
+        videos: results[2].videos || [],
+        meta: results[3] || null,
+        validation: {
+          programSlots: results[0],
+          events: results[1],
+          videos: results[2]
+        }
+      };
+      if (window.AshrafiyyaContent) {
+        window.AshrafiyyaContent.state = state;
+      }
+      return state;
+    });
+  }
+
+  window.AshrafiyyaContent = {
+    paths: CONTENT_PATHS,
+    fetchJsonWithTimeout: fetchJsonWithTimeout,
+    validateProgramSlots: validateProgramSlots,
+    validateEvents: validateEvents,
+    validateVideos: validateVideos,
+    loadContentData: loadContentData,
+    state: null
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { loadContentData(); });
+  } else {
+    loadContentData();
+  }
+})();
+
