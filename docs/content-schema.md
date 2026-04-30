@@ -231,6 +231,24 @@ These rules are non-negotiable.
 - Comparisons use the user's current `Date.now()`. No timezone math beyond
   parsing ISO strings is allowed at the renderer layer.
 
+## Local validation
+
+From the repository root, run:
+
+```bash
+node scripts/validate-content.mjs
+```
+
+This checks that [`data/program-slots.json`](../data/program-slots.json),
+[`data/events.json`](../data/events.json), [`data/videos.json`](../data/videos.json),
+and [`data/meta.json`](../data/meta.json) load as JSON and satisfy the field
+rules above (including branch IDs, duplicate IDs, ISO `start`/`end`, button
+URLs, optional rich-text `description` segments, and video `notes` links). It
+also verifies that every `data-program-slot`, `data-past-event-id`, and
+`data-video-id` in [`index.html`](../index.html) references a record that
+exists in the matching data file. Exit code `0` means success; non-zero means
+one or more issues were reported on stderr.
+
 ## Sync responsibilities
 
 When the Google Sheet sync (added in later phases) writes to these files:
