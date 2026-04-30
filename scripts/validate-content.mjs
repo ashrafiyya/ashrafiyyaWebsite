@@ -1,13 +1,21 @@
 /**
  * Validates repo content JSON and index.html mount IDs.
  * Run from repo root: node scripts/validate-content.mjs
+ *
+ * Optional: ASHRAFIYYA_VALIDATE_DATA_DIR — absolute or relative path to a folder
+ * containing program-slots.json, events.json, videos.json, and meta.json (used
+ * by scripts/sync-google-sheet.mjs staging). index.html is always read from
+ * the repo root.
  */
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const ROOT = path.join(__dirname, '..');
+const REPO_ROOT = path.join(__dirname, '..');
+const DATA_DIR = process.env.ASHRAFIYYA_VALIDATE_DATA_DIR
+  ? path.resolve(process.env.ASHRAFIYYA_VALIDATE_DATA_DIR)
+  : path.join(REPO_ROOT, 'data');
 
 const BRANCHES = new Set(['health', 'circles', 'itqan']);
 const ALLOWED_BUTTON_STYLES = new Set(['insta-link-light', 'insta-link']);
@@ -26,18 +34,18 @@ function isSafeHref(href) {
   return false;
 }
 
-function readJson(relPath) {
-  const full = path.join(ROOT, relPath);
+function readJson(relName) {
+  const full = path.join(DATA_DIR, relName);
   let raw;
   try {
     raw = fs.readFileSync(full, 'utf8');
   } catch (e) {
-    throw new Error(`Cannot read ${relPath}: ${e.message}`);
+    throw new Error(`Cannot read ${relName}: ${e.message}`);
   }
   try {
     return JSON.parse(raw);
   } catch (e) {
-    throw new Error(`Invalid JSON in ${relPath}: ${e.message}`);
+    throw new Error(`Invalid JSON in ${relName}: ${e.message}`);
   }
 }
 
@@ -369,7 +377,7 @@ function extractMountIds(html, attr) {
 }
 
 function validateIndexHtml(slotIds, eventIds, videoIds, errors) {
-  const full = path.join(ROOT, 'index.html');
+  const full = path.join(REPO_ROOT, 'index.html');
   let html;
   try {
     html = fs.readFileSync(full, 'utf8');
@@ -407,19 +415,19 @@ let eventsData;
 let videosData;
 
 try {
-  slotsData = readJson('data/program-slots.json');
+  slotsData = readJson('program-slots.json');
 } catch (e) {
   errors.push(e.message);
   slotsData = {};
 }
 try {
-  eventsData = readJson('data/events.json');
+  eventsData = readJson('events.json');
 } catch (e) {
   errors.push(e.message);
   eventsData = {};
 }
 try {
-  videosData = readJson('data/videos.json');
+  videosData = readJson('videos.json');
 } catch (e) {
   errors.push(e.message);
   videosData = {};
@@ -427,7 +435,7 @@ try {
 
 let metaData = null;
 try {
-  metaData = readJson('data/meta.json');
+  metaData = readJson('meta.json');
 } catch (e) {
   errors.push(e.message);
 }

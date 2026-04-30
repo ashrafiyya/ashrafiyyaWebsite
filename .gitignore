@@ -148,3 +148,6 @@ out/
 # Cache directories
 .cache/
 .temp/ 
+
+# Sheet sync staging (see scripts/sync-google-sheet.mjs)
+data/.sync-staging/

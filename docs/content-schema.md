@@ -249,6 +249,11 @@ also verifies that every `data-program-slot`, `data-past-event-id`, and
 exists in the matching data file. Exit code `0` means success; non-zero means
 one or more issues were reported on stderr.
 
+Set `ASHRAFIYYA_VALIDATE_DATA_DIR` to validate an alternate directory (e.g.
+`data/.sync-staging` from [`scripts/sync-google-sheet.mjs`](../scripts/sync-google-sheet.mjs));
+[`index.html`](../index.html) is still read from the repo root. See
+[`google-sheet-sync.md`](google-sheet-sync.md) for the sheet → JSON workflow.
+
 ## Sync responsibilities
 
 When the Google Sheet sync (added in later phases) writes to these files:
