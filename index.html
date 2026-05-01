@@ -127,28 +127,75 @@
 
     .notes-list {
       margin: 0.25rem 0 0 0;
-      padding-left: 0;
-      list-style-type: "◆  ";
-      display: inline-block;
+      padding: 0;
+      list-style: none;
+      width: 100%;
+      max-width: 100%;
+      text-align: center;
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    .notes-list li {
+      display: -webkit-inline-box;
+      display: -ms-inline-flexbox;
+      display: inline-flex;
+      -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+      align-items: baseline;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
       text-align: left;
+      max-width: 100%;
+      gap: 0.45rem;
+      padding: 0.15rem 0;
+    }
+
+    .notes-list li + li {
+      margin-top: 0.1rem;
+    }
+
+    .notes-list li::before {
+      content: "\25C6"; /* ◆ */
+      color: #21422E;
+      -ms-flex-negative: 0;
+      flex-shrink: 0;
+      font-size: 0.85em;
+      line-height: 1.2;
+      -webkit-transition: color 0.2s ease;
+      -moz-transition: color 0.2s ease;
+      -o-transition: color 0.2s ease;
+      transition: color 0.2s ease;
+    }
+
+    .notes-list li:hover::before {
+      color: #A69873;
     }
 
     .notes-link {
       color: inherit;
       text-decoration: none;
+      min-width: 0;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+      word-wrap: break-word;
+      -ms-word-wrap: break-word;
+      hyphens: auto;
+      -webkit-hyphens: auto;
+      -ms-hyphens: auto;
     }
 
     .notes-list h4 {
       display: inline;
       margin: 0;
+      font-size: inherit;
+      line-height: inherit;
+      font-weight: 600;
     }
 
     .notes-link:hover,
     .notes-link:hover h4 {
-      color: #A69873;
-    }
-
-    .notes-list li:hover::marker {
       color: #A69873;
     }
 
@@ -171,6 +218,62 @@
       border: 1px solid rgba(33, 66, 46, 0.2);
       box-shadow: inset 0 -1px 0 rgba(33, 66, 46, 0.1);
       margin: 0 0 0.5rem 0;
+      font-size: 0.95rem;
+    }
+
+    /* Responsive sizing for notes card */
+    @media screen and (max-width: 768px) {
+      .notes-card {
+        padding: 0.7rem 0.85rem 0.8rem;
+      }
+
+      .notes-card-title {
+        font-size: 0.9rem;
+        padding: 0.35rem 0.8rem;
+      }
+
+      .notes-list {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .notes-card {
+        padding: 0.6rem 0.7rem 0.7rem;
+        border-radius: 12px;
+      }
+
+      .notes-card-title {
+        font-size: 0.85rem;
+        padding: 0.3rem 0.7rem;
+      }
+
+      .notes-list {
+        font-size: 0.85rem;
+      }
+
+      .notes-list li {
+        gap: 0.4rem;
+      }
+    }
+
+    @media screen and (max-width: 320px) {
+      .notes-card {
+        padding: 0.55rem 0.55rem 0.65rem;
+      }
+
+      .notes-card-title {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.6rem;
+      }
+
+      .notes-list {
+        font-size: 0.8rem;
+      }
+
+      .notes-list li {
+        gap: 0.35rem;
+      }
     }
 
     /* YouTube playlist container styles */
@@ -535,7 +638,7 @@
       </div>
       
       <div class="previous-programs-card recorded-resources-card" id="recorded-resources">
-        <h2>Recorded Resources<br><small>Browse our collection of recorded programs and lectures from past events.</small></h2>
+        <h3>Recorded Resources<br><small>Browse our collection of recorded programs and lectures from past events.</small></h3>
         <div class="recorded-resources-grid">
           <div class="video-playlist-column">
             <h4 class="column-title">Ashrafiyya Health</h4>
