@@ -2,6 +2,10 @@
 
 This folder is the source of truth for how content reaches the live site at [ashrafiyya.com](https://ashrafiyya.com). Pick the doc that matches what you're trying to do.
 
+## I am setting up the pipeline for the first time
+
+Read **[`pipeline-setup.md`](pipeline-setup.md)** start-to-finish. It walks through creating the spreadsheet, sharing it, configuring GitHub Variables, dispatching the first sync, enabling the schedule, and (optionally) adding the Apps Script button.
+
 ## I just need to update events or recorded videos
 
 Read **[`editing-content.md`](editing-content.md)**. You will only touch the Google Sheet.
@@ -24,6 +28,7 @@ data/
   meta.json            # schema version, last-sync timestamp, source
 docs/
   README.md                  (this file)
+  pipeline-setup.md          # one-time end-to-end setup walkthrough
   editing-content.md         # editor-facing how-to
   maintainer-guide.md        # developer-facing how-to
   content-schema.md          # field-by-field reference

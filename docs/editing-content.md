@@ -2,6 +2,8 @@
 
 This guide is for editors who add or update **events** and **recorded videos** through the Ashrafiyya Google Sheet. You never edit the website code.
 
+> If the spreadsheet has not been created yet, ask the maintainer to follow [`pipeline-setup.md`](pipeline-setup.md) first.
+
 ## What you control from the sheet
 
 | Sheet tab | Affects on the site | Notes |

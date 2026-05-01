@@ -2,6 +2,8 @@
 
 For developers responsible for the Ashrafiyya site code, the data pipeline, and the GitHub Actions sync. Editors should read [`editing-content.md`](editing-content.md) instead.
 
+> Setting up the pipeline from scratch (new spreadsheet, new repo Variables, first sync) is covered in [`pipeline-setup.md`](pipeline-setup.md). This guide covers everything that comes after.
+
 ## Architecture in one screen
 
 - **Static GitHub Pages site** served from this repo.
