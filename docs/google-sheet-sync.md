@@ -108,3 +108,7 @@ The job:
 - Uses `permissions: { contents: write }` and the default `GITHUB_TOKEN`; no extra credentials are required so long as the spreadsheet is link-shared.
 
 If a tab is private or sharing changes, the sync step exits non-zero with a clear message and the workflow fails without touching `data/`.
+
+## Optional: trigger from the spreadsheet
+
+A separate, **opt-in** Apps Script menu can call `workflow_dispatch` from inside the sheet. See [`sheet-trigger-button.md`](sheet-trigger-button.md) for setup, code, and security rules. It does not change the safety contract above; it only saves editors a click.
