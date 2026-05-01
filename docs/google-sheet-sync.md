@@ -88,3 +88,21 @@ After changing JSON, run:
 ```bash
 node scripts/validate-content.mjs
 ```
+
+## GitHub Actions: manual sync
+
+`.github/workflows/sync-content.yml` runs the same script on demand.
+
+1. Open **Actions → Sync content from Google Sheet → Run workflow**.
+2. Optionally set `sheet_id`, `events_gid`, `videos_gid`. If left blank, the workflow falls back to repo **Variables** (`ASHRAFIYYA_GOOGLE_SHEET_ID`, `ASHRAFIYYA_SYNC_EVENTS_TAB_GID`, `ASHRAFIYYA_SYNC_VIDEOS_TAB_GID`) or, for the sheet ID, a repo **Secret** of the same name.
+3. Set `dry_run` to validate without committing, or `allow_empty` to permit zero-row replacements.
+
+The job:
+
+- Validates repo data **before** the sync (fails fast on pre-existing issues).
+- Runs `scripts/sync-google-sheet.mjs` with the resolved environment.
+- Re-validates the updated `data/` (skipped on dry runs).
+- Commits **only** `data/events.json`, `data/videos.json`, `data/meta.json` and pushes when changes are detected.
+- Uses `permissions: { contents: write }` and the default `GITHUB_TOKEN`; no extra credentials are required so long as the spreadsheet is link-shared.
+
+If a tab is private or sharing changes, the sync step exits non-zero with a clear message and the workflow fails without touching `data/`.

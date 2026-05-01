@@ -1,0 +1,124 @@
+name: Sync content from Google Sheet
+
+on:
+  workflow_dispatch:
+    inputs:
+      sheet_id:
+        description: "Spreadsheet ID (overrides ASHRAFIYYA_GOOGLE_SHEET_ID secret/var)"
+        required: false
+        type: string
+      events_gid:
+        description: "Events tab gid (omit to skip events)"
+        required: false
+        type: string
+      videos_gid:
+        description: "Videos tab gid (omit to skip videos)"
+        required: false
+        type: string
+      allow_empty:
+        description: "Allow zero events or zero videos to overwrite non-empty JSON"
+        required: false
+        type: boolean
+        default: false
+      dry_run:
+        description: "Validate only; do not commit data/ changes"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-content
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Validate current repo data (baseline)
+        run: node scripts/validate-content.mjs
+
+      - name: Resolve sheet inputs
+        id: cfg
+        env:
+          INPUT_SHEET_ID: ${{ inputs.sheet_id }}
+          INPUT_EVENTS_GID: ${{ inputs.events_gid }}
+          INPUT_VIDEOS_GID: ${{ inputs.videos_gid }}
+          VAR_SHEET_ID: ${{ vars.ASHRAFIYYA_GOOGLE_SHEET_ID }}
+          VAR_EVENTS_GID: ${{ vars.ASHRAFIYYA_SYNC_EVENTS_TAB_GID }}
+          VAR_VIDEOS_GID: ${{ vars.ASHRAFIYYA_SYNC_VIDEOS_TAB_GID }}
+          SECRET_SHEET_ID: ${{ secrets.ASHRAFIYYA_GOOGLE_SHEET_ID }}
+        run: |
+          set -eu
+          SHEET_ID="${INPUT_SHEET_ID:-${VAR_SHEET_ID:-${SECRET_SHEET_ID:-}}}"
+          EVENTS_GID="${INPUT_EVENTS_GID:-${VAR_EVENTS_GID:-}}"
+          VIDEOS_GID="${INPUT_VIDEOS_GID:-${VAR_VIDEOS_GID:-}}"
+          if [ -z "$SHEET_ID" ]; then
+            echo "::error::No sheet ID provided. Pass workflow input sheet_id, set repo variable ASHRAFIYYA_GOOGLE_SHEET_ID, or set secret of the same name."
+            exit 1
+          fi
+          if [ -z "$EVENTS_GID" ] && [ -z "$VIDEOS_GID" ]; then
+            echo "::error::Provide at least one of events_gid / videos_gid (workflow inputs) or ASHRAFIYYA_SYNC_*_TAB_GID repo variables."
+            exit 1
+          fi
+          {
+            echo "sheet_id=$SHEET_ID"
+            echo "events_gid=$EVENTS_GID"
+            echo "videos_gid=$VIDEOS_GID"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Run sync script
+        env:
+          ASHRAFIYYA_GOOGLE_SHEET_ID: ${{ steps.cfg.outputs.sheet_id }}
+          ASHRAFIYYA_SYNC_EVENTS_TAB_GID: ${{ steps.cfg.outputs.events_gid }}
+          ASHRAFIYYA_SYNC_VIDEOS_TAB_GID: ${{ steps.cfg.outputs.videos_gid }}
+          ASHRAFIYYA_SYNC_ALLOW_EMPTY: ${{ inputs.allow_empty && '1' || '' }}
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            node scripts/sync-google-sheet.mjs --dry-run
+          else
+            node scripts/sync-google-sheet.mjs
+          fi
+
+      - name: Re-validate updated repo data
+        if: ${{ inputs.dry_run != true }}
+        run: node scripts/validate-content.mjs
+
+      - name: Detect changes
+        id: changes
+        if: ${{ inputs.dry_run != true }}
+        run: |
+          set -eu
+          if git diff --quiet -- data/events.json data/videos.json data/meta.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No content changes after sync."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git --no-pager diff --stat -- data/events.json data/videos.json data/meta.json
+          fi
+
+      - name: Commit and push changes
+        if: ${{ inputs.dry_run != true && steps.changes.outputs.changed == 'true' }}
+        env:
+          GIT_AUTHOR_NAME: github-actions[bot]
+          GIT_AUTHOR_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+          GIT_COMMITTER_NAME: github-actions[bot]
+          GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+        run: |
+          set -eu
+          git add data/events.json data/videos.json data/meta.json
+          git commit -m "chore(content): sync events/videos from Google Sheet"
+          git push
