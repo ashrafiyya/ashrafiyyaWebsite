@@ -25,6 +25,11 @@ on:
         required: false
         type: boolean
         default: false
+  schedule:
+    # Conservative: twice per day at 11:00 and 23:00 UTC
+    # (07:00 and 19:00 America/New_York during EDT;
+    #  06:00 and 18:00 America/New_York during EST).
+    - cron: "0 11,23 * * *"
 
 permissions:
   contents: write
@@ -80,26 +85,43 @@ jobs:
             echo "videos_gid=$VIDEOS_GID"
           } >> "$GITHUB_OUTPUT"
 
+      - name: Compute run flags
+        id: flags
+        env:
+          INPUT_DRY_RUN: ${{ inputs.dry_run }}
+          INPUT_ALLOW_EMPTY: ${{ inputs.allow_empty }}
+        run: |
+          set -eu
+          DRY_RUN="false"
+          ALLOW_EMPTY=""
+          if [ "$INPUT_DRY_RUN" = "true" ]; then DRY_RUN="true"; fi
+          if [ "$INPUT_ALLOW_EMPTY" = "true" ]; then ALLOW_EMPTY="1"; fi
+          {
+            echo "dry_run=$DRY_RUN"
+            echo "allow_empty=$ALLOW_EMPTY"
+          } >> "$GITHUB_OUTPUT"
+
       - name: Run sync script
         env:
           ASHRAFIYYA_GOOGLE_SHEET_ID: ${{ steps.cfg.outputs.sheet_id }}
           ASHRAFIYYA_SYNC_EVENTS_TAB_GID: ${{ steps.cfg.outputs.events_gid }}
           ASHRAFIYYA_SYNC_VIDEOS_TAB_GID: ${{ steps.cfg.outputs.videos_gid }}
-          ASHRAFIYYA_SYNC_ALLOW_EMPTY: ${{ inputs.allow_empty && '1' || '' }}
+          ASHRAFIYYA_SYNC_ALLOW_EMPTY: ${{ steps.flags.outputs.allow_empty }}
+          DRY_RUN: ${{ steps.flags.outputs.dry_run }}
         run: |
-          if [ "${{ inputs.dry_run }}" = "true" ]; then
+          if [ "$DRY_RUN" = "true" ]; then
             node scripts/sync-google-sheet.mjs --dry-run
           else
             node scripts/sync-google-sheet.mjs
           fi
 
       - name: Re-validate updated repo data
-        if: ${{ inputs.dry_run != true }}
+        if: ${{ steps.flags.outputs.dry_run != 'true' }}
         run: node scripts/validate-content.mjs
 
       - name: Detect changes
         id: changes
-        if: ${{ inputs.dry_run != true }}
+        if: ${{ steps.flags.outputs.dry_run != 'true' }}
         run: |
           set -eu
           if git diff --quiet -- data/events.json data/videos.json data/meta.json; then
@@ -111,7 +133,7 @@ jobs:
           fi
 
       - name: Commit and push changes
-        if: ${{ inputs.dry_run != true && steps.changes.outputs.changed == 'true' }}
+        if: ${{ steps.flags.outputs.dry_run != 'true' && steps.changes.outputs.changed == 'true' }}
         env:
           GIT_AUTHOR_NAME: github-actions[bot]
           GIT_AUTHOR_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com

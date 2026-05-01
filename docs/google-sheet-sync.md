@@ -91,11 +91,13 @@ node scripts/validate-content.mjs
 
 ## GitHub Actions: manual sync
 
-`.github/workflows/sync-content.yml` runs the same script on demand.
+`.github/workflows/sync-content.yml` runs the same script on demand and on a conservative schedule (twice per day, **`0 11,23 * * *`** UTC — 7 AM/7 PM ET in summer, 6 AM/6 PM ET in winter).
 
 1. Open **Actions → Sync content from Google Sheet → Run workflow**.
 2. Optionally set `sheet_id`, `events_gid`, `videos_gid`. If left blank, the workflow falls back to repo **Variables** (`ASHRAFIYYA_GOOGLE_SHEET_ID`, `ASHRAFIYYA_SYNC_EVENTS_TAB_GID`, `ASHRAFIYYA_SYNC_VIDEOS_TAB_GID`) or, for the sheet ID, a repo **Secret** of the same name.
 3. Set `dry_run` to validate without committing, or `allow_empty` to permit zero-row replacements.
+
+For scheduled runs there are no inputs, so the workflow **must** rely on the repo Variables (and Secret if used) above. `dry_run` is `false` and `allow_empty` is `''` by default on schedule, so the same safety rules apply: zero-row sheets and validator failures abort without writing.
 
 The job:
 
