@@ -699,13 +699,13 @@ if (document.readyState === 'loading') {
     var btnNode = createButtonContainer(button);
     if (btnNode) item.appendChild(btnNode);
 
-    // Always include the divider span. CSS hides it on :last-child, so this
-    // keeps the renderer markup identical regardless of position.
-    var divider = document.createElement('span');
-    divider.className = 'divider';
-    divider.textContent = '\u25c6';
-    item.appendChild(divider);
-
+    // The inter-item divider is intentionally NOT appended here. The base
+    // .divider CSS always renders the diamond glyph (only the horizontal
+    // flanking lines are gated by :not(:last-child)), so emitting it
+    // unconditionally produces a stray diamond under standalone slots. The
+    // divider is added by mountProgramSlot only when a following
+    // .program-item sibling actually exists, matching the original
+    // hand-written markup.
     return item;
   }
 
@@ -763,6 +763,16 @@ if (document.readyState === 'loading') {
     return active;
   }
 
+  function hasFollowingProgramItemSibling(target) {
+    if (!target) return false;
+    var n = target.nextElementSibling;
+    while (n) {
+      if (n.classList && n.classList.contains('program-item')) return true;
+      n = n.nextElementSibling;
+    }
+    return false;
+  }
+
   function mountProgramSlot(target, state, slotId) {
     if (!target || !state) return false;
     var slot = render.findSlotById(state, slotId);
@@ -783,6 +793,13 @@ if (document.readyState === 'loading') {
     }
     target.setAttribute('data-slot-id', slotId);
     target.removeAttribute('hidden');
+
+    if (hasFollowingProgramItemSibling(target)) {
+      var divider = document.createElement('span');
+      divider.className = 'divider';
+      divider.textContent = '\u25c6';
+      target.appendChild(divider);
+    }
     return true;
   }
 
